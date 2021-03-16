@@ -12,6 +12,7 @@ import AirportGeo from '../asset/airports.json';
 import Pins from './pins';
 import AirportInfo from './airportInfo';
 
+const { Content } = Layout;
 const MAPBOX_TOKEN =
   'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
@@ -26,19 +27,6 @@ const navStyle = {
   left: 0,
   padding: '10px',
 };
-
-const siderStyle = {
-  position: 'absolute',
-  top: '0',
-  left: '0',
-  zIndex: '99',
-  width: '100px',
-  height: '50vh',
-  margin: '50px 50px',
-  backgroundColor: '#a3a3a3',
-};
-
-const { Sider, Content } = Layout;
 
 export function BaseMap() {
   const [viewport, setViewport] = useState({
@@ -63,7 +51,6 @@ export function BaseMap() {
   return (
     <Layout>
       <Content style={{ position: 'relative' }}>
-        {/* <Sider style={siderStyle}></Sider> */}
         <MapGL
           {...viewport}
           width="100%"

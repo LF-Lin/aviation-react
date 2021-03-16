@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Drawer } from 'antd';
-import update from 'immutability-helper';
+import axios from 'axios';
 
 // import DataPEK from '../asset/realtime_pek.json';
 const popupBoxStyle = {
@@ -14,26 +14,24 @@ const popupStyle = {
 function AirportInfo(props) {
   const { info } = props;
   const [visible, setVisible] = useState(false);
-  const [detail, setDetail] = useState({});
-
-  const getData = () => {
-    fetch('http://localhost:5555/api/airportPEK', {
-      method: 'GET',
-    })
-      .then((res) => res.json())
-      .then((d) => {
-        setDetail(d.temp);
-      });
-    //   .then((data) => setDetail(data));
-  };
+  const [detail, setDetail] = useState([]);
 
   const showDrawer = () => {
-    getData();
     setVisible(true);
   };
   const onClose = () => {
     setVisible(false);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get('http://localhost:5555/api/airportPEK');
+      console.log(res.data);
+      // How to save json dict into React state!
+      // setDetail(res.data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
