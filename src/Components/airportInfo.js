@@ -14,7 +14,7 @@ const popupStyle = {
 function AirportInfo(props) {
   const { info } = props;
   const [visible, setVisible] = useState(false);
-  const [detail, setDetail] = useState([]);
+  const [detail, setDetail] = useState({});
 
   const showDrawer = () => {
     setVisible(true);
@@ -26,9 +26,8 @@ function AirportInfo(props) {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get('http://localhost:5555/api/airportPEK');
+      setDetail(res.data);
       console.log(res.data);
-      // How to save json dict into React state!
-      // setDetail(res.data);
     };
     fetchData();
   }, []);
@@ -50,7 +49,7 @@ function AirportInfo(props) {
         onClose={onClose}
         visible={visible}
       >
-        <p>{detail}</p>
+        <p>{detail.metar}</p>
       </Drawer>
     </div>
   );

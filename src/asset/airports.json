@@ -540,15 +540,6 @@
         "main_airport_iata": "HUN"
     },
     {
-        "city": "恒春",
-        "province": "台湾",
-        "airport_iata": "HCN",
-        "airport_name": "",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "HCN"
-    },
-    {
         "city": "龙岩",
         "province": "福建省",
         "airport_iata": "LCX",
@@ -738,24 +729,6 @@
         "main_airport_iata": "LCS"
     },
     {
-        "city": "绿岛",
-        "province": "台湾",
-        "airport_iata": "GNI",
-        "airport_name": "",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "GNI"
-    },
-    {
-        "city": "兰屿",
-        "province": "台湾",
-        "airport_iata": "KYD",
-        "airport_name": "",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "KYD"
-    },
-    {
         "city": "南宁",
         "province": "广西壮族自治区",
         "airport_iata": "NNG",
@@ -835,15 +808,6 @@
         "latitude": 49.237883292149256,
         "longitude": 125.3508614605387,
         "main_airport_iata": "NJJ"
-    },
-    {
-        "city": "南竿",
-        "province": "台湾",
-        "airport_iata": "LZN",
-        "airport_name": "南竿",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "LZN"
     },
     {
         "city": "泉州",
@@ -934,15 +898,6 @@
         "latitude": 38.18292487156922,
         "longitude": 100.25962157242704,
         "main_airport_iata": "HBQ"
-    },
-    {
-        "city": "七美",
-        "province": "台湾",
-        "airport_iata": "CMJ",
-        "airport_name": "",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "CMJ"
     },
     {
         "city": "厦门",
@@ -1098,15 +1053,6 @@
         "main_airport_iata": "HKG"
     },
     {
-        "city": "新竹",
-        "province": "台湾",
-        "airport_iata": "HSZ",
-        "airport_name": "",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "HSZ"
-    },
-    {
         "city": "嘉峪关",
         "province": "甘肃省",
         "airport_iata": "JGN",
@@ -1224,15 +1170,6 @@
         "main_airport_iata": "JGD"
     },
     {
-        "city": "建三江",
-        "province": "黑龙江省",
-        "airport_iata": "JSJ",
-        "airport_name": "建三江湿地机场",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "JSJ"
-    },
-    {
         "city": "景洪",
         "province": "云南省",
         "airport_iata": "JHG",
@@ -1348,15 +1285,6 @@
         "latitude": 39.13701019150819,
         "longitude": 117.36807710159009,
         "main_airport_iata": "TSN"
-    },
-    {
-        "city": "吐鲁番",
-        "province": "新疆维吾尔自治区",
-        "airport_iata": "TLQ",
-        "airport_name": "吐鲁番交河机场",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "TLQ"
     },
     {
         "city": "台州",
@@ -1764,15 +1692,6 @@
         "main_airport_iata": "WGN"
     },
     {
-        "city": "鄯善",
-        "province": "新疆维吾尔自治区",
-        "airport_iata": "SXJ",
-        "airport_name": "鄯善机场",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "SXJ"
-    },
-    {
         "city": "莎车",
         "province": "新疆维吾尔自治区",
         "airport_iata": "QSZ",
@@ -1807,15 +1726,6 @@
         "latitude": 22.796831873629976,
         "longitude": 100.96682739675735,
         "main_airport_iata": "SYM"
-    },
-    {
-        "city": "上街区",
-        "province": "河南省",
-        "airport_iata": "HSJ",
-        "airport_name": "上街",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "HSJ"
     },
     {
         "city": "湛江",
@@ -1869,15 +1779,6 @@
         "airport_name": "郑州新郑机场",
         "latitude": 34.53215444798651,
         "longitude": 113.86122066866297,
-        "main_airport_iata": "CGO"
-    },
-    {
-        "city": "郑州",
-        "province": "河南省",
-        "airport_iata": "HSJ",
-        "airport_name": "上街",
-        "latitude": null,
-        "longitude": null,
         "main_airport_iata": "CGO"
     },
     {
@@ -2115,15 +2016,6 @@
         "main_airport_iata": "CQW"
     },
     {
-        "city": "望安",
-        "province": "台湾",
-        "airport_iata": "WOT",
-        "airport_name": "",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "WOT"
-    },
-    {
         "city": "大庆",
         "province": "黑龙江省",
         "airport_iata": "DQA",
@@ -2167,15 +2059,6 @@
         "latitude": 39.99683881127932,
         "longitude": 113.16240150396362,
         "main_airport_iata": "DAT"
-    },
-    {
-        "city": "达州",
-        "province": "四川省",
-        "airport_iata": "DAX",
-        "airport_name": "达州河市机场",
-        "latitude": null,
-        "longitude": null,
-        "main_airport_iata": "DAX"
     },
     {
         "city": "大理",

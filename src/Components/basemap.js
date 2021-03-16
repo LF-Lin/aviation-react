@@ -2,8 +2,10 @@ import 'antd/dist/antd.css';
 
 import React, { useState } from 'react';
 import { Layout } from 'antd';
-import MapGL, {
+import { EnvironmentTwoTone } from '@ant-design/icons';
+import ReactMapGL, {
   Popup,
+  Marker,
   NavigationControl,
   FullscreenControl,
 } from 'react-map-gl';
@@ -42,16 +44,33 @@ export function BaseMap() {
     setViewport({
       latitude: d.latitude,
       longitude: d.longitude,
-      zoom: 8,
+      zoom: 6.5,
       transitionDuration: 1000,
     });
     setPopupInfo(d);
   };
+  const SIZE = 26;
+  const markers = React.useMemo(
+    () =>
+      AirportGeo.map((d, index) => (
+        <Marker key={index} longitude={d.longitude} latitude={d.latitude}>
+          <EnvironmentTwoTone
+            style={{
+              cursor: 'pointer',
+              fontSize: `${SIZE}px`,
+              transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
+            }}
+            onClick={() => handleClick(d)}
+          />
+        </Marker>
+      )),
+    []
+  );
 
   return (
     <Layout>
       <Content style={{ position: 'relative' }}>
-        <MapGL
+        <ReactMapGL
           {...viewport}
           width="100%"
           height="91vh"
@@ -59,7 +78,8 @@ export function BaseMap() {
           onViewportChange={setViewport}
           mapboxApiAccessToken={MAPBOX_TOKEN}
         >
-          <Pins data={AirportGeo} onClick={handleClick} />
+          {markers}
+          {/* <Pins data={AirportGeo} onClick={handleClick} /> */}
           {popupInfo && (
             <Popup
               tipSize={5}
@@ -74,7 +94,7 @@ export function BaseMap() {
           )}
           <FullscreenControl style={fullscreenControlStyle} />
           <NavigationControl style={navStyle} />
-        </MapGL>
+        </ReactMapGL>
       </Content>
     </Layout>
   );
