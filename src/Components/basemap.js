@@ -45,27 +45,10 @@ export function BaseMap() {
       latitude: d.latitude,
       longitude: d.longitude,
       zoom: 6.5,
-      transitionDuration: 1000,
+      transitionDuration: 500,
     });
     setPopupInfo(d);
   };
-  const SIZE = 26;
-  const markers = React.useMemo(
-    () =>
-      AirportGeo.map((d, index) => (
-        <Marker key={index} longitude={d.longitude} latitude={d.latitude}>
-          <EnvironmentTwoTone
-            style={{
-              cursor: 'pointer',
-              fontSize: `${SIZE}px`,
-              transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
-            }}
-            onClick={() => handleClick(d)}
-          />
-        </Marker>
-      )),
-    []
-  );
 
   return (
     <Layout>
@@ -78,8 +61,7 @@ export function BaseMap() {
           onViewportChange={setViewport}
           mapboxApiAccessToken={MAPBOX_TOKEN}
         >
-          {markers}
-          {/* <Pins data={AirportGeo} onClick={handleClick} /> */}
+          <Pins data={AirportGeo} onClick={handleClick} />
           {popupInfo && (
             <Popup
               tipSize={5}

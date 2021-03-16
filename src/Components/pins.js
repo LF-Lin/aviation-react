@@ -6,15 +6,11 @@ const SIZE = 26;
 
 function Pins(props) {
   const { data, onClick } = props;
-
-  return data.map((d, index) => {
-    if (d.longitude && d.latitude) {
-      return (
-        <Marker
-          key={`marker-${index}`}
-          longitude={d.longitude}
-          latitude={d.latitude}
-        >
+  const SIZE = 26;
+  const markers = React.useMemo(
+    () =>
+      data.map((d, index) => (
+        <Marker key={index} longitude={d.longitude} latitude={d.latitude}>
           <EnvironmentTwoTone
             style={{
               cursor: 'pointer',
@@ -24,9 +20,11 @@ function Pins(props) {
             onClick={() => onClick(d)}
           />
         </Marker>
-      );
-    }
-  });
+      )),
+    []
+  );
+
+  return markers;
 }
 
 export default Pins;

@@ -11,13 +11,13 @@ def index():
         'msg': 'Hello World'
     }
 
-@app.route('/api/airportPEK', methods=['GET'])
-def realtime_airport():
+@app.route('/api/airport/<string:iata>', methods=['GET'])
+def realtime_airport(iata):
     fd = FlightData()
-    iata = 'PEK'
-    # airport_arrivals = fd.get_airport_arrivals(iata)
-    # airport_departures = fd.get_airport_departures(iata)
-    airport_weather = fd.get_airport_weather(iata)
+    airport_iata = iata
+    # airport_arrivals = fd.get_airport_arrivals(airport_iata, page=1, limit=10)
+    # airport_departures = fd.get_airport_departures(airport_iata, page=1, limit=10)
+    airport_weather = fd.get_airport_weather(airport_iata)
     # return_value = {
     #     'temp': airport_weather['temp']['celsius'],
     #     'pressure_hg': airport_weather['pressure']['hg'],

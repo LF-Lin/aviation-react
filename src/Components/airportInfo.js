@@ -25,7 +25,10 @@ function AirportInfo(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://localhost:5555/api/airportPEK');
+      console.log(info.airport_iata);
+      const res = await axios.get(
+        `http://localhost:5555/api/airport/${info.airport_iata}`
+      );
       setDetail(res.data);
       console.log(res.data);
     };
