@@ -2,8 +2,6 @@ import React from 'react';
 import { Marker } from 'react-map-gl';
 import { EnvironmentTwoTone } from '@ant-design/icons';
 
-const SIZE = 26;
-
 function Pins(props) {
   const { data, onClick } = props;
   const SIZE = 26;

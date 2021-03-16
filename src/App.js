@@ -3,14 +3,13 @@ import 'antd/dist/antd.css';
 
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import { Layout, Menu, Typography } from 'antd';
+import { Layout, Menu } from 'antd';
 import { HomeOutlined, DashboardOutlined } from '@ant-design/icons';
 
 import { BaseMap } from './Components/basemap';
 import { Dashboard } from './Components/dashboard';
 
-const { Header, Content, Footer } = Layout;
-const { Title } = Typography;
+const { Header, Footer } = Layout;
 
 function App() {
   const [current, setCurrent] = useState('map');

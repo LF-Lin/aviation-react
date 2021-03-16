@@ -52,7 +52,8 @@ function AirportInfo(props) {
         onClose={onClose}
         visible={visible}
       >
-        <p>{detail.metar}</p>
+        <p>{detail?.metar}</p>
+        <p>{detail?.elevation?.ft}</p>
       </Drawer>
     </div>
   );

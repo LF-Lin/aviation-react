@@ -2,10 +2,8 @@ import 'antd/dist/antd.css';
 
 import React, { useState } from 'react';
 import { Layout } from 'antd';
-import { EnvironmentTwoTone } from '@ant-design/icons';
 import ReactMapGL, {
   Popup,
-  Marker,
   NavigationControl,
   FullscreenControl,
 } from 'react-map-gl';
