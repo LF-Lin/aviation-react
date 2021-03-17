@@ -28,7 +28,7 @@ const navStyle = {
   padding: '10px',
 };
 
-export function BaseMap() {
+export function Airports() {
   const [viewport, setViewport] = useState({
     width: 400,
     height: 400,

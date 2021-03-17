@@ -8,6 +8,7 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 import MapGL, { NavigationControl, FullscreenControl } from 'react-map-gl';
+import DeckGL, { GeoJsonLayer, ArcLayer } from 'deck.gl';
 
 const { Sider, Content } = Layout;
 const MAPBOX_TOKEN =
@@ -24,14 +25,23 @@ const navStyle = {
   padding: '10px',
 };
 
-export function Dashboard() {
-  const [viewport, setViewport] = useState({
-    width: 400,
-    height: 400,
-    latitude: 40.0838,
-    longitude: 116.6095,
-    zoom: 5,
-  });
+const INITIAL_VIEW_STATE = {
+  latitude: 51.47,
+  longitude: 0.45,
+  zoom: 4,
+  bearing: 0,
+  pitch: 30,
+};
+
+export function Charts() {
+  const onClick = (info) => {
+    if (info.object) {
+      // eslint-disable-next-line
+      alert(
+        `${info.object.properties.name} (${info.object.properties.abbrev})`
+      );
+    }
+  };
 
   return (
     <Layout>
@@ -48,18 +58,12 @@ export function Dashboard() {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Content>
-        <MapGL
-          {...viewport}
-          width="100%"
-          height="91vh"
-          mapStyle="mapbox://styles/mapbox/dark-v9"
-          onViewportChange={setViewport}
-          mapboxApiAccessToken={MAPBOX_TOKEN}
-        >
-          <FullscreenControl style={fullscreenControlStyle} />
-          <NavigationControl style={navStyle} />
-        </MapGL>
+      <Content style={{ position: 'relative' }}>
+        <DeckGL
+          controller={true}
+          initialViewState={INITIAL_VIEW_STATE}
+          style={{ position: 'none', height: '90vh' }}
+        ></DeckGL>
       </Content>
     </Layout>
   );
