@@ -4,7 +4,11 @@ import 'antd/dist/antd.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, BarChartOutlined } from '@ant-design/icons';
+import {
+  HomeOutlined,
+  BarChartOutlined,
+  ThunderboltOutlined,
+} from '@ant-design/icons';
 
 import { Airports } from './Components/airports';
 import { Flights } from './Components/flights';
@@ -36,7 +40,7 @@ function App() {
                 <Link to="/" />
               </Menu.Item>
               <Menu.Item key="flights">
-                <HomeOutlined />
+                <ThunderboltOutlined />
                 <span>Flights</span>
                 <Link to="/flights" />
               </Menu.Item>
