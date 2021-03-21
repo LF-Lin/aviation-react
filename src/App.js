@@ -13,7 +13,7 @@ import {
 import { Airports } from './Components/airports';
 import { Flights } from './Components/flights';
 import { Charts } from './Components/charts';
-const { Header, Footer } = Layout;
+const { Header } = Layout;
 
 function App() {
   const [current, setCurrent] = useState('map');
@@ -54,10 +54,6 @@ function App() {
           <Route exact path="/" component={Airports} />
           <Route path="/flights" component={Flights} />
           <Route path="/charts" component={Charts} />
-
-          {/* <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
-          </Footer> */}
         </Layout>
       </Router>
     </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Button, Drawer } from 'antd';
 import axios from 'axios';
 
-// import DataPEK from '../asset/realtime_pek.json';
 const popupBoxStyle = {
   padding: '10px',
 };

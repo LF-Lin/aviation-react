@@ -1,6 +1,7 @@
 import 'antd/dist/antd.css';
 
 import React, { useState, useEffect } from 'react';
+import { useDebounce } from 'react-use';
 import { Layout, Drawer } from 'antd';
 import {
   NavigationControl,
@@ -11,13 +12,9 @@ import {
 import DeckGL, { IconLayer } from 'deck.gl';
 import { WebMercatorViewport } from '@deck.gl/core';
 import axios from 'axios';
-import { useDebounce } from 'react-use';
-
 import Airplane from '../asset/airplane-icon.jpg';
 
 const { Content } = Layout;
-const MAPBOX_TOKEN =
-  'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
 const fullscreenStyle = {
   position: 'absolute',
@@ -25,13 +22,15 @@ const fullscreenStyle = {
   left: 0,
   padding: '10px',
 };
-
 const navStyle = {
   position: 'absolute',
   top: 72,
   left: 0,
   padding: '10px',
 };
+
+const MAPBOX_TOKEN =
+  'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
 const Flights = () => {
   const [viewport, setViewport] = useState({
@@ -60,7 +59,7 @@ const Flights = () => {
 
   const [, cancel] = useDebounce(
     () => {
-      console.log('view state has been stable for 500 ms');
+      console.log('view state has been stable for 3000 ms');
       console.log(viewport);
       const vp = new WebMercatorViewport(viewport);
       const nw = vp.unproject([0, 0]);
@@ -68,7 +67,7 @@ const Flights = () => {
       // console.log(nw, se);
       setBounding(`${nw[1]}%2C${se[1]}%2C${nw[0]}%2C${se[0]}`);
     },
-    500,
+    3000,
     [viewport]
   );
 
@@ -121,23 +120,25 @@ const Flights = () => {
   return (
     <Layout>
       <Content style={{ position: 'relative' }}>
-        <DeckGL
-          initialViewState={viewport}
-          controller={true}
-          layers={layers}
-          ContextProvider={MapContext.Provider}
-          style={{ height: '92vh' }}
-          onViewStateChange={handleViewStateChange}
-          onClick={handleClick}
-        >
-          <StaticMap
-            mapStyle="mapbox://styles/mapbox/dark-v9"
-            mapboxApiAccessToken={MAPBOX_TOKEN}
+        {true && (
+          <DeckGL
+            initialViewState={viewport}
+            controller={true}
+            layers={layers}
             ContextProvider={MapContext.Provider}
-          />
-          <FullscreenControl style={fullscreenStyle} />
-          <NavigationControl style={navStyle} />
-        </DeckGL>
+            style={{ height: '92vh' }}
+            onViewStateChange={handleViewStateChange}
+            onClick={handleClick}
+          >
+            <StaticMap
+              mapStyle="mapbox://styles/mapbox/dark-v9"
+              mapboxApiAccessToken={MAPBOX_TOKEN}
+              ContextProvider={MapContext.Provider}
+            />
+            <FullscreenControl style={fullscreenStyle} />
+            <NavigationControl style={navStyle} />
+          </DeckGL>
+        )}
       </Content>
       <Drawer
         width={500}
@@ -147,11 +148,26 @@ const Flights = () => {
         onClose={onClose}
         visible={visible}
       >
-        <p>{hoverInfo?.object?.latitude}</p>
-        <p>{hoverInfo?.object?.longitude}</p>
-        <p>{hoverInfo?.object?.airport_arr}</p>
-        <p>{hoverInfo?.object?.airport_dep}</p>
-        <p>{hoverInfo?.object?.airline}</p>
+        <p>
+          <span>{'latitude: '}</span>
+          {hoverInfo?.object?.latitude}
+        </p>
+        <p>
+          <span>{'longitude: '}</span>
+          {hoverInfo?.object?.longitude}
+        </p>
+        <p>
+          <span>{'airport_arr: '}</span>
+          {hoverInfo?.object?.airport_arr}
+        </p>
+        <p>
+          <span>{'airport_dep: '}</span>
+          {hoverInfo?.object?.airport_dep}
+        </p>
+        <p>
+          <span>{'airline: '}</span>
+          {hoverInfo?.object?.airline}
+        </p>
       </Drawer>
     </Layout>
   );

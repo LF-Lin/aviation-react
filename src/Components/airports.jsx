@@ -7,26 +7,25 @@ import ReactMapGL, {
   NavigationControl,
   FullscreenControl,
 } from 'react-map-gl';
-
 import AirportGeo from '../asset/airports.json';
 import Pins from './pins';
 import AirportInfo from './airportInfo';
 
 const { Content } = Layout;
-const MAPBOX_TOKEN =
-  'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
 const fullscreenControlStyle = {
   top: 36,
   left: 0,
   padding: '10px',
 };
-
 const navStyle = {
   top: 72,
   left: 0,
   padding: '10px',
 };
+
+const MAPBOX_TOKEN =
+  'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
 export function Airports() {
   const [viewport, setViewport] = useState({
