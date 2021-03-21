@@ -1,6 +1,8 @@
+import requests
 from flask import Flask, jsonify
 from flask_cors import CORS
 from pyflightdata import FlightData
+
 
 app = Flask(__name__)
 CORS(app)
@@ -18,17 +20,39 @@ def realtime_airport(iata):
     # airport_arrivals = fd.get_airport_arrivals(airport_iata, page=1, limit=10)
     # airport_departures = fd.get_airport_departures(airport_iata, page=1, limit=10)
     airport_weather = fd.get_airport_weather(airport_iata)
-    # return_value = {
-    #     'temp': airport_weather['temp']['celsius'],
-    #     'pressure_hg': airport_weather['pressure']['hg'],
-    #     'pressure_hpa': airport_weather['pressure']['hpa'],
-    #     'visibility_km': airport_weather['sky']['visibility']['km'],
-    #     'humidity': airport_weather['humidity'],
-    #     'wind_degree': airport_weather['wind']['direction']['degree'],
-    #     'wind_desc': airport_weather['wind']['direction']['text'],
-    #     'wind_speed':airport_weather['wind']['speed']['kmh']
-    # }
+
     return jsonify(airport_weather)
+
+@app.route('/api/flights/<string:bounds>', methods=['GET'])
+def realtime_flights(bounds):
+    # bounds = '%2C'.join([str(ele) for ele in [n,s,w,e]])
+    url = f"https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds={bounds}&callsign=CSN"
+    headers = {
+        "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+        "accept": "application/json",
+        "accept-language": "en-EN",
+        "cache-control": "max-age=0",
+        "origin": "https://www.flightradar24.com",
+        "referer": "https://www.flightradar24.com/"
+    }
+    response = requests.request("GET", url, headers=headers)
+    flights_state = []
+    for k, v in response.json().items():
+        if k == 'full_count' or k == 'version':
+            continue
+        row = {
+            'latitude': v[1],
+            'longitude': v[2],
+            'angle': v[3],
+            'airport_dep': v[-8],
+            'airport_arr': v[-7],
+            'callsign': v[-6],
+            'airline': v[-1],
+            'api_sign': k
+        }
+        flights_state.append(row)
+
+    return jsonify(flights_state)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5555)

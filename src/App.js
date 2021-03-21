@@ -13,7 +13,6 @@ import {
 import { Airports } from './Components/airports';
 import { Flights } from './Components/flights';
 import { Charts } from './Components/charts';
-
 const { Header, Footer } = Layout;
 
 function App() {

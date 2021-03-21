@@ -54,7 +54,7 @@ export function Airports() {
         <ReactMapGL
           {...viewport}
           width="100%"
-          height="91vh"
+          height="92vh"
           mapStyle="mapbox://styles/mapbox/dark-v9"
           onViewportChange={setViewport}
           mapboxApiAccessToken={MAPBOX_TOKEN}
