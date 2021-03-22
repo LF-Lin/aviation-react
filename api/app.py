@@ -14,15 +14,25 @@ def index():
     }
 
 
-@app.route('/api/airport/<string:iata>', methods=['GET'])
-def realtime_airport(iata):
+@app.route('/api/airport/weather/<string:iata>', methods=['GET'])
+def realtime_airport_weather(iata):
     fd = FlightData()
-    airport_iata = iata
-    # airport_arrivals = fd.get_airport_arrivals(airport_iata, page=1, limit=10)
-    # airport_departures = fd.get_airport_departures(airport_iata, page=1, limit=10)
-    airport_weather = fd.get_airport_weather(airport_iata)
-
+    airport_weather = fd.get_airport_weather(iata)
     return jsonify(airport_weather)
+
+
+@app.route('/api/airport/arrivals/<string:iata>', methods=['GET'])
+def realtime_airport_arrivals(iata):
+    fd = FlightData()
+    airport_arrivals = fd.get_airport_arrivals(iata, page=1, limit=10)
+    return jsonify(airport_arrivals)
+
+
+@app.route('/api/airport/departures/<string:iata>', methods=['GET'])
+def realtime_airport_departures(iata):
+    fd = FlightData()
+    airport_departures = fd.get_airport_departures(iata, page=1, limit=10)
+    return jsonify(airport_departures)
 
 
 @app.route('/api/flights/<string:bounds>', methods=['GET'])
@@ -68,10 +78,6 @@ def realtime_flight_track(flight_id):
         "referer": "https://www.flightradar24.com/"
     }
     response = requests.request("GET", url, headers=headers)
-    # flights_state = []
-    # for k, v in response.json().items():
-    #     row = {}
-    #     flights_state.append(row)
 
     return jsonify(response.json())
 

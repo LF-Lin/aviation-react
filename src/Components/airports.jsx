@@ -2,21 +2,20 @@ import 'antd/dist/antd.css';
 
 import React, { useState } from 'react';
 import { Layout } from 'antd';
-import ReactMapGL, {
+import {
   NavigationControl,
   FullscreenControl,
   StaticMap,
   MapContext,
   Popup,
 } from 'react-map-gl';
-import DeckGL, { IconLayer } from 'deck.gl';
-import { WebMercatorViewport } from '@deck.gl/core';
-import Pins from './pins';
+import DeckGL from 'deck.gl';
 import AirportInfo from './airportInfo';
+import iconLayer from './layers/airportIconLayer';
+import arcLayer from './layers/airportArcLayer';
 
 import AirportGeo from '../asset/airports.json';
 import Airport from '../asset/airport.png';
-
 const { Content } = Layout;
 
 const fullscreenStyle = {
@@ -44,6 +43,8 @@ export function Airports() {
     zoom: 5,
   });
   const [popupInfo, setPopupInfo] = useState(null);
+  const [airportArrival, setAirportArrival] = useState();
+  const [activeLayer, setActiveLayer] = useState('iconLayer');
 
   const handleViewStateChange = (e) => {
     setViewport(e.viewState);
@@ -61,27 +62,16 @@ export function Airports() {
     }
   };
 
+  const handleArcClick = (info) => {
+    if (info.picked) {
+      console.log(info);
+    }
+  };
+
   const layers = [
-    new IconLayer({
-      id: 'airplanes',
-      data: AirportGeo,
-      pickable: true,
-      iconAtlas: Airport,
-      iconMapping: {
-        airport_name: {
-          x: 0,
-          y: 0,
-          width: 200,
-          height: 200,
-          mask: true,
-          anchorY: 200,
-        },
-      },
-      sizeScale: 40,
-      getPosition: (d) => [d.longitude, d.latitude],
-      getIcon: (d) => 'airport_name',
-      getColor: (d) => [85, 255, 0],
-    }),
+    activeLayer === 'iconLayer'
+      ? iconLayer({ AirportGeo, Airport, handleAirportClick })
+      : arcLayer({ airportArrival, handleArcClick }),
   ];
 
   return (
@@ -94,23 +84,29 @@ export function Airports() {
           ContextProvider={MapContext.Provider}
           style={{ height: '92vh' }}
           onViewStateChange={handleViewStateChange}
-          onClick={handleAirportClick}
         >
           {popupInfo && (
             <Popup
               tipSize={5}
               anchor="top"
-              longitude={popupInfo.object.longitude}
-              latitude={popupInfo.object.latitude}
+              longitude={popupInfo.coordinate[0]}
+              latitude={popupInfo.coordinate[1]}
               closeOnClick={false}
               onClose={setPopupInfo}
             >
-              <AirportInfo info={popupInfo} />
+              <AirportInfo
+                info={popupInfo}
+                setViewport={setViewport}
+                setPopupInfo={setPopupInfo}
+                setAirportArrival={setAirportArrival}
+                setActiveLayer={setActiveLayer}
+              />
             </Popup>
           )}
           <StaticMap
             key="staticMap"
             mapStyle="mapbox://styles/mapbox/dark-v9"
+            // mapStyle="https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json"
             mapboxApiAccessToken={MAPBOX_TOKEN}
             ContextProvider={MapContext.Provider}
           />

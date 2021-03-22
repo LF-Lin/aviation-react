@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout, Menu } from 'antd';
 import {
   UserOutlined,
@@ -11,15 +11,6 @@ import {
 const { Sider, Content } = Layout;
 
 export function Charts() {
-  const onClick = (info) => {
-    if (info.object) {
-      // eslint-disable-next-line
-      alert(
-        `${info.object.properties.name} (${info.object.properties.abbrev})`
-      );
-    }
-  };
-
   return (
     <Layout>
       <Sider theme="light">

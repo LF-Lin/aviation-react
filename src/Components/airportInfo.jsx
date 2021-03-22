@@ -11,10 +11,15 @@ const popupStyle = {
 };
 
 function AirportInfo(props) {
-  const { info } = props;
+  const {
+    info,
+    setPopupInfo,
+    setAirportArrival,
+    setActiveLayer,
+    setViewport,
+  } = props;
   const [visible, setVisible] = useState(false);
-  const [detail, setDetail] = useState({});
-
+  const [airportWeather, setAirportWeather] = useState({});
   const showDrawer = () => {
     setVisible(true);
   };
@@ -22,17 +27,41 @@ function AirportInfo(props) {
     setVisible(false);
   };
 
+  const handleArrival = () => {
+    setViewport({
+      latitude: info.object.latitude,
+      longitude: info.object.longitude,
+      pitch: 55,
+      zoom: 4,
+      transitionDuration: 500,
+    });
+    // setPopupInfo();
+    setVisible(false);
+    setActiveLayer('arcLayer');
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(
+        `http://localhost:5555/api/airport/arrivals/${info.object.airport_iata}`
+      );
+      setAirportArrival({ arr: res.data, airportGeo: info.coordinate });
+      console.log('arrivals', res.data);
+    };
+    fetchData();
+  }, [info.coordinate, info.object.airport_iata, setAirportArrival]);
+
   useEffect(() => {
     const fetchData = async () => {
       console.log(info.object.airport_iata);
       const res = await axios.get(
-        `http://localhost:5555/api/airport/${info.object.airport_iata}`
+        `http://localhost:5555/api/airport/weather/${info.object.airport_iata}`
       );
-      setDetail(res.data);
+      setAirportWeather(res.data);
       console.log(res.data);
     };
     fetchData();
-  }, []);
+  }, [info.object.airport_iata]);
 
   return (
     <div>
@@ -51,8 +80,20 @@ function AirportInfo(props) {
         onClose={onClose}
         visible={visible}
       >
-        <p>{detail?.metar}</p>
-        <p>{detail?.elevation?.ft}</p>
+        <Button
+          type="primary"
+          block
+          style={{ margin: '10px 0' }}
+          onClick={handleArrival}
+        >
+          Show Arrival Flights
+        </Button>
+        <Button type="primary" block style={{ margin: '10px 0' }}>
+          Show Departure Flights
+        </Button>
+
+        <p>{airportWeather?.metar}</p>
+        <p>{airportWeather?.elevation?.ft}</p>
       </Drawer>
     </div>
   );
