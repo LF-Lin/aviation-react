@@ -2,17 +2,19 @@ import 'antd/dist/antd.css';
 
 import React, { useState, useEffect } from 'react';
 import { useDebounce } from 'react-use';
-import { Layout, Drawer } from 'antd';
+import { Layout } from 'antd';
 import {
   NavigationControl,
   FullscreenControl,
   StaticMap,
   MapContext,
+  Popup,
 } from 'react-map-gl';
 import DeckGL, { IconLayer } from 'deck.gl';
 import { WebMercatorViewport } from '@deck.gl/core';
 import axios from 'axios';
 import Airplane from '../asset/airplane-icon.jpg';
+import FlightPanel from './flightPanel';
 
 const { Content } = Layout;
 
@@ -41,33 +43,48 @@ const Flights = () => {
     zoom: 6,
   });
 
-  const [hoverInfo, setHoverInfo] = useState({});
-  const [visible, setVisible] = useState(false);
   const [flights, setFlights] = useState([]);
   const [bounding, setBounding] = useState(null);
+  const [popupInfo, setPopupInfo] = useState(null);
+  const [selectedFlight, setSelectedFlight] = useState();
+  const [selectedFlightPanel, setSelectedFlightPanel] = useState();
 
+  // fetch all flights in current bounding box
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
         `http://localhost:5555/api/flights/${bounding}`
       );
       setFlights(res.data);
-      // console.log(res.data);
+      console.log('fetch bounding box finish');
     };
     fetchData();
   }, [bounding]);
 
+  // fetch detail info of selected flight
+  useEffect(() => {
+    if (selectedFlight) {
+      const fetchData = async () => {
+        const res = await axios.get(
+          `http://localhost:5555/api/flight/${selectedFlight}`
+        );
+        setSelectedFlightPanel(res.data);
+        console.log(`fetch detail of ${selectedFlight}`);
+        console.log(res.data);
+      };
+      fetchData();
+    }
+  }, [selectedFlight]);
+
   const [, cancel] = useDebounce(
     () => {
-      console.log('view state has been stable for 3000 ms');
-      console.log(viewport);
+      console.log('view state has been stable for 1000 ms');
       const vp = new WebMercatorViewport(viewport);
       const nw = vp.unproject([0, 0]);
       const se = vp.unproject([vp.width, vp.height]);
-      // console.log(nw, se);
       setBounding(`${nw[1]}%2C${se[1]}%2C${nw[0]}%2C${se[0]}`);
     },
-    3000,
+    1000,
     [viewport]
   );
 
@@ -75,25 +92,11 @@ const Flights = () => {
     setViewport(e.viewState);
   };
 
-  const handleClick = (info) => {
+  const handleFlightClick = (info) => {
     if (info.picked) {
-      // setViewport({
-      //   ...info.viewport,
-      //   zoom: 6,
-      //   longitude: info.object.longitude,
-      //   latitude: info.object.latitude,
-      // });
-      setHoverInfo(info);
-      setVisible(true);
-      console.log('fetched flights info: ', info);
-    } else {
-      setHoverInfo();
-      setVisible(false);
+      setPopupInfo(info);
+      setSelectedFlight(info.object.flight_id);
     }
-  };
-
-  const onClose = () => {
-    setVisible(false);
   };
 
   const layers = [
@@ -128,9 +131,25 @@ const Flights = () => {
             ContextProvider={MapContext.Provider}
             style={{ height: '92vh' }}
             onViewStateChange={handleViewStateChange}
-            onClick={handleClick}
+            onClick={handleFlightClick}
           >
+            {popupInfo && (
+              <Popup
+                tipSize={5}
+                anchor="top"
+                longitude={popupInfo.object.longitude}
+                latitude={popupInfo.object.latitude}
+                closeOnClick={false}
+                onClose={setPopupInfo}
+              >
+                <FlightPanel
+                  trackInfo={selectedFlightPanel}
+                  basicInfo={popupInfo}
+                />
+              </Popup>
+            )}
             <StaticMap
+              key="staticMap"
               mapStyle="mapbox://styles/mapbox/dark-v9"
               mapboxApiAccessToken={MAPBOX_TOKEN}
               ContextProvider={MapContext.Provider}
@@ -140,35 +159,6 @@ const Flights = () => {
           </DeckGL>
         )}
       </Content>
-      <Drawer
-        width={500}
-        title={`Airport Information: ${hoverInfo?.object?.latitude}`}
-        placement="right"
-        closable={false}
-        onClose={onClose}
-        visible={visible}
-      >
-        <p>
-          <span>{'latitude: '}</span>
-          {hoverInfo?.object?.latitude}
-        </p>
-        <p>
-          <span>{'longitude: '}</span>
-          {hoverInfo?.object?.longitude}
-        </p>
-        <p>
-          <span>{'airport_arr: '}</span>
-          {hoverInfo?.object?.airport_arr}
-        </p>
-        <p>
-          <span>{'airport_dep: '}</span>
-          {hoverInfo?.object?.airport_dep}
-        </p>
-        <p>
-          <span>{'airline: '}</span>
-          {hoverInfo?.object?.airline}
-        </p>
-      </Drawer>
     </Layout>
   );
 };

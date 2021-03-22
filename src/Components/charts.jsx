@@ -35,8 +35,8 @@ export function Charts() {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Content style={{ position: 'relative' }}>
-        {'Something to represent'}
+      <Content>
+        <h2>{'Something to represent'}</h2>
       </Content>
     </Layout>
   );
