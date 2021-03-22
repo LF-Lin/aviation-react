@@ -3,22 +3,30 @@ import 'antd/dist/antd.css';
 import React, { useState } from 'react';
 import { Layout } from 'antd';
 import ReactMapGL, {
-  Popup,
   NavigationControl,
   FullscreenControl,
+  StaticMap,
+  MapContext,
+  Popup,
 } from 'react-map-gl';
-import AirportGeo from '../asset/airports.json';
+import DeckGL, { IconLayer } from 'deck.gl';
+import { WebMercatorViewport } from '@deck.gl/core';
 import Pins from './pins';
 import AirportInfo from './airportInfo';
 
+import AirportGeo from '../asset/airports.json';
+import Airport from '../asset/airport.png';
+
 const { Content } = Layout;
 
-const fullscreenControlStyle = {
+const fullscreenStyle = {
+  position: 'absolute',
   top: 36,
   left: 0,
   padding: '10px',
 };
 const navStyle = {
+  position: 'absolute',
   top: 72,
   left: 0,
   padding: '10px',
@@ -37,43 +45,78 @@ export function Airports() {
   });
   const [popupInfo, setPopupInfo] = useState(null);
 
-  const handleClick = (d) => {
-    setViewport({
-      latitude: d.latitude,
-      longitude: d.longitude,
-      zoom: 6.5,
-      transitionDuration: 500,
-    });
-    setPopupInfo(d);
+  const handleViewStateChange = (e) => {
+    setViewport(e.viewState);
   };
+
+  const handleAirportClick = (info) => {
+    if (info.picked) {
+      setViewport({
+        latitude: info.object.latitude,
+        longitude: info.object.longitude,
+        zoom: 6.5,
+        transitionDuration: 500,
+      });
+      setPopupInfo(info);
+    }
+  };
+
+  const layers = [
+    new IconLayer({
+      id: 'airplanes',
+      data: AirportGeo,
+      pickable: true,
+      iconAtlas: Airport,
+      iconMapping: {
+        airport_name: {
+          x: 0,
+          y: 0,
+          width: 200,
+          height: 200,
+          mask: true,
+          anchorY: 200,
+        },
+      },
+      sizeScale: 40,
+      getPosition: (d) => [d.longitude, d.latitude],
+      getIcon: (d) => 'airport_name',
+      getColor: (d) => [85, 255, 0],
+    }),
+  ];
 
   return (
     <Layout>
       <Content style={{ position: 'relative' }}>
-        <ReactMapGL
-          {...viewport}
-          width="100%"
-          height="92vh"
-          mapStyle="mapbox://styles/mapbox/dark-v9"
-          onViewportChange={setViewport}
-          mapboxApiAccessToken={MAPBOX_TOKEN}
+        <DeckGL
+          initialViewState={viewport}
+          controller={true}
+          layers={layers}
+          ContextProvider={MapContext.Provider}
+          style={{ height: '92vh' }}
+          onViewStateChange={handleViewStateChange}
+          onClick={handleAirportClick}
         >
-          <Pins data={AirportGeo} onClick={handleClick} />
           {popupInfo && (
             <Popup
               tipSize={5}
               anchor="top"
-              longitude={popupInfo.longitude}
-              latitude={popupInfo.latitude}
+              longitude={popupInfo.object.longitude}
+              latitude={popupInfo.object.latitude}
               closeOnClick={false}
               onClose={setPopupInfo}
             >
               <AirportInfo info={popupInfo} />
             </Popup>
           )}
-          <FullscreenControl style={fullscreenControlStyle} />
+          <StaticMap
+            key="staticMap"
+            mapStyle="mapbox://styles/mapbox/dark-v9"
+            mapboxApiAccessToken={MAPBOX_TOKEN}
+            ContextProvider={MapContext.Provider}
+          />
+          <FullscreenControl style={fullscreenStyle} />
           <NavigationControl style={navStyle} />
-        </ReactMapGL>
+        </DeckGL>
       </Content>
     </Layout>
   );

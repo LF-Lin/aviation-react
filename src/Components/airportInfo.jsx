@@ -24,9 +24,9 @@ function AirportInfo(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(info.airport_iata);
+      console.log(info.object.airport_iata);
       const res = await axios.get(
-        `http://localhost:5555/api/airport/${info.airport_iata}`
+        `http://localhost:5555/api/airport/${info.object.airport_iata}`
       );
       setDetail(res.data);
       console.log(res.data);
@@ -37,15 +37,15 @@ function AirportInfo(props) {
   return (
     <div>
       <div style={popupBoxStyle}>
-        <p style={popupStyle}>{`机场名称：${info.airport_name}`}</p>
-        <p style={popupStyle}>{`机场 IATA：${info.airport_iata}`}</p>
+        <p style={popupStyle}>{`机场名称：${info.object.airport_name}`}</p>
+        <p style={popupStyle}>{`机场 IATA：${info.object.airport_iata}`}</p>
       </div>
       <Button type="primary" onClick={showDrawer} block>
         More detail
       </Button>
       <Drawer
         width={600}
-        title={`Airport Information: ${info.airport_name}`}
+        title={`Airport Information: ${info.object.airport_name}`}
         placement="right"
         closable={false}
         onClose={onClose}
