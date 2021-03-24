@@ -13,13 +13,15 @@ const popupStyle = {
 function AirportInfo(props) {
   const {
     info,
-    setPopupInfo,
     setAirportArrival,
     setActiveLayer,
+    setPopupInfo,
     setViewport,
   } = props;
   const [visible, setVisible] = useState(false);
   const [airportWeather, setAirportWeather] = useState({});
+  const [flightAvailable, setFlightAvailable] = useState(0);
+
   const showDrawer = () => {
     setVisible(true);
   };
@@ -35,9 +37,9 @@ function AirportInfo(props) {
       zoom: 4,
       transitionDuration: 500,
     });
-    // setPopupInfo();
-    setVisible(false);
     setActiveLayer('arcLayer');
+    setVisible(false);
+    setPopupInfo(null);
   };
 
   useEffect(() => {
@@ -46,7 +48,8 @@ function AirportInfo(props) {
         `http://localhost:5555/api/airport/arrivals/${info.object.airport_iata}`
       );
       setAirportArrival({ arr: res.data, airportGeo: info.coordinate });
-      console.log('arrivals', res.data);
+      setFlightAvailable(res.data.length);
+      console.log(`${info.object.airport_iata} arrivals:`, res.data);
     };
     fetchData();
   }, [info.coordinate, info.object.airport_iata, setAirportArrival]);
@@ -58,7 +61,7 @@ function AirportInfo(props) {
         `http://localhost:5555/api/airport/weather/${info.object.airport_iata}`
       );
       setAirportWeather(res.data);
-      console.log(res.data);
+      console.log(`${info.object.airport_iata} Weather: `, res.data);
     };
     fetchData();
   }, [info.object.airport_iata]);
@@ -92,7 +95,10 @@ function AirportInfo(props) {
           Show Departure Flights
         </Button>
 
-        <p>{airportWeather?.metar}</p>
+        <p>
+          {flightAvailable ? `Has flights ${flightAvailable}` : 'No flight'}
+        </p>
+        <p>{airportWeather?.metar || 'No weather info'}</p>
         <p>{airportWeather?.elevation?.ft}</p>
       </Drawer>
     </div>

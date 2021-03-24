@@ -11,6 +11,7 @@ import {
 } from 'react-map-gl';
 import DeckGL from 'deck.gl';
 import AirportInfo from './airportInfo';
+import FlightPopup from './flightPopup';
 import iconLayer from './layers/airportIconLayer';
 import arcLayer from './layers/airportArcLayer';
 
@@ -43,12 +44,9 @@ export function Airports() {
     zoom: 5,
   });
   const [popupInfo, setPopupInfo] = useState(null);
+  const [popupFlightInfo, setPopupFlightInfo] = useState(false);
   const [airportArrival, setAirportArrival] = useState();
   const [activeLayer, setActiveLayer] = useState('iconLayer');
-
-  const handleViewStateChange = (e) => {
-    setViewport(e.viewState);
-  };
 
   const handleAirportClick = (info) => {
     if (info.picked) {
@@ -65,6 +63,7 @@ export function Airports() {
   const handleArcClick = (info) => {
     if (info.picked) {
       console.log(info);
+      setPopupFlightInfo(info);
     }
   };
 
@@ -78,12 +77,12 @@ export function Airports() {
     <Layout>
       <Content style={{ position: 'relative' }}>
         <DeckGL
+          key="basicGL"
           initialViewState={viewport}
           controller={true}
           layers={layers}
           ContextProvider={MapContext.Provider}
           style={{ height: '92vh' }}
-          onViewStateChange={handleViewStateChange}
         >
           {popupInfo && (
             <Popup
@@ -102,6 +101,15 @@ export function Airports() {
                 setActiveLayer={setActiveLayer}
               />
             </Popup>
+          )}
+          {popupFlightInfo && (
+            <FlightPopup
+              info={popupFlightInfo}
+              setPopupFlightInfo={setPopupFlightInfo}
+              setActiveLayer={setActiveLayer}
+              setPopupInfo={setPopupInfo}
+              setViewport={setViewport}
+            />
           )}
           <StaticMap
             key="staticMap"

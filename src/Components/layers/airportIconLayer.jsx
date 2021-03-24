@@ -1,6 +1,7 @@
 import { IconLayer } from '@deck.gl/layers';
 
 const iconLayer = ({ AirportGeo, Airport, handleAirportClick }) => {
+  // console.log(AirportGeo);
   return new IconLayer({
     id: 'airplanes',
     data: AirportGeo,
