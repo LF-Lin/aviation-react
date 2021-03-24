@@ -4,7 +4,7 @@ import Airplane from '../../asset/airplane-icon.jpg';
 const iconLayer = ({ flights, handleFlightClick }) => {
   // console.log(flights);
   return new IconLayer({
-    id: 'airplanes',
+    id: 'flights',
     data: flights,
     pickable: true,
     iconAtlas: Airplane,

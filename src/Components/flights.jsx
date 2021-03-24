@@ -14,6 +14,7 @@ import { WebMercatorViewport } from '@deck.gl/core';
 import axios from 'axios';
 
 import iconLayer from './layers/flightIconLayer';
+import iconPathLayer from './layers/flightIconPathLayer';
 import FlightPopup from './flightPopup';
 
 const { Content } = Layout;
@@ -47,7 +48,8 @@ const Flights = () => {
   const [bounding, setBounding] = useState(null);
   const [popupInfo, setPopupInfo] = useState(null);
   const [selectedFlight, setSelectedFlight] = useState();
-  const [flightPanelInfo, setFlightPanelInfo] = useState();
+  const [flightPanelInfo, setFlightPanelInfo] = useState([]);
+  const [activeLayer, setActiveLayer] = useState('iconLayer');
 
   // fetch all flights in current bounding box
   useEffect(() => {
@@ -56,7 +58,7 @@ const Flights = () => {
         `http://localhost:5555/api/flights/${bounding}`
       );
       setFlights(res.data);
-      console.log('fetch bounding box finish');
+      console.log('fetch bounding box finished: ', res.data);
     };
     fetchData();
   }, [bounding]);
@@ -69,8 +71,7 @@ const Flights = () => {
           `http://localhost:5555/api/flight/${selectedFlight}`
         );
         setFlightPanelInfo(res.data);
-        console.log(`fetch detail of ${selectedFlight}`);
-        console.log(res.data);
+        console.log(`fetch detail of ${selectedFlight}: `, res.data);
       };
       fetchData();
     }
@@ -94,19 +95,23 @@ const Flights = () => {
 
   const handleFlightClick = (info) => {
     if (info.picked) {
-      console.log(info.object.angle);
       setPopupInfo(info);
       setSelectedFlight(info.object.flight_id);
     }
   };
 
-  const layers = [iconLayer({ flights, handleFlightClick })];
+  const layers = [
+    activeLayer === 'iconLayer'
+      ? iconLayer({ flights, handleFlightClick })
+      : iconPathLayer({ flightPanelInfo }),
+  ];
 
   return (
     <Layout>
       <Content style={{ position: 'relative' }}>
         {true && (
           <DeckGL
+            key="basicGL"
             initialViewState={viewport}
             controller={true}
             layers={layers}
@@ -117,8 +122,9 @@ const Flights = () => {
             {popupInfo && (
               <FlightPopup
                 popupInfo={popupInfo}
-                setPopupInfo={setPopupInfo}
                 flightPanelInfo={flightPanelInfo}
+                setPopupInfo={setPopupInfo}
+                setActiveLayer={setActiveLayer}
               />
             )}
             <StaticMap

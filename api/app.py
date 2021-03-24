@@ -78,8 +78,18 @@ def realtime_flight_track(flight_id):
         "referer": "https://www.flightradar24.com/"
     }
     response = requests.request("GET", url, headers=headers)
-
-    return jsonify(response.json())
+    
+    flight_trail, row = [], {}
+    for k in response.json():
+        if k in ['time', 'airport', 'identification', 'airline', 'aircraft']:
+            row[k] = response.json()[k]
+    row['trail'] = {
+        'current': response.json()['trail'][0], 
+        'path': [[i['lng'],i['lat']] for i in response.json()['trail']]
+    }
+    flight_trail.append(row)
+    
+    return jsonify(flight_trail)
 
 
 if __name__ == "__main__":

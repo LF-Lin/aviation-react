@@ -1,7 +1,9 @@
 import { Popup } from 'react-map-gl';
 import FlightPanel from './flightPanel';
 
-const FlightPopup = ({ popupInfo, setPopupInfo, flightPanelInfo }) => {
+const FlightPopup = (prop) => {
+  const { popupInfo, flightPanelInfo, setPopupInfo, setActiveLayer } = prop;
+
   return (
     <Popup
       tipSize={5}
@@ -11,7 +13,12 @@ const FlightPopup = ({ popupInfo, setPopupInfo, flightPanelInfo }) => {
       closeOnClick={false}
       onClose={setPopupInfo}
     >
-      <FlightPanel trackInfo={flightPanelInfo} basicInfo={popupInfo} />
+      <FlightPanel
+        popupInfo={popupInfo}
+        flightPanelInfo={flightPanelInfo}
+        setPopupInfo={setPopupInfo}
+        setActiveLayer={setActiveLayer}
+      />
     </Popup>
   );
 };

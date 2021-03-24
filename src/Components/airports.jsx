@@ -10,7 +10,7 @@ import {
   Popup,
 } from 'react-map-gl';
 import DeckGL from 'deck.gl';
-import AirportInfo from './airportInfo';
+import AirportInfo from './airportPanel';
 import AirportFlightPopup from './airportSchedulePopup';
 import iconLayer from './layers/airportIconLayer';
 import arcLayer from './layers/airportArcLayer';
