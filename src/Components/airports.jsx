@@ -11,7 +11,7 @@ import {
 } from 'react-map-gl';
 import DeckGL from 'deck.gl';
 import AirportInfo from './airportInfo';
-import FlightPopup from './flightPopup';
+import AirportFlightPopup from './airportSchedulePopup';
 import iconLayer from './layers/airportIconLayer';
 import arcLayer from './layers/airportArcLayer';
 
@@ -103,7 +103,7 @@ export function Airports() {
             </Popup>
           )}
           {popupFlightInfo && (
-            <FlightPopup
+            <AirportFlightPopup
               info={popupFlightInfo}
               setPopupFlightInfo={setPopupFlightInfo}
               setActiveLayer={setActiveLayer}

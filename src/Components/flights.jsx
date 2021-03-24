@@ -8,13 +8,13 @@ import {
   FullscreenControl,
   StaticMap,
   MapContext,
-  Popup,
 } from 'react-map-gl';
-import DeckGL, { IconLayer } from 'deck.gl';
+import DeckGL from 'deck.gl';
 import { WebMercatorViewport } from '@deck.gl/core';
 import axios from 'axios';
-import Airplane from '../asset/airplane-icon.jpg';
-import FlightPanel from './flightPanel';
+
+import iconLayer from './layers/flightIconLayer';
+import FlightPopup from './flightPopup';
 
 const { Content } = Layout;
 
@@ -47,7 +47,7 @@ const Flights = () => {
   const [bounding, setBounding] = useState(null);
   const [popupInfo, setPopupInfo] = useState(null);
   const [selectedFlight, setSelectedFlight] = useState();
-  const [selectedFlightPanel, setSelectedFlightPanel] = useState();
+  const [flightPanelInfo, setFlightPanelInfo] = useState();
 
   // fetch all flights in current bounding box
   useEffect(() => {
@@ -68,7 +68,7 @@ const Flights = () => {
         const res = await axios.get(
           `http://localhost:5555/api/flight/${selectedFlight}`
         );
-        setSelectedFlightPanel(res.data);
+        setFlightPanelInfo(res.data);
         console.log(`fetch detail of ${selectedFlight}`);
         console.log(res.data);
       };
@@ -99,26 +99,7 @@ const Flights = () => {
     }
   };
 
-  const layers = [
-    new IconLayer({
-      id: 'airplanes',
-      data: flights,
-      pickable: true,
-      iconAtlas: Airplane,
-      iconMapping: {
-        airplane: {
-          x: 0,
-          y: 0,
-          width: 512,
-          height: 512,
-        },
-      },
-      sizeScale: 50,
-      getPosition: (d) => [d.longitude, d.latitude],
-      getAngle: (d) => d.angle,
-      getIcon: (d) => 'airplane',
-    }),
-  ];
+  const layers = [iconLayer({ flights, handleFlightClick })];
 
   return (
     <Layout>
@@ -131,22 +112,13 @@ const Flights = () => {
             ContextProvider={MapContext.Provider}
             style={{ height: '92vh' }}
             onViewStateChange={handleViewStateChange}
-            onClick={handleFlightClick}
           >
             {popupInfo && (
-              <Popup
-                tipSize={5}
-                anchor="top"
-                longitude={popupInfo.object.longitude}
-                latitude={popupInfo.object.latitude}
-                closeOnClick={false}
-                onClose={setPopupInfo}
-              >
-                <FlightPanel
-                  trackInfo={selectedFlightPanel}
-                  basicInfo={popupInfo}
-                />
-              </Popup>
+              <FlightPopup
+                popupInfo={popupInfo}
+                setPopupInfo={setPopupInfo}
+                flightPanelInfo={flightPanelInfo}
+              />
             )}
             <StaticMap
               key="staticMap"
