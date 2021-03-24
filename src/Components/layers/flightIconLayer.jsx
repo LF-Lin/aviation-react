@@ -2,7 +2,7 @@ import { IconLayer } from '@deck.gl/layers';
 import Airplane from '../../asset/airplane-icon.jpg';
 
 const iconLayer = ({ flights, handleFlightClick }) => {
-  console.log(flights);
+  // console.log(flights);
   return new IconLayer({
     id: 'airplanes',
     data: flights,
@@ -18,7 +18,7 @@ const iconLayer = ({ flights, handleFlightClick }) => {
     },
     sizeScale: 50,
     getPosition: (d) => [d.longitude, d.latitude],
-    getAngle: (d) => d.angle,
+    getAngle: (d) => 45 - d.angle,
     getIcon: (d) => 'airplane',
     onClick: handleFlightClick,
   });

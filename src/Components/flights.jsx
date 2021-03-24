@@ -94,6 +94,7 @@ const Flights = () => {
 
   const handleFlightClick = (info) => {
     if (info.picked) {
+      console.log(info.object.angle);
       setPopupInfo(info);
       setSelectedFlight(info.object.flight_id);
     }
