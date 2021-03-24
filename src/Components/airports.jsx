@@ -62,7 +62,7 @@ export function Airports() {
 
   const handleArcClick = (info) => {
     if (info.picked) {
-      console.log(info);
+      console.log('handleArcClick', info);
       setPopupFlightInfo(info);
     }
   };
@@ -88,8 +88,8 @@ export function Airports() {
             <Popup
               tipSize={5}
               anchor="top"
-              longitude={popupInfo.coordinate[0]}
-              latitude={popupInfo.coordinate[1]}
+              longitude={popupInfo.object.longitude}
+              latitude={popupInfo.object.latitude}
               closeOnClick={false}
               onClose={setPopupInfo}
             >
@@ -105,6 +105,7 @@ export function Airports() {
           {popupFlightInfo && (
             <AirportFlightPopup
               info={popupFlightInfo}
+              airportGeo={airportArrival.airportGeo}
               setPopupFlightInfo={setPopupFlightInfo}
               setActiveLayer={setActiveLayer}
               setPopupInfo={setPopupInfo}

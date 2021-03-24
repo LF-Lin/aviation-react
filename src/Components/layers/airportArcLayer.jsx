@@ -1,7 +1,7 @@
 import { ArcLayer } from '@deck.gl/layers';
 
 const arcLayer = ({ airportArrival, handleArcClick }) => {
-  console.log(airportArrival.arr);
+  // console.log(airportArrival.arr);
   return new ArcLayer({
     id: 'arc-layer',
     data: airportArrival.arr,

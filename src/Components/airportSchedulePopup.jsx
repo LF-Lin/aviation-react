@@ -1,13 +1,19 @@
 import { Popup } from 'react-map-gl';
 import { Button } from 'antd';
 const AirportFlightPopup = (prop) => {
-  const { info, setPopupFlightInfo, setActiveLayer, setViewport } = prop;
+  const {
+    info,
+    airportGeo,
+    setPopupFlightInfo,
+    setActiveLayer,
+    setViewport,
+  } = prop;
 
   const handleBtnClick = () => {
-    // console.log(info);
+    console.log('info', info);
     setViewport({
-      latitude: info.coordinate[1],
-      longitude: info.coordinate[0],
+      latitude: airportGeo[1],
+      longitude: airportGeo[0],
       zoom: 5,
       transitionDuration: 500,
     });
