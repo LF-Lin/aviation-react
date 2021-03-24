@@ -88,16 +88,14 @@ function AirportInfo(props) {
           block
           style={{ margin: '10px 0' }}
           onClick={handleArrival}
+          disabled={flightAvailable ? false : true}
         >
-          Show Arrival Flights
+          Show Arrival Flights / Count: {flightAvailable || 'No flight'}
         </Button>
         <Button type="primary" block style={{ margin: '10px 0' }}>
           Show Departure Flights
         </Button>
 
-        <p>
-          {flightAvailable ? `Has flights ${flightAvailable}` : 'No flight'}
-        </p>
         <p>{airportWeather?.metar || 'No weather info'}</p>
         <p>{airportWeather?.elevation?.ft}</p>
       </Drawer>
