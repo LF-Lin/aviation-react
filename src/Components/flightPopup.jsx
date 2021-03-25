@@ -2,8 +2,17 @@ import { Popup } from 'react-map-gl';
 import FlightPanel from './flightPanel';
 
 const FlightPopup = (prop) => {
-  const { popupInfo, flightPanelInfo, setPopupInfo, setActiveLayer } = prop;
-
+  const {
+    popupInfo,
+    flightPanelInfo,
+    setFlightPanelInfo,
+    setPopupInfo,
+    setActiveLayer,
+  } = prop;
+  const handlePopupClose = () => {
+    setPopupInfo();
+    setFlightPanelInfo();
+  };
   return (
     <Popup
       tipSize={5}
@@ -11,7 +20,7 @@ const FlightPopup = (prop) => {
       longitude={popupInfo.object.longitude}
       latitude={popupInfo.object.latitude}
       closeOnClick={false}
-      onClose={setPopupInfo}
+      onClose={handlePopupClose}
     >
       <FlightPanel
         popupInfo={popupInfo}

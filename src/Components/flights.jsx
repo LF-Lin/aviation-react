@@ -130,6 +130,7 @@ const Flights = () => {
               <FlightPopup
                 popupInfo={popupInfo}
                 flightPanelInfo={flightPanelInfo}
+                setFlightPanelInfo={setFlightPanelInfo}
                 setPopupInfo={setPopupInfo}
                 setActiveLayer={setActiveLayer}
               />
