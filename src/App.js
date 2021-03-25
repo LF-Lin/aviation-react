@@ -33,18 +33,15 @@ function App() {
               selectedKeys={[current]}
               onClick={handleClick}
             >
-              <Menu.Item key="airports">
-                <HomeOutlined />
+              <Menu.Item key="airports" icon={<HomeOutlined />}>
                 <span>Airports</span>
                 <Link to="/" />
               </Menu.Item>
-              <Menu.Item key="flights">
-                <ThunderboltOutlined />
+              <Menu.Item key="flights" icon={<ThunderboltOutlined />}>
                 <span>Flights</span>
                 <Link to="/flights" />
               </Menu.Item>
-              <Menu.Item key="charts">
-                <BarChartOutlined />
+              <Menu.Item key="charts" icon={<BarChartOutlined />}>
                 <span>Charts</span>
                 <Link to="/charts" />
               </Menu.Item>
@@ -53,7 +50,7 @@ function App() {
 
           <Route exact path="/" component={Airports} />
           <Route path="/flights" component={Flights} />
-          <Route path="/charts" component={Charts} />
+          <Route exact path="/charts" component={Charts} />
         </Layout>
       </Router>
     </div>
