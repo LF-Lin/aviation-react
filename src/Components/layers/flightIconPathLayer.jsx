@@ -1,11 +1,7 @@
 import { IconLayer, PathLayer } from '@deck.gl/layers';
 import Airplane from '../../asset/airplane-icon.jpg';
 
-const iconPathLayer = ({ flightPanelInfo }) => {
-  const handlePathClick = () => {
-    console.log('path layer click');
-  };
-
+const iconPathLayer = ({ flightPanelInfo, handleFlightPathClick }) => {
   return [
     new IconLayer({
       id: 'flight-single-icon',
@@ -24,7 +20,7 @@ const iconPathLayer = ({ flightPanelInfo }) => {
       getPosition: (d) => [d.trail.current.lng, d.trail.current.lat],
       getAngle: (d) => 45 - d.trail.current.hd,
       getIcon: (d) => 'airplane',
-      onClick: handlePathClick,
+      onClick: handleFlightPathClick,
     }),
     new PathLayer({
       id: 'flight-single-path',

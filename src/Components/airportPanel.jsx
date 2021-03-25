@@ -10,7 +10,7 @@ const popupStyle = {
   textAlign: 'left',
 };
 
-function AirportInfo(props) {
+function AirportPanel(props) {
   const {
     info,
     setAirportArrival,
@@ -103,4 +103,4 @@ function AirportInfo(props) {
   );
 }
 
-export default AirportInfo;
+export default AirportPanel;

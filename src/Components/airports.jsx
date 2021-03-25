@@ -10,7 +10,7 @@ import {
   Popup,
 } from 'react-map-gl';
 import DeckGL from 'deck.gl';
-import AirportInfo from './airportPanel';
+import AirportPanel from './airportPanel';
 import AirportFlightPopup from './airportSchedulePopup';
 import iconLayer from './layers/airportIconLayer';
 import arcLayer from './layers/airportArcLayer';
@@ -93,7 +93,7 @@ export function Airports() {
               closeOnClick={false}
               onClose={setPopupInfo}
             >
-              <AirportInfo
+              <AirportPanel
                 info={popupInfo}
                 setViewport={setViewport}
                 setPopupInfo={setPopupInfo}

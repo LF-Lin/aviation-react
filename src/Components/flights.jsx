@@ -16,6 +16,7 @@ import axios from 'axios';
 import iconLayer from './layers/flightIconLayer';
 import iconPathLayer from './layers/flightIconPathLayer';
 import FlightPopup from './flightPopup';
+import FlightPathPopup from './flightPathPopup';
 
 const { Content } = Layout;
 
@@ -47,6 +48,7 @@ const Flights = () => {
   const [flights, setFlights] = useState([]);
   const [bounding, setBounding] = useState(null);
   const [popupInfo, setPopupInfo] = useState(null);
+  const [popupPathInfo, setPopupPathInfo] = useState(null);
   const [selectedFlight, setSelectedFlight] = useState();
   const [flightPanelInfo, setFlightPanelInfo] = useState([]);
   const [activeLayer, setActiveLayer] = useState('iconLayer');
@@ -99,11 +101,16 @@ const Flights = () => {
       setSelectedFlight(info.object.flight_id);
     }
   };
+  const handleFlightPathClick = (info) => {
+    if (info.picked) {
+      setPopupPathInfo(info);
+    }
+  };
 
   const layers = [
     activeLayer === 'iconLayer'
       ? iconLayer({ flights, handleFlightClick })
-      : iconPathLayer({ flightPanelInfo }),
+      : iconPathLayer({ flightPanelInfo, handleFlightPathClick }),
   ];
 
   return (
@@ -124,6 +131,13 @@ const Flights = () => {
                 popupInfo={popupInfo}
                 flightPanelInfo={flightPanelInfo}
                 setPopupInfo={setPopupInfo}
+                setActiveLayer={setActiveLayer}
+              />
+            )}
+            {popupPathInfo && (
+              <FlightPathPopup
+                popupPathInfo={popupPathInfo}
+                setPopupPathInfo={setPopupPathInfo}
                 setActiveLayer={setActiveLayer}
               />
             )}
