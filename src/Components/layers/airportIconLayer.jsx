@@ -20,9 +20,9 @@ const iconLayer = ({ AirportGeo, Airport, handleAirportClick }) => {
     sizeScale: 40,
     getPosition: (d) => [d.longitude, d.latitude],
     getIcon: (d) => 'airport_name',
-    getColor: (d) => [80, 186, 56],
+    getColor: (d) => [112, 252, 81],
     autoHighlight: true,
-    highlightColor: [85, 255, 0],
+    // highlightColor: [43, 176, 14],
     onClick: handleAirportClick,
   });
 };

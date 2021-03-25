@@ -12,11 +12,11 @@ import {
 import DeckGL from 'deck.gl';
 import AirportPanel from './airportPanel';
 import AirportFlightPopup from './airportSchedulePopup';
-import iconLayer from './layers/airportIconLayer';
-import arcLayer from './layers/airportArcLayer';
+import iconLayer from '../layers/airportIconLayer';
+import arcLayer from '../layers/airportArcLayer';
 
-import AirportGeo from '../asset/airports.json';
-import Airport from '../asset/airport.png';
+import AirportGeo from '../../asset/airports.json';
+import Airport from '../../asset/airport.png';
 const { Content } = Layout;
 
 const fullscreenStyle = {

@@ -10,8 +10,8 @@ import {
   ThunderboltOutlined,
 } from '@ant-design/icons';
 
-import { Airports } from './Components/airports';
-import { Flights } from './Components/flights';
+import { Airports } from './Components/airports/airports';
+import { Flights } from './Components/flights/flights';
 import { Charts } from './Components/charts';
 const { Header } = Layout;
 

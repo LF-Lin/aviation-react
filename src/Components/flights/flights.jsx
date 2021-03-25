@@ -13,8 +13,8 @@ import DeckGL from 'deck.gl';
 import { WebMercatorViewport } from '@deck.gl/core';
 import axios from 'axios';
 
-import iconLayer from './layers/flightIconLayer';
-import iconPathLayer from './layers/flightIconPathLayer';
+import iconLayer from '../layers/flightIconLayer';
+import iconPathLayer from '../layers/flightIconPathLayer';
 import FlightPopup from './flightPopup';
 import FlightPathPopup from './flightPathPopup';
 
