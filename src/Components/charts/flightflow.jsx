@@ -41,7 +41,7 @@ const FlightFlow = () => {
       controller={true}
       layers={layers}
       ContextProvider={MapContext.Provider}
-      style={{ height: '350px' }}
+      style={{ height: '500px', marginTop: '80px' }}
     >
       <StaticMap
         key="staticMap"
