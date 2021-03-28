@@ -6,7 +6,7 @@ const arcLayer = ({ airportArrival, handleArcClick }) => {
     id: 'arc-layer',
     data: airportArrival.arr,
     pickable: true,
-    getWidth: 8,
+    getWidth: 4,
     getSourcePosition: airportArrival.airportGeo,
     getTargetPosition: (d) => [
       d.flight.airport.origin.position.longitude,

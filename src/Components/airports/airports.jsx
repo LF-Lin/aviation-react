@@ -1,7 +1,7 @@
 import 'antd/dist/antd.css';
 
 import React, { useState } from 'react';
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
 import {
   NavigationControl,
   FullscreenControl,
@@ -12,10 +12,11 @@ import {
 import DeckGL from 'deck.gl';
 import AirportPanel from './airportPanel';
 import AirportFlightPopup from './airportSchedulePopup';
+import AirportMenu from './airportMenu';
 import iconLayer from '../layers/airportIconLayer';
 import arcLayer from '../layers/airportArcLayer';
 
-import AirportGeo from '../../asset/airports.json';
+import AirportLoc from '../../asset/airports.json';
 import Airport from '../../asset/airport.png';
 const { Content } = Layout;
 
@@ -30,6 +31,13 @@ const navStyle = {
   top: 72,
   left: 0,
   padding: '10px',
+};
+
+const airportMenuStyle = {
+  position: 'absolute',
+  top: 90,
+  right: 40,
+  width: '250px',
 };
 
 const MAPBOX_TOKEN =
@@ -47,6 +55,8 @@ export function Airports() {
   const [popupFlightInfo, setPopupFlightInfo] = useState(false);
   const [airportArrival, setAirportArrival] = useState();
   const [activeLayer, setActiveLayer] = useState('iconLayer');
+  const [airportLocation, setAirportLocation] = useState(AirportLoc);
+  const [searchFilter, setSearchFilter] = useState(false);
 
   const handleAirportClick = (info) => {
     if (info.picked) {
@@ -66,10 +76,28 @@ export function Airports() {
       setPopupFlightInfo(info);
     }
   };
-
+  const handleAirportSearch = (e) => {
+    var keyword = e;
+    const filteredAirportLoc = AirportLoc.map((ap) => {
+      const reg = RegExp(keyword);
+      if (
+        reg.exec(ap.city) ||
+        reg.exec(ap.airport_name) ||
+        reg.exec(ap.airport_iata)
+      ) {
+        return ap;
+      }
+    });
+    setAirportLocation(filteredAirportLoc.filter(Boolean));
+    setSearchFilter(true);
+  };
+  const handleClearBtn = () => {
+    setAirportLocation(AirportLoc);
+    setSearchFilter(false);
+  };
   const layers = [
     activeLayer === 'iconLayer'
-      ? iconLayer({ AirportGeo, Airport, handleAirportClick })
+      ? iconLayer({ airportLocation, Airport, handleAirportClick })
       : arcLayer({ airportArrival, handleArcClick }),
   ];
 
@@ -101,6 +129,19 @@ export function Airports() {
                 setActiveLayer={setActiveLayer}
               />
             </Popup>
+          )}
+          {!popupInfo && (
+            <AirportMenu handleAirportSearch={handleAirportSearch} />
+          )}
+          {searchFilter && (
+            <Button
+              type="primary"
+              block
+              style={airportMenuStyle}
+              onClick={handleClearBtn}
+            >
+              Clear search results
+            </Button>
           )}
           {popupFlightInfo && (
             <AirportFlightPopup

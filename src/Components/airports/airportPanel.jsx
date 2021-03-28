@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Drawer } from 'antd';
+import { Button, Drawer, Collapse } from 'antd';
 import axios from 'axios';
 
+const { Panel } = Collapse;
 const popupBoxStyle = {
   padding: '10px',
 };
@@ -83,21 +84,27 @@ function AirportPanel(props) {
         onClose={onClose}
         visible={visible}
       >
-        <Button
-          type="primary"
-          block
-          style={{ margin: '10px 0' }}
-          onClick={handleArrival}
-          disabled={flightAvailable ? false : true}
-        >
-          Show Arrival Flights / Count: {flightAvailable || 'No flight'}
-        </Button>
-        <Button type="primary" block style={{ margin: '10px 0' }}>
-          Show Departure Flights
-        </Button>
-
-        <p>{airportWeather?.metar || 'No weather info'}</p>
-        <p>{airportWeather?.elevation?.ft}</p>
+        <Collapse defaultActiveKey={['1']} style={{ marginTop: '15px' }}>
+          <Panel header="Weather Information" key="1">
+            <p>{airportWeather?.metar || 'No weather info'}</p>
+            <p>{airportWeather?.elevation?.ft}</p>
+          </Panel>
+          <Panel header="Flight Schedule" key="2">
+            <p>{'机场航班时刻表，table'}</p>
+            <Button
+              type="primary"
+              block
+              style={{ margin: '10px 0' }}
+              onClick={handleArrival}
+              disabled={flightAvailable ? false : true}
+            >
+              Show Arrival Flights / Count: {flightAvailable || 'No flight'}
+            </Button>
+            <Button type="primary" block style={{ margin: '10px 0' }}>
+              Show Departure Flights
+            </Button>
+          </Panel>
+        </Collapse>
       </Drawer>
     </div>
   );
