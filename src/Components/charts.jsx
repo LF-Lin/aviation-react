@@ -9,7 +9,9 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 
+import Dashboard from './charts/dashboard';
 import Graph from './charts/graph';
+
 const { Sider, Content } = Layout;
 
 export function Charts() {
@@ -24,7 +26,7 @@ export function Charts() {
         <Sider theme="light">
           <Menu mode="inline" selectedKeys={[current]} onClick={handleClick}>
             <Menu.Item key="chart1" icon={<UserOutlined />}>
-              chart 1
+              空中交通网络分析
               <Link to="/charts" />
             </Menu.Item>
             <Menu.Item key="chart2" icon={<VideoCameraOutlined />}>
@@ -37,10 +39,8 @@ export function Charts() {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Content>
-          <Route exact path="/charts">
-            <h2>{'Chart 1'}</h2>
-          </Route>
+        <Content style={{ position: 'relative' }}>
+          <Route exact path="/charts" component={Dashboard} />
           <Route path="/charts/chart2">
             <h2>{'Chart 2'}</h2>
           </Route>

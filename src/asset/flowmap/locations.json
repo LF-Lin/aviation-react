@@ -1,0 +1,1412 @@
+[
+  {
+    "id": 3399,
+    "name": "Urumqi Diwopu International Airport",
+    "lat": 43.90710068,
+    "lon": 87.47419739
+  },
+  {
+    "id": 9846,
+    "name": "Zunyi Xinzhou Airport",
+    "lat": 27.5895,
+    "lon": 107.0007
+  },
+  {
+    "id": 13476,
+    "name": "Zunyi Maotai Airport",
+    "lat": 27.81638,
+    "lon": 106.33268
+  },
+  {
+    "id": 6355,
+    "name": "Zhuhai Jinwan Airport",
+    "lat": 22.006399,
+    "lon": 113.375999
+  },
+  {
+    "id": 3404,
+    "name": "Zhoushuizi Airport",
+    "lat": 38.96569824,
+    "lon": 121.5390015
+  },
+  {
+    "id": 6395,
+    "name": "Zhoushan Airport",
+    "lat": 29.93420029,
+    "lon": 122.3619995
+  },
+  {
+    "id": 8043,
+    "name": "Zhongwei Shapotou Airport",
+    "lat": 37.573125,
+    "lon": 105.154454
+  },
+  {
+    "id": 7519,
+    "name": "Zhijiang Airport",
+    "lat": 27.44111111,
+    "lon": 109.7
+  },
+  {
+    "id": 3375,
+    "name": "Zhengzhou Xinzheng International Airport",
+    "lat": 34.5196991,
+    "lon": 113.8410034
+  },
+  {
+    "id": 6378,
+    "name": "Zhaotong Airport",
+    "lat": 27.32559967,
+    "lon": 103.7549973
+  },
+  {
+    "id": 6357,
+    "name": "Zhanjiang Airport",
+    "lat": 21.214399,
+    "lon": 110.358002
+  },
+  {
+    "id": 9770,
+    "name": "Zhangye Ganzhou Airport",
+    "lat": 38.80189896,
+    "lon": 100.6750031
+  },
+  {
+    "id": 10940,
+    "name": "Zhangjiakou Ningyuan Airport",
+    "lat": 40.73860168,
+    "lon": 114.9300003
+  },
+  {
+    "id": 7894,
+    "name": "Yushu Batang Airport",
+    "lat": 32.83638889,
+    "lon": 97.03638889
+  },
+  {
+    "id": 6430,
+    "name": "Yuncheng Guangong Airport",
+    "lat": 35.116391,
+    "lon": 111.0313889
+  },
+  {
+    "id": 6368,
+    "name": "Yulin Yuyang Airport",
+    "lat": 38.35971,
+    "lon": 109.590927
+  },
+  {
+    "id": 14090,
+    "name": "Yuanmou Air Base",
+    "lat": 25.73749924,
+    "lon": 101.8820038
+  },
+  {
+    "id": 6394,
+    "name": "Yiwu Airport",
+    "lat": 29.34469986,
+    "lon": 120.0319977
+  },
+  {
+    "id": 6409,
+    "name": "Yining Airport",
+    "lat": 43.955799,
+    "lon": 81.330299
+  },
+  {
+    "id": 12056,
+    "name": "Yingkou Lanqi Airport",
+    "lat": 40.542524,
+    "lon": 122.3586
+  },
+  {
+    "id": 9107,
+    "name": "Yichun Mingyueshan Airport",
+    "lat": 27.8025,
+    "lon": 114.3062
+  },
+  {
+    "id": 6361,
+    "name": "Yichang Sanxia Airport",
+    "lat": 30.55655,
+    "lon": 111.479988
+  },
+  {
+    "id": 4110,
+    "name": "Yibin Caiba Airport",
+    "lat": 28.80055556,
+    "lon": 104.545
+  },
+  {
+    "id": 13485,
+    "name": "Yeerqiang Airport",
+    "lat": 38.281055,
+    "lon": 77.075192
+  },
+  {
+    "id": 4108,
+    "name": "Yaoqiang Airport",
+    "lat": 36.85720062,
+    "lon": 117.2160034
+  },
+  {
+    "id": 3392,
+    "name": "Yantai Laishan Airport",
+    "lat": 37.40169907,
+    "lon": 121.3720016
+  },
+  {
+    "id": 6414,
+    "name": "Yanji Chaoyangchuan Airport",
+    "lat": 42.88280106,
+    "lon": 129.451004
+  },
+  {
+    "id": 8876,
+    "name": "Yangzhou Taizhou Airport",
+    "lat": 32.5634,
+    "lon": 119.7198
+  },
+  {
+    "id": 6393,
+    "name": "Yancheng Airport",
+    "lat": 33.425833,
+    "lon": 120.203056
+  },
+  {
+    "id": 6367,
+    "name": "Yan'an Ershilipu Airport",
+    "lat": 36.636902,
+    "lon": 109.554001
+  },
+  {
+    "id": 4149,
+    "name": "Xuzhou Guanyin Airport",
+    "lat": 34.059056,
+    "lon": 117.555278
+  },
+  {
+    "id": 3381,
+    "name": "Xishuangbanna Gasa Airport",
+    "lat": 21.97389984,
+    "lon": 100.7600021
+  },
+  {
+    "id": 13494,
+    "name": "Xinzhou Wutaishan Airport",
+    "lat": 38.597456,
+    "lon": 112.969173
+  },
+  {
+    "id": 9386,
+    "name": "Xinyuan Nalati Airport",
+    "lat": 43.4318,
+    "lon": 83.3786
+  },
+  {
+    "id": 6366,
+    "name": "Xining Caojiabu Airport",
+    "lat": 36.5275,
+    "lon": 102.042999
+  },
+  {
+    "id": 7506,
+    "name": "Xingyi Airport",
+    "lat": 25.08638889,
+    "lon": 104.9594444
+  },
+  {
+    "id": 14092,
+    "name": "Xingcheng Air Base",
+    "lat": 40.58029938,
+    "lon": 120.697998
+  },
+  {
+    "id": 6350,
+    "name": "Xilinhot Airport",
+    "lat": 43.91559982,
+    "lon": 115.9639969
+  },
+  {
+    "id": 3396,
+    "name": "Xichang Qingshan Airport",
+    "lat": 27.9890995,
+    "lon": 102.1839981
+  },
+  {
+    "id": 6360,
+    "name": "Xiangyang Liuji Airport",
+    "lat": 32.1506,
+    "lon": 112.291
+  },
+  {
+    "id": 7052,
+    "name": "Xi'an Xiguan Airport",
+    "lat": 34.376701,
+    "lon": 109.120003
+  },
+  {
+    "id": 3379,
+    "name": "Xi'an Xianyang International Airport",
+    "lat": 34.447102,
+    "lon": 108.751999
+  },
+  {
+    "id": 3383,
+    "name": "Xiamen Gaoqi International Airport",
+    "lat": 24.54400063,
+    "lon": 118.1279984
+  },
+  {
+    "id": 6744,
+    "name": "Wuzhou Changzhoudao Airport",
+    "lat": 23.456699,
+    "lon": 111.248001
+  },
+  {
+    "id": 12054,
+    "name": "Wuhu Air Base",
+    "lat": 31.3906,
+    "lon": 118.408997
+  },
+  {
+    "id": 3376,
+    "name": "Wuhan Tianhe International Airport",
+    "lat": 30.7838,
+    "lon": 114.208
+  },
+  {
+    "id": 6955,
+    "name": "Wuhai Airport",
+    "lat": 39.7934,
+    "lon": 106.7993
+  },
+  {
+    "id": 13479,
+    "name": "Wudalianchi Dedu Airport",
+    "lat": 48.445,
+    "lon": 126.133
+  },
+  {
+    "id": 6392,
+    "name": "Wenzhou Longwan International Airport",
+    "lat": 27.912201,
+    "lon": 120.851997
+  },
+  {
+    "id": 6389,
+    "name": "Weihai Airport",
+    "lat": 37.18709946,
+    "lon": 122.2289963
+  },
+  {
+    "id": 6388,
+    "name": "Weifang Airport",
+    "lat": 36.646702,
+    "lon": 119.119003
+  },
+  {
+    "id": 6403,
+    "name": "Wanxian Airport",
+    "lat": 30.8017,
+    "lon": 108.433
+  },
+  {
+    "id": 13211,
+    "name": "Ulanqab Jining Airport",
+    "lat": 41.129722,
+    "lon": 113.108056
+  },
+  {
+    "id": 6349,
+    "name": "Ulanhot Airport",
+    "lat": 46.195333,
+    "lon": 122.008333
+  },
+  {
+    "id": 8926,
+    "name": "Turpan Jiaohe Airport",
+    "lat": 43.0308,
+    "lon": 89.0987
+  },
+  {
+    "id": 6387,
+    "name": "Tunxi International Airport",
+    "lat": 29.73329926,
+    "lon": 118.2559967
+  },
+  {
+    "id": 6963,
+    "name": "Tongren Fenghuang Airport",
+    "lat": 27.883333,
+    "lon": 109.308889
+  },
+  {
+    "id": 6348,
+    "name": "Tongliao Airport",
+    "lat": 43.556702,
+    "lon": 122.199997
+  },
+  {
+    "id": 9854,
+    "name": "Tonghua Sanyuanpu Airport",
+    "lat": 42.25388889,
+    "lon": 125.7033333
+  },
+  {
+    "id": 8889,
+    "name": "Tianshui Maijishan Airport",
+    "lat": 34.55939865,
+    "lon": 105.8600006
+  },
+  {
+    "id": 3368,
+    "name": "Tianjin Binhai International Airport",
+    "lat": 39.12440109,
+    "lon": 117.3460007
+  },
+  {
+    "id": 7862,
+    "name": "Tengchong Tuofeng Airport",
+    "lat": 24.93805556,
+    "lon": 98.48583333
+  },
+  {
+    "id": 4144,
+    "name": "Taoxian Airport",
+    "lat": 41.63980103,
+    "lon": 123.4830017
+  },
+  {
+    "id": 3369,
+    "name": "Taiyuan Wusu Airport",
+    "lat": 37.74689865,
+    "lon": 112.6279984
+  },
+  {
+    "id": 3400,
+    "name": "Taiping Airport",
+    "lat": 45.62340164,
+    "lon": 126.25
+  },
+  {
+    "id": 6752,
+    "name": "Tacheng Airport",
+    "lat": 46.67250061,
+    "lon": 83.34079742
+  },
+  {
+    "id": 9857,
+    "name": "Suzhou Guangfu Airport",
+    "lat": 31.2631,
+    "lon": 120.401001
+  },
+  {
+    "id": 6390,
+    "name": "Sunan Shuofang International Airport",
+    "lat": 31.49440002,
+    "lon": 120.4290009
+  },
+  {
+    "id": 13473,
+    "name": "Songyuan Chaganhu Airport",
+    "lat": 44.938114,
+    "lon": 124.550178
+  },
+  {
+    "id": 6385,
+    "name": "Shubuling Airport",
+    "lat": 35.04610062,
+    "lon": 118.4120026
+  },
+  {
+    "id": 12048,
+    "name": "Shiyan Wudangshan Airport",
+    "lat": 32.591667,
+    "lon": 110.907778
+  },
+  {
+    "id": 6347,
+    "name": "Shijiazhuang Daguocun International Airport",
+    "lat": 38.28070068,
+    "lon": 114.6969986
+  },
+  {
+    "id": 8442,
+    "name": "Shigatse Air Base",
+    "lat": 29.3519,
+    "lon": 89.311401
+  },
+  {
+    "id": 3374,
+    "name": "Shenzhen Bao'an International Airport",
+    "lat": 22.63929939,
+    "lon": 113.810997
+  },
+  {
+    "id": 10939,
+    "name": "Shennongjia Hongping Airport",
+    "lat": 31.626,
+    "lon": 110.34
+  },
+  {
+    "id": 11714,
+    "name": "Shaxian Airport",
+    "lat": 26.4263,
+    "lon": 117.8336
+  },
+  {
+    "id": 13229,
+    "name": "Shaoyang Wugang Airport",
+    "lat": 26.802,
+    "lon": 110.642
+  },
+  {
+    "id": 12055,
+    "name": "Shanshan Airport",
+    "lat": 42.9117012,
+    "lon": 90.24749756
+  },
+  {
+    "id": 6429,
+    "name": "Shanhaiguan Airport",
+    "lat": 39.968102,
+    "lon": 119.731003
+  },
+  {
+    "id": 13472,
+    "name": "Shangrao Sanqingshan Airport",
+    "lat": 28.3797,
+    "lon": 117.9643
+  },
+  {
+    "id": 3406,
+    "name": "Shanghai Pudong International Airport",
+    "lat": 31.14340019,
+    "lon": 121.8050003
+  },
+  {
+    "id": 3391,
+    "name": "Shanghai Hongqiao International Airport",
+    "lat": 31.19790077,
+    "lon": 121.3359985
+  },
+  {
+    "id": 4030,
+    "name": "Sanya Phoenix International Airport",
+    "lat": 18.30290031,
+    "lon": 109.4120026
+  },
+  {
+    "id": 9845,
+    "name": "Saertu Airport",
+    "lat": 46.74638889,
+    "lon": 125.1405556
+  },
+  {
+    "id": 12053,
+    "name": "Rugao Air Base",
+    "lat": 32.25788498,
+    "lon": 120.5016556
+  },
+  {
+    "id": 11713,
+    "name": "Rizhao Shanzihe Airport",
+    "lat": 35.405033,
+    "lon": 119.324403
+  },
+  {
+    "id": 6382,
+    "name": "Quzhou Airport",
+    "lat": 28.965799,
+    "lon": 118.899002
+  },
+  {
+    "id": 6386,
+    "name": "Quanzhou Jinjiang International Airport",
+    "lat": 24.7964,
+    "lon": 118.589996
+  },
+  {
+    "id": 6413,
+    "name": "Qiqihar Sanjiazi Airport",
+    "lat": 47.23960114,
+    "lon": 123.9179993
+  },
+  {
+    "id": 13193,
+    "name": "Qionghai Bo'ao Airport",
+    "lat": 19.13824,
+    "lon": 110.454775
+  },
+  {
+    "id": 6365,
+    "name": "Qingyang Airport",
+    "lat": 35.799702,
+    "lon": 107.602997
+  },
+  {
+    "id": 6405,
+    "name": "Qiemo Yudu Airport",
+    "lat": 38.233611,
+    "lon": 85.465556
+  },
+  {
+    "id": 8781,
+    "name": "Qianjiang Wulingshan Airport",
+    "lat": 29.51333333,
+    "lon": 108.8311111
+  },
+  {
+    "id": 6396,
+    "name": "Qamdo Bangda Airport",
+    "lat": 30.55360031,
+    "lon": 97.10829926
+  },
+  {
+    "id": 6377,
+    "name": "Pu'er Simao Airport",
+    "lat": 22.793301,
+    "lon": 100.959
+  },
+  {
+    "id": 6434,
+    "name": "Ordos Ejin Horo Airport",
+    "lat": 39.49,
+    "lon": 109.8613889
+  },
+  {
+    "id": 6402,
+    "name": "Nyingchi Airport",
+    "lat": 29.30330086,
+    "lon": 94.33529663
+  },
+  {
+    "id": 13490,
+    "name": "Ninglang Luguhu Airport",
+    "lat": 27.5403,
+    "lon": 100.7593
+  },
+  {
+    "id": 3387,
+    "name": "Ningbo Lishe International Airport",
+    "lat": 29.82670021,
+    "lon": 121.461998
+  },
+  {
+    "id": 7932,
+    "name": "Ngari Gunsa Airport",
+    "lat": 32.1,
+    "lon": 80.05305556
+  },
+  {
+    "id": 6359,
+    "name": "Nanyang Jiangying Airport",
+    "lat": 32.980801,
+    "lon": 112.614998
+  },
+  {
+    "id": 6391,
+    "name": "Nanping Wuyishan Airport",
+    "lat": 27.7019,
+    "lon": 118.000999
+  },
+  {
+    "id": 3373,
+    "name": "Nanning Wuxu Airport",
+    "lat": 22.60829926,
+    "lon": 108.1719971
+  },
+  {
+    "id": 3388,
+    "name": "Nanjing Lukou Airport",
+    "lat": 31.74200058,
+    "lon": 118.8619995
+  },
+  {
+    "id": 6401,
+    "name": "Nanchong Airport",
+    "lat": 30.79545,
+    "lon": 106.1626
+  },
+  {
+    "id": 3384,
+    "name": "Nanchang Changbei International Airport",
+    "lat": 28.86499977,
+    "lon": 115.9000015
+  },
+  {
+    "id": 3402,
+    "name": "Mudanjiang Hailang International Airport",
+    "lat": 44.52410126,
+    "lon": 129.5690002
+  },
+  {
+    "id": 6400,
+    "name": "Mianyang Airport",
+    "lat": 31.42810059,
+    "lon": 104.7409973
+  },
+  {
+    "id": 6354,
+    "name": "Meixian Airport",
+    "lat": 24.35000038,
+    "lon": 116.1330032
+  },
+  {
+    "id": 6954,
+    "name": "Manzhouli Xijiao Airport",
+    "lat": 49.566667,
+    "lon": 117.33
+  },
+  {
+    "id": 6376,
+    "name": "Mangshi Airport",
+    "lat": 24.4011,
+    "lon": 98.5317
+  },
+  {
+    "id": 9308,
+    "name": "L\u00fcliang Airport",
+    "lat": 37.683333,
+    "lon": 111.142778
+  },
+  {
+    "id": 6399,
+    "name": "Luzhou Airport",
+    "lat": 28.85219955,
+    "lon": 105.3929977
+  },
+  {
+    "id": 4148,
+    "name": "Luoyang Airport",
+    "lat": 34.74110031,
+    "lon": 112.3880005
+  },
+  {
+    "id": 7504,
+    "name": "Longyan Guanzhishan Airport",
+    "lat": 25.67469978,
+    "lon": 116.7470016
+  },
+  {
+    "id": 13471,
+    "name": "Longnan Chengzhou Airport",
+    "lat": 33.788,
+    "lon": 105.797
+  },
+  {
+    "id": 4380,
+    "name": "Longjia Airport",
+    "lat": 43.99620056,
+    "lon": 125.6849976
+  },
+  {
+    "id": 3394,
+    "name": "Longdongbao Airport",
+    "lat": 26.53849983,
+    "lon": 106.8010025
+  },
+  {
+    "id": 6356,
+    "name": "Liuzhou Bailian Airport",
+    "lat": 24.2075,
+    "lon": 109.390999
+  },
+  {
+    "id": 3390,
+    "name": "Liuting Airport",
+    "lat": 36.26610184,
+    "lon": 120.3740005
+  },
+  {
+    "id": 10937,
+    "name": "Liupanshui Yuezhao Airport",
+    "lat": 26.609417,
+    "lon": 104.979
+  },
+  {
+    "id": 7508,
+    "name": "Liping Airport",
+    "lat": 26.32217,
+    "lon": 109.1499
+  },
+  {
+    "id": 7527,
+    "name": "Lintsang Airfield",
+    "lat": 23.73810005,
+    "lon": 100.0250015
+  },
+  {
+    "id": 8845,
+    "name": "Lingling Airport",
+    "lat": 26.338661,
+    "lon": 111.610043
+  },
+  {
+    "id": 11545,
+    "name": "Linfen Qiaoli Airport",
+    "lat": 36.132629,
+    "lon": 111.641236
+  },
+  {
+    "id": 9848,
+    "name": "Lindu Airport",
+    "lat": 47.75205556,
+    "lon": 129.019125
+  },
+  {
+    "id": 4033,
+    "name": "Lijiang Airport",
+    "lat": 26.68000031,
+    "lon": 100.2460022
+  },
+  {
+    "id": 13477,
+    "name": "Libo Airport",
+    "lat": 25.4525,
+    "lon": 107.961667
+  },
+  {
+    "id": 6383,
+    "name": "Lianyungang Airport",
+    "lat": 34.571667,
+    "lon": 118.873611
+  },
+  {
+    "id": 7898,
+    "name": "Lianshui Airport",
+    "lat": 33.79083333,
+    "lon": 119.125
+  },
+  {
+    "id": 4097,
+    "name": "Lhasa Gonggar Airport",
+    "lat": 29.29780006,
+    "lon": 90.91190338
+  },
+  {
+    "id": 3378,
+    "name": "Lanzhou Zhongchuan Airport",
+    "lat": 36.51520157,
+    "lon": 103.6200027
+  },
+  {
+    "id": 13489,
+    "name": "Lancang Jingmai Airport",
+    "lat": 22.415833,
+    "lon": 99.786389
+  },
+  {
+    "id": 6406,
+    "name": "Kuqa Airport",
+    "lat": 41.677856,
+    "lon": 82.872917
+  },
+  {
+    "id": 3382,
+    "name": "Kunming Changshui International Airport",
+    "lat": 25.1019444,
+    "lon": 102.9291667
+  },
+  {
+    "id": 6407,
+    "name": "Korla Airport",
+    "lat": 41.69779968,
+    "lon": 86.12889862
+  },
+  {
+    "id": 3397,
+    "name": "Kashgar Airport",
+    "lat": 39.54290009,
+    "lon": 76.01999664
+  },
+  {
+    "id": 6408,
+    "name": "Karamay Airport",
+    "lat": 45.46655,
+    "lon": 84.9527
+  },
+  {
+    "id": 8921,
+    "name": "Kangding Airport",
+    "lat": 30.1575,
+    "lon": 101.734722
+  },
+  {
+    "id": 8233,
+    "name": "Kanas Airport",
+    "lat": 48.2223,
+    "lon": 86.9959
+  },
+  {
+    "id": 10938,
+    "name": "Kaili Airport",
+    "lat": 26.972,
+    "lon": 107.988
+  },
+  {
+    "id": 8417,
+    "name": "Jixi Xingkaihu Airport",
+    "lat": 45.293,
+    "lon": 131.193
+  },
+  {
+    "id": 4301,
+    "name": "Jiuzhai Huanglong Airport",
+    "lat": 32.85333333,
+    "lon": 103.6822222
+  },
+  {
+    "id": 6381,
+    "name": "Jiujiang Lushan Airport",
+    "lat": 29.476944,
+    "lon": 115.801111
+  },
+  {
+    "id": 9843,
+    "name": "Jiuhuashan Airport",
+    "lat": 30.7403,
+    "lon": 117.6856
+  },
+  {
+    "id": 6412,
+    "name": "Jinzhou Airport",
+    "lat": 41.10139847,
+    "lon": 121.0619965
+  },
+  {
+    "id": 6944,
+    "name": "Jining Qufu Airport",
+    "lat": 35.292778,
+    "lon": 116.346667
+  },
+  {
+    "id": 6964,
+    "name": "Jinggangshan Airport",
+    "lat": 26.85689926,
+    "lon": 114.7369995
+  },
+  {
+    "id": 6380,
+    "name": "Jingdezhen Airport",
+    "lat": 29.33860016,
+    "lon": 117.1760025
+  },
+  {
+    "id": 11473,
+    "name": "Jinchuan Airport",
+    "lat": 38.54222222,
+    "lon": 102.3483333
+  },
+  {
+    "id": 4302,
+    "name": "Jieyang Chaoshan International Airport",
+    "lat": 23.552,
+    "lon": 116.5033
+  },
+  {
+    "id": 6432,
+    "name": "Jiayuguan Airport",
+    "lat": 39.856899,
+    "lon": 98.3414
+  },
+  {
+    "id": 13474,
+    "name": "Jiansanjiang Airport",
+    "lat": 47.11,
+    "lon": 132.660278
+  },
+  {
+    "id": 6411,
+    "name": "Jiamusi Airport",
+    "lat": 46.84339905,
+    "lon": 130.4649963
+  },
+  {
+    "id": 8979,
+    "name": "Jiagedaqi Airport",
+    "lat": 50.371389,
+    "lon": 124.1175
+  },
+  {
+    "id": 7458,
+    "name": "Huizhou Airport",
+    "lat": 23.04999924,
+    "lon": 114.5999985
+  },
+  {
+    "id": 12050,
+    "name": "Huatugou Airport",
+    "lat": 38.201984,
+    "lon": 90.841495
+  },
+  {
+    "id": 6384,
+    "name": "Huangyan Luqiao Airport",
+    "lat": 28.56220055,
+    "lon": 121.4290009
+  },
+  {
+    "id": 3398,
+    "name": "Hotan Airport",
+    "lat": 37.03850174,
+    "lon": 79.86489868
+  },
+  {
+    "id": 10943,
+    "name": "Hongyuan Airport",
+    "lat": 32.53154,
+    "lon": 102.35224
+  },
+  {
+    "id": 13482,
+    "name": "Holingol Huolinhe Airport",
+    "lat": 45.487222,
+    "lon": 119.407222
+  },
+  {
+    "id": 10942,
+    "name": "Hengyang Nanyue Airport",
+    "lat": 26.9053,
+    "lon": 112.627998
+  },
+  {
+    "id": 6410,
+    "name": "Heihe Airport",
+    "lat": 50.17162094,
+    "lon": 127.3088837
+  },
+  {
+    "id": 3389,
+    "name": "Hefei Luogang International Airport",
+    "lat": 31.78000069,
+    "lon": 117.2979965
+  },
+  {
+    "id": 10363,
+    "name": "Hechi Jinchengjiang Airport",
+    "lat": 24.805,
+    "lon": 107.6997
+  },
+  {
+    "id": 6364,
+    "name": "Hanzhong Chenggu Airport",
+    "lat": 33.134136,
+    "lon": 107.206014
+  },
+  {
+    "id": 3386,
+    "name": "Hangzhou Xiaoshan International Airport",
+    "lat": 30.22949982,
+    "lon": 120.4339981
+  },
+  {
+    "id": 8407,
+    "name": "Handan Airport",
+    "lat": 36.52583333,
+    "lon": 114.4255556
+  },
+  {
+    "id": 6743,
+    "name": "Hami Airport",
+    "lat": 42.8414,
+    "lon": 93.669197
+  },
+  {
+    "id": 4120,
+    "name": "Haikou Meilan International Airport",
+    "lat": 19.93490028,
+    "lon": 110.4589996
+  },
+  {
+    "id": 8971,
+    "name": "Guyuan Liupanshan Airport",
+    "lat": 36.07888889,
+    "lon": 106.2169444
+  },
+  {
+    "id": 6943,
+    "name": "Gu-Lian Airport",
+    "lat": 52.91277778,
+    "lon": 122.43
+  },
+  {
+    "id": 3372,
+    "name": "Guilin Liangjiang International Airport",
+    "lat": 25.21809959,
+    "lon": 110.0390015
+  },
+  {
+    "id": 12047,
+    "name": "Guangzhou MR Air Base",
+    "lat": 32.38940048,
+    "lon": 111.6949997
+  },
+  {
+    "id": 3370,
+    "name": "Guangzhou Baiyun International Airport",
+    "lat": 23.39240074,
+    "lon": 113.2990036
+  },
+  {
+    "id": 6398,
+    "name": "Guangyuan Airport",
+    "lat": 32.39110184,
+    "lon": 105.7020035
+  },
+  {
+    "id": 13483,
+    "name": "Golog Maqin Airport",
+    "lat": 34.418066,
+    "lon": 100.301144
+  },
+  {
+    "id": 6363,
+    "name": "Golmud Airport",
+    "lat": 36.4006,
+    "lon": 94.786102
+  },
+  {
+    "id": 6379,
+    "name": "Ganzhou Airport",
+    "lat": 25.853333,
+    "lon": 114.778889
+  },
+  {
+    "id": 9311,
+    "name": "Gannan Xiahe Airport",
+    "lat": 34.8105,
+    "lon": 102.6447
+  },
+  {
+    "id": 3385,
+    "name": "Fuzhou Changle International Airport",
+    "lat": 25.93510056,
+    "lon": 119.663002
+  },
+  {
+    "id": 11499,
+    "name": "Fuyun Koktokay Airport",
+    "lat": 46.804169,
+    "lon": 89.512006
+  },
+  {
+    "id": 7503,
+    "name": "Fuyang Xiguan Airport",
+    "lat": 32.882157,
+    "lon": 115.734364
+  },
+  {
+    "id": 7457,
+    "name": "Foshan Shadi Airport",
+    "lat": 23.08329964,
+    "lon": 113.0699997
+  },
+  {
+    "id": 10160,
+    "name": "Erenhot Saiwusu International Airport",
+    "lat": 43.4225,
+    "lon": 112.096667
+  },
+  {
+    "id": 6358,
+    "name": "Enshi Airport",
+    "lat": 30.32029915,
+    "lon": 109.4850006
+  },
+  {
+    "id": 13480,
+    "name": "Ejin Banner-Taolai Airport",
+    "lat": 42.0155,
+    "lon": 101.0005
+  },
+  {
+    "id": 4308,
+    "name": "Dunhuang Airport",
+    "lat": 40.16109848,
+    "lon": 94.80919647
+  },
+  {
+    "id": 4145,
+    "name": "Dongying Shengli Airport",
+    "lat": 37.50859833,
+    "lon": 118.788002
+  },
+  {
+    "id": 3366,
+    "name": "Dongshan Airport",
+    "lat": 49.20500183,
+    "lon": 119.8249969
+  },
+  {
+    "id": 10800,
+    "name": "Dongji Aiport",
+    "lat": 48.199494,
+    "lon": 134.366447
+  },
+  {
+    "id": 6375,
+    "name": "Diqing Airport",
+    "lat": 27.7936,
+    "lon": 99.6772
+  },
+  {
+    "id": 13192,
+    "name": "Delingha Airport",
+    "lat": 37.125286,
+    "lon": 97.268658
+  },
+  {
+    "id": 6353,
+    "name": "Dayong Airport",
+    "lat": 29.1028,
+    "lon": 110.443001
+  },
+  {
+    "id": 6344,
+    "name": "Datong Airport",
+    "lat": 40.060299,
+    "lon": 113.482002
+  },
+  {
+    "id": 9310,
+    "name": "Daocheng Yading Airport",
+    "lat": 29.323056,
+    "lon": 100.053333
+  },
+  {
+    "id": 6433,
+    "name": "Dandong Airport",
+    "lat": 40.0247,
+    "lon": 124.286003
+  },
+  {
+    "id": 4054,
+    "name": "Dali Airport",
+    "lat": 25.649401,
+    "lon": 100.319
+  },
+  {
+    "id": 6397,
+    "name": "Dachuan Airport",
+    "lat": 31.1302,
+    "lon": 107.4295
+  },
+  {
+    "id": 3393,
+    "name": "Chongqing Jiangbei International Airport",
+    "lat": 29.71920013,
+    "lon": 106.6419983
+  },
+  {
+    "id": 6342,
+    "name": "Chifeng Airport",
+    "lat": 42.23500061,
+    "lon": 118.9079971
+  },
+  {
+    "id": 13496,
+    "name": "Chengjisihan Airport",
+    "lat": 47.865833,
+    "lon": 122.767503
+  },
+  {
+    "id": 3395,
+    "name": "Chengdu Shuangliu International Airport",
+    "lat": 30.57850075,
+    "lon": 103.9469986
+  },
+  {
+    "id": 13478,
+    "name": "Chengde Puning Airport",
+    "lat": 41.1225,
+    "lon": 118.073889
+  },
+  {
+    "id": 6772,
+    "name": "Chaoyang Airport",
+    "lat": 41.538101,
+    "lon": 120.434998
+  },
+  {
+    "id": 4109,
+    "name": "Changzhou Benniu Airport",
+    "lat": 31.919701,
+    "lon": 119.778999
+  },
+  {
+    "id": 6343,
+    "name": "Changzhi Airport",
+    "lat": 36.247501,
+    "lon": 113.125999
+  },
+  {
+    "id": 3371,
+    "name": "Changsha Huanghua International Airport",
+    "lat": 28.18919945,
+    "lon": 113.2200012
+  },
+  {
+    "id": 8974,
+    "name": "Changhai Airport",
+    "lat": 39.26666667,
+    "lon": 122.6669444
+  },
+  {
+    "id": 6352,
+    "name": "Changde Airport",
+    "lat": 28.91889954,
+    "lon": 111.6399994
+  },
+  {
+    "id": 8826,
+    "name": "Changbaishan Airport",
+    "lat": 42.066944,
+    "lon": 127.602222
+  },
+  {
+    "id": 13488,
+    "name": "Cangyuan Washan Airport",
+    "lat": 23.273889,
+    "lon": 99.373611
+  },
+  {
+    "id": 9025,
+    "name": "Bijie Feixiong Airport",
+    "lat": 27.267066,
+    "lon": 105.472097
+  },
+  {
+    "id": 12052,
+    "name": "Bengbu Airport",
+    "lat": 32.84773333,
+    "lon": 117.3202444
+  },
+  {
+    "id": 6341,
+    "name": "Beijing Nanyuan Airport",
+    "lat": 39.78279877,
+    "lon": 116.3880005
+  },
+  {
+    "id": 10209,
+    "name": "Beijing Daxing International Airport",
+    "lat": 39.509945,
+    "lon": 116.41092
+  },
+  {
+    "id": 3364,
+    "name": "Beijing Capital International Airport",
+    "lat": 40.08010101,
+    "lon": 116.5849991
+  },
+  {
+    "id": 6351,
+    "name": "Beihai Airport",
+    "lat": 21.5394,
+    "lon": 109.293999
+  },
+  {
+    "id": 8630,
+    "name": "Bayannur Tianjitai Airport",
+    "lat": 40.926,
+    "lon": 107.7428
+  },
+  {
+    "id": 6346,
+    "name": "Baotou Airport",
+    "lat": 40.56000137,
+    "lon": 109.9970016
+  },
+  {
+    "id": 7505,
+    "name": "Baoshan Yunduan Airport",
+    "lat": 25.053301,
+    "lon": 99.168297
+  },
+  {
+    "id": 6435,
+    "name": "Bao'anying Airport",
+    "lat": 26.54,
+    "lon": 101.79852
+  },
+  {
+    "id": 6345,
+    "name": "Baita International Airport",
+    "lat": 40.851398,
+    "lon": 111.823997
+  },
+  {
+    "id": 8082,
+    "name": "Baise Youjiang Airport",
+    "lat": 23.72060013,
+    "lon": 106.9599991
+  },
+  {
+    "id": 13470,
+    "name": "Baicheng Chang'an Airport",
+    "lat": 45.505278,
+    "lon": 123.019722
+  },
+  {
+    "id": 10941,
+    "name": "Arxan Yi'ershi Airport",
+    "lat": 47.3106,
+    "lon": 119.9117
+  },
+  {
+    "id": 9849,
+    "name": "Anshun Huangguoshu Airport",
+    "lat": 26.26055556,
+    "lon": 105.8733333
+  },
+  {
+    "id": 9844,
+    "name": "Anshan Air Base",
+    "lat": 41.105301,
+    "lon": 122.853996
+  },
+  {
+    "id": 6427,
+    "name": "Anqing Tianzhushan Airport",
+    "lat": 30.582199,
+    "lon": 117.050003
+  },
+  {
+    "id": 6362,
+    "name": "Ankang Wulipu Airport",
+    "lat": 32.708099,
+    "lon": 108.931
+  },
+  {
+    "id": 13481,
+    "name": "Alxa Right Banner Badanjilin Airport",
+    "lat": 39.225,
+    "lon": 101.546
+  },
+  {
+    "id": 12921,
+    "name": "Alxa Left Banner Bayanhot Airport",
+    "lat": 38.74831,
+    "lon": 105.58858
+  },
+  {
+    "id": 6946,
+    "name": "Altay Air Base",
+    "lat": 47.74988556,
+    "lon": 88.0858078
+  },
+  {
+    "id": 11498,
+    "name": "Alashankou Bole (Bortala) airport",
+    "lat": 44.895,
+    "lon": 82.3
+  },
+  {
+    "id": 6404,
+    "name": "Aksu Airport",
+    "lat": 41.262501,
+    "lon": 80.291702
+  }
+]
