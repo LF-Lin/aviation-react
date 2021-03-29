@@ -7,6 +7,7 @@ const airportMenuStyle = {
   top: 40,
   right: 40,
   width: '250px',
+  zIndex: 999,
 };
 
 const AirportMenu = ({ handleAirportSearch }) => {

@@ -35,9 +35,10 @@ const navStyle = {
 
 const airportMenuStyle = {
   position: 'absolute',
-  top: 90,
+  top: 40,
   right: 40,
   width: '250px',
+  zIndex: 999,
 };
 
 const MAPBOX_TOKEN =
@@ -104,6 +105,19 @@ export function Airports() {
   return (
     <Layout>
       <Content style={{ position: 'relative' }}>
+        {!searchFilter && !popupInfo && activeLayer === 'iconLayer' && (
+          <AirportMenu handleAirportSearch={handleAirportSearch} />
+        )}
+        {searchFilter && activeLayer === 'iconLayer' && (
+          <Button
+            type="primary"
+            block
+            style={airportMenuStyle}
+            onClick={handleClearBtn}
+          >
+            Clear search results
+          </Button>
+        )}
         <DeckGL
           key="basicGL"
           initialViewState={viewport}
@@ -130,19 +144,7 @@ export function Airports() {
               />
             </Popup>
           )}
-          {!popupInfo && (
-            <AirportMenu handleAirportSearch={handleAirportSearch} />
-          )}
-          {searchFilter && (
-            <Button
-              type="primary"
-              block
-              style={airportMenuStyle}
-              onClick={handleClearBtn}
-            >
-              Clear search results
-            </Button>
-          )}
+
           {popupFlightInfo && (
             <AirportFlightPopup
               info={popupFlightInfo}
