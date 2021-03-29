@@ -77,7 +77,7 @@ export function Airports() {
     }
   };
   const handleAirportSearch = (e) => {
-    var keyword = e;
+    var keyword = e.toUpperCase();
     const filteredAirportLoc = AirportLoc.map((ap) => {
       const reg = RegExp(keyword);
       if (

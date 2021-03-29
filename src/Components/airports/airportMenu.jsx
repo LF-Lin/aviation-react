@@ -13,7 +13,7 @@ const AirportMenu = ({ handleAirportSearch }) => {
   return (
     <div>
       <Search
-        placeholder="Airport IATA"
+        placeholder="Airport Name/IATA"
         enterButton="Search"
         size="large"
         style={airportMenuStyle}
