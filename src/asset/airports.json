@@ -315,15 +315,6 @@
         "main_airport_iata": "FYJ"
     },
     {
-        "city": "凤庆县",
-        "province": "云南省",
-        "airport_iata": "CWJ",
-        "airport_name": "沧源佤山机场",
-        "latitude": 23.152878733913262,
-        "longitude": 99.25272169608435,
-        "main_airport_iata": "CWJ"
-    },
-    {
         "city": "合肥",
         "province": "安徽省",
         "airport_iata": "HFE",
@@ -414,15 +405,6 @@
         "main_airport_iata": "HET"
     },
     {
-        "city": "海拉尔",
-        "province": "内蒙古自治区",
-        "airport_iata": "HLD",
-        "airport_name": "呼伦贝尔东山国际机场",
-        "latitude": 49.21738170755028,
-        "longitude": 119.82084153766571,
-        "main_airport_iata": "HLD"
-    },
-    {
         "city": "汉中",
         "province": "陕西省",
         "airport_iata": "HZG",
@@ -495,24 +477,6 @@
         "main_airport_iata": "HTT"
     },
     {
-        "city": "黄岩",
-        "province": "浙江省",
-        "airport_iata": "HYN",
-        "airport_name": "台州路桥机场",
-        "latitude": 28.561563477709317,
-        "longitude": 121.42815101309311,
-        "main_airport_iata": "HYN"
-    },
-    {
-        "city": "红原",
-        "province": "四川省",
-        "airport_iata": "AHJ",
-        "airport_name": "阿坝红原机场",
-        "latitude": 32.7966052787623,
-        "longitude": 102.55061520946042,
-        "main_airport_iata": "AHJ"
-    },
-    {
         "city": "呼伦贝尔",
         "province": "内蒙古自治区",
         "airport_iata": "HLD",
@@ -520,15 +484,6 @@
         "latitude": 49.21738170755028,
         "longitude": 119.82084153766571,
         "main_airport_iata": "HLD"
-    },
-    {
-        "city": "华彬庄园",
-        "province": "北京市",
-        "airport_iata": "HZY",
-        "airport_name": "华彬庄园起降点",
-        "latitude": 40.21028704260691,
-        "longitude": 116.14161699559514,
-        "main_airport_iata": "HZY"
     },
     {
         "city": "花莲",
@@ -709,15 +664,6 @@
         "latitude": 26.459207904687954,
         "longitude": 99.42328466998799,
         "main_airport_iata": "LFH"
-    },
-    {
-        "city": "梁河县",
-        "province": "云南省",
-        "airport_iata": "LUM",
-        "airport_name": "德宏芒市机场",
-        "latitude": 24.40537386480447,
-        "longitude": 98.53889939231536,
-        "main_airport_iata": "LUM"
     },
     {
         "city": "陇川",
@@ -1017,15 +963,6 @@
         "main_airport_iata": "XAI"
     },
     {
-        "city": "咸阳",
-        "province": "陕西省",
-        "airport_iata": "XIY",
-        "airport_name": "西安咸阳国际机场",
-        "latitude": 34.22338773817064,
-        "longitude": 108.94285040993839,
-        "main_airport_iata": "XIY"
-    },
-    {
         "city": "新巴尔虎右旗",
         "province": "内蒙古自治区",
         "airport_iata": "XRQ",
@@ -1170,24 +1107,6 @@
         "main_airport_iata": "JGD"
     },
     {
-        "city": "景洪",
-        "province": "云南省",
-        "airport_iata": "JHG",
-        "airport_name": "西双版纳嘎洒机场",
-        "latitude": 21.977896010780565,
-        "longitude": 100.77092097866183,
-        "main_airport_iata": "JHG"
-    },
-    {
-        "city": "晋江",
-        "province": "福建省",
-        "airport_iata": "JJN",
-        "airport_name": "泉州晋江国际机场",
-        "latitude": 24.800826352221694,
-        "longitude": 118.59981626331006,
-        "main_airport_iata": "JJN"
-    },
-    {
         "city": "建德",
         "province": "浙江省",
         "airport_iata": "JDE",
@@ -1204,15 +1123,6 @@
         "latitude": 33.257591509496066,
         "longitude": 104.24954673402509,
         "main_airport_iata": "JZH"
-    },
-    {
-        "city": "九华山",
-        "province": "安徽省",
-        "airport_iata": "JUH",
-        "airport_name": "池州九华山机场",
-        "latitude": 30.744188368829043,
-        "longitude": 117.69743946936524,
-        "main_airport_iata": "JUH"
     },
     {
         "city": "金门",
@@ -1312,15 +1222,6 @@
         "latitude": 39.725946232251225,
         "longitude": 118.01367956991173,
         "main_airport_iata": "TVS"
-    },
-    {
-        "city": "泰州",
-        "province": "江苏省",
-        "airport_iata": "YTY",
-        "airport_name": "扬州泰州国际机场",
-        "latitude": 32.56630608097788,
-        "longitude": 119.7249413257369,
-        "main_airport_iata": "YTY"
     },
     {
         "city": "铜仁",
@@ -1476,15 +1377,6 @@
         "main_airport_iata": "KHH"
     },
     {
-        "city": "梅州",
-        "province": "广东省",
-        "airport_iata": "MXZ",
-        "airport_name": "梅县机场",
-        "latitude": 24.270999314695175,
-        "longitude": 116.08856170928166,
-        "main_airport_iata": "MXZ"
-    },
-    {
         "city": "牡丹江",
         "province": "黑龙江省",
         "airport_iata": "MDG",
@@ -1521,15 +1413,6 @@
         "main_airport_iata": "OHE"
     },
     {
-        "city": "芒市",
-        "province": "云南省",
-        "airport_iata": "LUM",
-        "airport_name": "德宏芒市机场",
-        "latitude": 24.40537386480447,
-        "longitude": 98.53889939231536,
-        "main_airport_iata": "LUM"
-    },
-    {
         "city": "梅县",
         "province": "广东省",
         "airport_iata": "MXZ",
@@ -1537,15 +1420,6 @@
         "latitude": 24.270999314695175,
         "longitude": 116.08856170928166,
         "main_airport_iata": "MXZ"
-    },
-    {
-        "city": "密云",
-        "province": "北京市",
-        "airport_iata": "YUN",
-        "airport_name": "北京密云",
-        "latitude": 40.38217565813752,
-        "longitude": 116.84954704426833,
-        "main_airport_iata": "YUN"
     },
     {
         "city": "莫力达瓦达斡尔族自治旗",
@@ -1573,15 +1447,6 @@
         "latitude": 22.284570354024172,
         "longitude": 107.92964307859116,
         "main_airport_iata": "MZG"
-    },
-    {
-        "city": "汕头",
-        "province": "广东省",
-        "airport_iata": "SWA",
-        "airport_name": "揭阳潮汕机场",
-        "latitude": 23.552627041296855,
-        "longitude": 116.51561902316175,
-        "main_airport_iata": "SWA"
     },
     {
         "city": "深圳",
@@ -1719,15 +1584,6 @@
         "main_airport_iata": "YSQ"
     },
     {
-        "city": "思茅",
-        "province": "云南省",
-        "airport_iata": "SYM",
-        "airport_name": "普洱思茅机场",
-        "latitude": 22.796831873629976,
-        "longitude": 100.96682739675735,
-        "main_airport_iata": "SYM"
-    },
-    {
         "city": "湛江",
         "province": "广东省",
         "airport_iata": "ZHA",
@@ -1861,15 +1717,6 @@
         "latitude": 40.96884902013689,
         "longitude": 115.40557528446213,
         "main_airport_iata": "ZQZ"
-    },
-    {
-        "city": "芷江",
-        "province": "湖南省",
-        "airport_iata": "HJJ",
-        "airport_name": "怀化芷江机场",
-        "latitude": 27.446150181061146,
-        "longitude": 109.714783724731,
-        "main_airport_iata": "HJJ"
     },
     {
         "city": "梧州",
@@ -2007,15 +1854,6 @@
         "main_airport_iata": "WSK"
     },
     {
-        "city": "重庆市武隆区",
-        "province": "重庆市",
-        "airport_iata": "CQW",
-        "airport_name": "武隆仙女山机场",
-        "latitude": 29.402558168803164,
-        "longitude": 107.79947124413316,
-        "main_airport_iata": "CQW"
-    },
-    {
         "city": "大庆",
         "province": "黑龙江省",
         "airport_iata": "DQA",
@@ -2068,15 +1906,6 @@
         "latitude": 25.654029982278185,
         "longitude": 100.32966396992913,
         "main_airport_iata": "DLU"
-    },
-    {
-        "city": "德宏",
-        "province": "云南省",
-        "airport_iata": "LCS",
-        "airport_name": "陇川广宋通用机场",
-        "latitude": 24.189467890548563,
-        "longitude": 97.79853036412425,
-        "main_airport_iata": "LUM"
     },
     {
         "city": "德宏",
@@ -2259,15 +2088,6 @@
         "main_airport_iata": "YBP"
     },
     {
-        "city": "伊犁",
-        "province": "新疆维吾尔自治区",
-        "airport_iata": "YIN",
-        "airport_name": "伊宁机场",
-        "latitude": 43.96320369162773,
-        "longitude": 81.33895190575252,
-        "main_airport_iata": "YIN"
-    },
-    {
         "city": "扬州",
         "province": "江苏省",
         "airport_iata": "YTY",
@@ -2341,7 +2161,7 @@
     },
     {
         "city": "于田县",
-        "province": "中国新疆维吾尔自治区",
+        "province": "新疆维吾尔自治区",
         "airport_iata": "YTW",
         "airport_name": "于田万方机场",
         "latitude": 36.862954136110474,
@@ -2529,24 +2349,6 @@
         "main_airport_iata": "CWJ"
     },
     {
-        "city": "潮州",
-        "province": "广东省",
-        "airport_iata": "SWA",
-        "airport_name": "揭阳潮汕机场",
-        "latitude": 23.552627041296855,
-        "longitude": 116.51561902316175,
-        "main_airport_iata": "SWA"
-    },
-    {
-        "city": "赤城县",
-        "province": "河北省",
-        "airport_iata": "ZQZ",
-        "airport_name": "张家口宁远机场",
-        "latitude": 40.746164909898056,
-        "longitude": 114.94332898466489,
-        "main_airport_iata": "ZQZ"
-    },
-    {
         "city": "攀枝花",
         "province": "四川省",
         "airport_iata": "PZI",
@@ -2635,15 +2437,6 @@
         "latitude": 30.14611559142988,
         "longitude": 101.74767498021887,
         "main_airport_iata": "KGT"
-    },
-    {
-        "city": "康保县",
-        "province": "河北省",
-        "airport_iata": "CLC",
-        "airport_name": "崇礼滑雪场起降点",
-        "latitude": 40.96884902013689,
-        "longitude": 115.40557528446213,
-        "main_airport_iata": "CLC"
     },
     {
         "city": "日照",

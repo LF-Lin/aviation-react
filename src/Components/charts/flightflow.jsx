@@ -3,26 +3,23 @@ import DeckGL from 'deck.gl';
 import FlowMapLayer from '@flowmap.gl/core';
 import { useState } from 'react';
 
-import flowData from '../../asset/flowmap/flows.json';
-import locationsData from '../../asset/flowmap/locations.json';
-
 const MAPBOX_TOKEN =
   'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
-const FlightFlow = () => {
+const FlightFlow = ({ networkData }) => {
   const [viewport, setViewport] = useState({
     width: 400,
     height: 400,
     latitude: 40.0838,
     longitude: 116.6095,
-    zoom: 6,
+    zoom: 2,
   });
 
   const layers = [
     new FlowMapLayer({
       id: 'my-flowmap-layer',
-      locations: locationsData,
-      flows: flowData,
+      locations: networkData.nodes,
+      flows: networkData.flows,
       pickable: true,
       showTotals: true,
       //   onHover: handleFlowHover,
@@ -41,7 +38,12 @@ const FlightFlow = () => {
       controller={true}
       layers={layers}
       ContextProvider={MapContext.Provider}
-      style={{ height: '500px', marginTop: '80px' }}
+      style={{
+        height: '500px',
+        width: '1200px',
+        position: 'relative',
+        marginBottom: '50px',
+      }}
     >
       <StaticMap
         key="staticMap"

@@ -9,7 +9,7 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 
-import Dashboard from './charts/dashboard';
+import Networks from './charts/networks';
 import Graph from './charts/graph';
 
 const { Sider, Content } = Layout;
@@ -39,8 +39,8 @@ export function Charts() {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Content style={{ position: 'relative' }}>
-          <Route exact path="/charts" component={Dashboard} />
+        <Content style={{ position: 'relative', height: '2000px' }}>
+          <Route exact path="/charts" component={Networks} />
           <Route path="/charts/chart2">
             <h2>{'Chart 2'}</h2>
           </Route>

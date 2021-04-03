@@ -1,4 +1,5 @@
 import requests
+import json
 from flask import Flask, jsonify
 from flask_cors import CORS
 from pyflightdata import FlightData
@@ -90,6 +91,13 @@ def realtime_flight_track(flight_id):
     flight_trail.append(row)
     
     return jsonify(flight_trail)
+
+
+@app.route('/api/chart/networks')
+def networks_data():
+    with open('./scripts/networks_data.json', 'r', encoding='utf-8') as f:
+        networks = json.load(f)
+    return jsonify(networks)
 
 
 if __name__ == "__main__":
