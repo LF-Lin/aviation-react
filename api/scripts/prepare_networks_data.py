@@ -12,7 +12,7 @@ def get_data_map(airports):
 def load_data():
     with open('../../src/asset/airports.json', 'r', encoding='utf-8') as f:
         airports = json.load(f)
-    with open('./static_flights_data.json', 'r', encoding='utf-8') as f:
+    with open('./static_flights_data_all.json', 'r', encoding='utf-8') as f:
         flights = json.load(f)
     return airports, flights
 
@@ -37,21 +37,11 @@ def convert_to_networks_format(airports, flights):
             'source': id_ap_map[row['originAirportCode']],
             'target': id_ap_map[row['arriveAirportCode']]
         })
-        # if {
-        #     'origin': id_ap_map[row['originAirportCode']],
-        #     'dest': id_ap_map[row['arriveAirportCode']]
-        # } in flows:
-        #     flows.append({
-        #         'origin': id_ap_map[row['originAirportCode']],
-        #         'dest': id_ap_map[row['arriveAirportCode']],
-        #     })
     for link in links:
         count = links.count(link)
         flow = {
-            'source': link['source'],
-            'target': link['target'],
-            'origin': link['source'],
-            'dest': link['target'],
+            'source': str(link['source']),
+            'target': str(link['target']),
             'count': count,
         }
         if flow not in flows:
@@ -68,5 +58,5 @@ if __name__ == '__main__':
     }
     # with open('../../src/asset/networks_data.json', 'w', encoding='utf-8') as f:
     #     json.dump(networks, f, ensure_ascii=False)
-    with open('./networks_data.json', 'w', encoding='utf-8') as f:
+    with open('./all_networks_data.json', 'w', encoding='utf-8') as f:
         json.dump(networks, f, ensure_ascii=False)

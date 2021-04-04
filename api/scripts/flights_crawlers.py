@@ -39,7 +39,7 @@ def get_flights(c1, c2, c1_iata, c2_iata, m, d):
 
 
 def get_from_to_list():
-    with open('./data/static_airport_city.json', 'r', encoding='utf-8') as f:
+    with open('./airports.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
     data_slim, main_iata_list = [], []
     for item in data:
@@ -79,7 +79,7 @@ if __name__ == '__main__':
             flights_data_list.extend(flights_data)
         
     useful_attrs = [
-        'flightNo', 'aapname', 'arrivalTime', 'arriveAirportCode', 'oapname', 'flyOffTime', 'originAirportCode'
+        'flightNo', 'aapname', 'arrivalTime', 'arriveAirportCode', 'oapname', 'flyOffTime', 'originAirportCode', 'sts'
     ]
     
     flights_data_list_reduce = []

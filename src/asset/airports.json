@@ -99,15 +99,6 @@
         "main_airport_iata": "NGQ"
     },
     {
-        "city": "阿荣旗",
-        "province": "内蒙古自治区",
-        "airport_iata": "ROQ",
-        "airport_name": "阿荣通用机场",
-        "latitude": 23.286215764303183,
-        "longitude": 116.72871316972676,
-        "main_airport_iata": "ROQ"
-    },
-    {
         "city": "阿鲁科尔沁旗",
         "province": "内蒙古自治区",
         "airport_iata": "AEQ",
@@ -121,8 +112,8 @@
         "province": "澳门",
         "airport_iata": "MFM",
         "airport_name": "澳门国际机场",
-        "latitude": 30.565774101394314,
-        "longitude": 103.95818933678277,
+        "latitude": 22.16052,
+        "longitude": 113.588002,
         "main_airport_iata": "MFM"
     },
     {
@@ -202,8 +193,8 @@
         "province": "吉林省",
         "airport_iata": "NBS",
         "airport_name": "长白山机场",
-        "latitude": 31.306655766826864,
-        "longitude": 121.50074767991228,
+        "latitude": 42.073601,
+        "longitude": 127.620748,
         "main_airport_iata": "NBS"
     },
     {
@@ -265,8 +256,8 @@
         "province": "山东省",
         "airport_iata": "CBZ",
         "airport_name": "滨州机场",
-        "latitude": 46.63134814137682,
-        "longitude": 125.16111849614234,
+        "latitude": 37.617116,
+        "longitude": 117.896464,
         "main_airport_iata": "CBZ"
     },
     {
@@ -472,8 +463,8 @@
         "province": "青海省",
         "airport_iata": "HTT",
         "airport_name": "花土沟机场",
-        "latitude": 27.159401546487583,
-        "longitude": 106.6114161245071,
+        "latitude": 38.206246,
+        "longitude": 90.848392,
         "main_airport_iata": "HTT"
     },
     {
@@ -940,8 +931,8 @@
         "province": "新疆维吾尔自治区",
         "airport_iata": "NLT",
         "airport_name": "那拉提机场",
-        "latitude": 34.771107953816234,
-        "longitude": 113.62005195958533,
+        "latitude": 43.429507,
+        "longitude": 83.372669,
         "main_airport_iata": "NLT"
     },
     {
@@ -985,8 +976,8 @@
         "province": "香港",
         "airport_iata": "HKG",
         "airport_name": "香港国际机场",
-        "latitude": 30.565774101394314,
-        "longitude": 103.95818933678277,
+        "latitude": 22.317638,
+        "longitude": 113.945136,
         "main_airport_iata": "HKG"
     },
     {
@@ -1021,8 +1012,8 @@
         "province": "江西省",
         "airport_iata": "JDZ",
         "airport_name": "景德镇罗家机场",
-        "latitude": 30.798145325346812,
-        "longitude": 121.37141207801054,
+        "latitude": 29.341811,
+        "longitude": 117.188359,
         "main_airport_iata": "JDZ"
     },
     {
@@ -1120,18 +1111,9 @@
         "province": "四川省",
         "airport_iata": "JZH",
         "airport_name": "九寨沟黄龙机场",
-        "latitude": 33.257591509496066,
-        "longitude": 104.24954673402509,
+        "latitude": 32.857176,
+        "longitude": 103.691536,
         "main_airport_iata": "JZH"
-    },
-    {
-        "city": "金门",
-        "province": "台湾",
-        "airport_iata": "KNH",
-        "airport_name": "尚义机场",
-        "latitude": 41.08221563982466,
-        "longitude": 113.97580941782127,
-        "main_airport_iata": "KNH"
     },
     {
         "city": "嘉义",
@@ -1282,8 +1264,8 @@
         "province": "台湾",
         "airport_iata": "RMQ",
         "airport_name": "清泉岗机场",
-        "latitude": 31.44500827770307,
-        "longitude": 119.8262372194502,
+        "latitude": 24.267128,
+        "longitude": 120.63404,
         "main_airport_iata": "RMQ"
     },
     {
@@ -1422,30 +1404,12 @@
         "main_airport_iata": "MXZ"
     },
     {
-        "city": "莫力达瓦达斡尔族自治旗",
-        "province": "内蒙古自治区",
-        "airport_iata": "DWS",
-        "airport_name": "莫旗尼尔基通用机场",
-        "latitude": 22.671660005245347,
-        "longitude": 113.48371000928306,
-        "main_airport_iata": "DWS"
-    },
-    {
-        "city": "马祖",
-        "province": "台湾",
-        "airport_iata": "MFK",
-        "airport_name": "马祖机场",
-        "latitude": 24.788349944410744,
-        "longitude": 105.20152104570433,
-        "main_airport_iata": "MFK"
-    },
-    {
         "city": "马公",
         "province": "台湾",
         "airport_iata": "MZG",
         "airport_name": "马公机场",
-        "latitude": 22.284570354024172,
-        "longitude": 107.92964307859116,
+        "latitude": 23.567742,
+        "longitude": 119.638924,
         "main_airport_iata": "MZG"
     },
     {
@@ -1473,15 +1437,6 @@
         "airport_name": "石家庄正定国际机场",
         "latitude": 38.287385082339036,
         "longitude": 114.70389304044139,
-        "main_airport_iata": "SJW"
-    },
-    {
-        "city": "石家庄",
-        "province": "河北省",
-        "airport_iata": "LCT",
-        "airport_name": "石家庄栾城通用机场",
-        "latitude": 22.671660005245347,
-        "longitude": 113.48371000928306,
         "main_airport_iata": "SJW"
     },
     {
@@ -1570,8 +1525,8 @@
         "province": "湖北省",
         "airport_iata": "HPG",
         "airport_name": "神农架机场",
-        "latitude": 28.766873012085277,
-        "longitude": 104.65645100142311,
+        "latitude": 31.630287,
+        "longitude": 110.352567,
         "main_airport_iata": "HPG"
     },
     {
@@ -1948,8 +1903,8 @@
         "province": "四川省",
         "airport_iata": "DCY",
         "airport_name": "稻城亚丁机场",
-        "latitude": 22.854256000604376,
-        "longitude": 108.32181595563047,
+        "latitude": 29.318355,
+        "longitude": 100.069855,
         "main_airport_iata": "DCY"
     },
     {
@@ -2083,8 +2038,8 @@
         "province": "四川省",
         "airport_iata": "YBP",
         "airport_name": "宜宾五粮液机场",
-        "latitude": 34.505528775437135,
-        "longitude": 109.51225016083191,
+        "latitude": 28.856077,
+        "longitude": 104.540197,
         "main_airport_iata": "YBP"
     },
     {
@@ -2326,8 +2281,8 @@
         "province": "河北省",
         "airport_iata": "CDE",
         "airport_name": "承德普宁机场",
-        "latitude": 23.30363452186039,
-        "longitude": 116.1724489811672,
+        "latitude": 41.134741,
+        "longitude": 118.086917,
         "main_airport_iata": "CDE"
     },
     {

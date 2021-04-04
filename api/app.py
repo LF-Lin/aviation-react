@@ -95,7 +95,7 @@ def realtime_flight_track(flight_id):
 
 @app.route('/api/chart/networks')
 def networks_data():
-    with open('./scripts/networks_data.json', 'r', encoding='utf-8') as f:
+    with open('./scripts/all_networks_data.json', 'r', encoding='utf-8') as f:
         networks = json.load(f)
     return jsonify(networks)
 
