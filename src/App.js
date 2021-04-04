@@ -5,15 +5,17 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
-  HomeOutlined,
+  PushpinOutlined,
   BarChartOutlined,
   ThunderboltOutlined,
+  RiseOutlined,
 } from '@ant-design/icons';
 
 import { Airports } from './Components/airports/airports';
 import { Flights } from './Components/flights/flights';
 import { Charts } from './Components/charts/charts';
 const { Header } = Layout;
+const { SubMenu } = Menu;
 
 function App() {
   const [current, setCurrent] = useState('map');
@@ -33,23 +35,30 @@ function App() {
               selectedKeys={[current]}
               onClick={handleClick}
             >
-              <Menu.Item key="airports" icon={<HomeOutlined />}>
-                <span>Airports</span>
-                <Link to="/" />
-              </Menu.Item>
-              <Menu.Item key="flights" icon={<ThunderboltOutlined />}>
-                <span>Flights</span>
-                <Link to="/flights" />
-              </Menu.Item>
+              <SubMenu
+                key="SubMenu"
+                icon={<ThunderboltOutlined />}
+                title="Real-Time Data"
+                style={{ width: '182px' }}
+              >
+                <Menu.Item key="flights" icon={<RiseOutlined />}>
+                  <span>Flights</span>
+                  <Link to="/" />
+                </Menu.Item>
+                <Menu.Item key="airports" icon={<PushpinOutlined />}>
+                  <span>Airports</span>
+                  <Link to="/airports" />
+                </Menu.Item>
+              </SubMenu>
               <Menu.Item key="charts" icon={<BarChartOutlined />}>
-                <span>Charts</span>
+                <span>Data Analysis</span>
                 <Link to="/charts" />
               </Menu.Item>
             </Menu>
           </Header>
 
-          <Route exact path="/" component={Airports} />
-          <Route path="/flights" component={Flights} />
+          <Route exact path="/" component={Flights} />
+          <Route path="/airports" component={Airports} />
           <Route exact path="/charts" component={Charts} />
         </Layout>
       </Router>
