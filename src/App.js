@@ -12,7 +12,7 @@ import {
 
 import { Airports } from './Components/airports/airports';
 import { Flights } from './Components/flights/flights';
-import { Charts } from './Components/charts';
+import { Charts } from './Components/charts/charts';
 const { Header } = Layout;
 
 function App() {

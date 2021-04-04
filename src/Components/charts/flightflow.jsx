@@ -3,7 +3,7 @@ import FlowMap, { LegendBox, LocationTotalsLegend } from '@flowmap.gl/react';
 
 const MAPBOX_TOKEN =
   'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
-
+const MAP_STYLE = 'mapbox://styles/mapbox/dark-v10';
 const DARK_COLORS = {
   darkMode: true,
   flows: {
@@ -38,7 +38,7 @@ const tooltipStyle = {
   maxWidth: 300,
   maxHeight: 300,
   overflow: 'hidden',
-  boxShadow: '2px 2px 4px #ccc',
+  // boxShadow: '2px 2px 4px #125',
 };
 
 const FlightFlow = ({ networkData }) => {
@@ -50,6 +50,19 @@ const FlightFlow = ({ networkData }) => {
     zoom: 2,
   });
   const [tooltip, setTooltip] = useState(undefined);
+
+  const handleHighlight = (highlight, info) => {
+    if (!info) {
+      setTooltip(undefined);
+    }
+    setTooltip(info);
+  };
+
+  const handleViewStateChange = () => {
+    if (tooltip) {
+      setTooltip(undefined);
+    }
+  };
 
   const renderTooltip = () => {
     if (!tooltip) {
@@ -75,24 +88,27 @@ const FlightFlow = ({ networkData }) => {
   return (
     <>
       <FlowMap
+        pickable={true}
         initialViewState={{ ...viewport }}
-        flows={networkData.flows}
         locations={networkData.nodes}
+        flows={networkData.flows}
+        colors={DARK_COLORS}
+        showTotals={true}
         getLocationId={(loc) => loc.id}
         getLocationCentroid={(loc) => [loc.lon, loc.lat]}
         getFlowOriginId={(flow) => flow.source}
         getFlowDestId={(flow) => flow.target}
-        getFlowMagnitude={(flow) => flow.count / 100 || 0}
+        getFlowMagnitude={(flow) => flow.count || 0}
         mixBlendMode="screen"
-        colors={DARK_COLORS}
-        pickable={true}
-        showTotals={true}
         mapboxAccessToken={MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/mapbox/dark-v10"
+        mapStyle={MAP_STYLE}
+        onViewStateChange={handleViewStateChange}
+        onHighlighted={handleHighlight}
       />
       <LegendBox bottom={35} left={10}>
         <LocationTotalsLegend colors={DARK_COLORS} />
       </LegendBox>
+      {renderTooltip()}
     </>
   );
 };

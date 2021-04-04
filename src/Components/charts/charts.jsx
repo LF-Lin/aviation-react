@@ -9,8 +9,8 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 
-import Networks from './charts/networks';
-import Graph from './charts/graph';
+import Networks from './networks';
+import Graph from './graph';
 
 const { Sider, Content } = Layout;
 
