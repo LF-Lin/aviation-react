@@ -38,6 +38,7 @@ const tooltipStyle = {
   maxWidth: 300,
   maxHeight: 300,
   overflow: 'hidden',
+  textAlign: 'left',
   // boxShadow: '2px 2px 4px #125',
 };
 
@@ -50,6 +51,8 @@ const FlightFlow = ({ networkData }) => {
     zoom: 2,
   });
   const [tooltip, setTooltip] = useState(undefined);
+  const [graph, setGraph] = useState(networkData);
+  const [selectedNode, setSelectedNode] = useState(null);
 
   const handleHighlight = (highlight, info) => {
     if (!info) {
@@ -58,17 +61,16 @@ const FlightFlow = ({ networkData }) => {
     setTooltip(info);
   };
 
-  const handleViewStateChange = () => {
-    if (tooltip) {
-      setTooltip(undefined);
-    }
+  const handleFlowMapClick = (selectedID) => {
+    setSelectedNode(selectedID);
   };
 
   const renderTooltip = () => {
     if (!tooltip) {
       return null;
     }
-    const { object, x, y } = tooltip;
+    console.log(tooltip);
+    const { totalIn, totalOut, object, x, y } = tooltip;
     if (!object) {
       return null;
     }
@@ -81,6 +83,11 @@ const FlightFlow = ({ networkData }) => {
         }}
       >
         {JSON.stringify(object, null, 2)}
+        {totalIn &&
+          `
+    totalIn ${totalIn}
+    totalOut ${totalOut}
+        `}
       </pre>
     );
   };
@@ -90,8 +97,8 @@ const FlightFlow = ({ networkData }) => {
       <FlowMap
         pickable={true}
         initialViewState={{ ...viewport }}
-        locations={networkData.nodes}
-        flows={networkData.flows}
+        locations={graph.nodes}
+        flows={graph.flows}
         colors={DARK_COLORS}
         showTotals={true}
         getLocationId={(loc) => loc.id}
@@ -102,8 +109,10 @@ const FlightFlow = ({ networkData }) => {
         mixBlendMode="screen"
         mapboxAccessToken={MAPBOX_TOKEN}
         mapStyle={MAP_STYLE}
-        onViewStateChange={handleViewStateChange}
+        // onViewStateChange={handleViewStateChange}
         onHighlighted={handleHighlight}
+        onSelected={handleFlowMapClick}
+        selectedLocationIds={selectedNode}
       />
       <LegendBox bottom={35} left={10}>
         <LocationTotalsLegend colors={DARK_COLORS} />

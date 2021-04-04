@@ -7,7 +7,7 @@ const FlightNetwork = ({ networkData, layout }) => {
       {
         selector: [
           {
-            type: 'all or inverse',
+            type: 'all',
             title: '全选',
           },
           {
@@ -52,6 +52,11 @@ const FlightNetwork = ({ networkData, layout }) => {
           opacity: 0.5,
         },
         emphasis: {
+          scale: true,
+          lineStyle: {
+            color: 'rgb(252, 3, 28)',
+            opacity: 1,
+          },
           focus: 'adjacency',
           label: {
             position: 'right',

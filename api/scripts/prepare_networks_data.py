@@ -12,7 +12,7 @@ def get_data_map(airports):
 def load_data():
     with open('../../src/asset/airports.json', 'r', encoding='utf-8') as f:
         airports = json.load(f)
-    with open('./static_flights_data_all.json', 'r', encoding='utf-8') as f:
+    with open('./static_flights_data_0405.json', 'r', encoding='utf-8') as f:
         flights = json.load(f)
     return airports, flights
 
@@ -58,5 +58,5 @@ if __name__ == '__main__':
     }
     # with open('../../src/asset/networks_data.json', 'w', encoding='utf-8') as f:
     #     json.dump(networks, f, ensure_ascii=False)
-    with open('./all_networks_data.json', 'w', encoding='utf-8') as f:
+    with open('./networks_data_0405.json', 'w', encoding='utf-8') as f:
         json.dump(networks, f, ensure_ascii=False)
