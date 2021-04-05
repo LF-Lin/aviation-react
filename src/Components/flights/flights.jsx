@@ -50,7 +50,7 @@ const Flights = () => {
   const [popupInfo, setPopupInfo] = useState(null);
   const [popupPathInfo, setPopupPathInfo] = useState(null);
   const [selectedFlight, setSelectedFlight] = useState();
-  const [flightPanelInfo, setFlightPanelInfo] = useState([]);
+  const [flightPanelInfo, setFlightPanelInfo] = useState(undefined);
   const [activeLayer, setActiveLayer] = useState('iconLayer');
 
   // fetch all flights in current bounding box
@@ -97,6 +97,12 @@ const Flights = () => {
 
   const handleFlightClick = (info) => {
     if (info.picked) {
+      setViewport({
+        latitude: info.object.latitude,
+        longitude: info.object.longitude,
+        zoom: 5.5,
+        transitionDuration: 500,
+      });
       setPopupInfo(info);
       setSelectedFlight(info.object.flight_id);
     }

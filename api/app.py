@@ -1,5 +1,6 @@
 import requests
 import json
+from datetime import datetime
 from flask import Flask, jsonify
 from flask_cors import CORS
 from pyflightdata import FlightData
@@ -78,15 +79,22 @@ def realtime_flight_track(flight_id):
         "origin": "https://www.flightradar24.com",
         "referer": "https://www.flightradar24.com/"
     }
-    response = requests.request("GET", url, headers=headers)
+    r = requests.request("GET", url, headers=headers).json()
     
     flight_trail, row = [], {}
-    for k in response.json():
+    for k in r:
         if k in ['time', 'airport', 'identification', 'airline', 'aircraft']:
-            row[k] = response.json()[k]
+            row[k] = r[k]
+    row['time'] = {
+        'scheduled_arr': datetime.fromtimestamp(r['time']['scheduled']['arrival']).strftime('%H:%M'),
+        'scheduled_dep': datetime.fromtimestamp(r['time']['scheduled']['departure']).strftime('%H:%M'),
+        'estimated_arr': datetime.fromtimestamp(r['time']['estimated']['arrival']).strftime('%H:%M'),
+        'real_dep': datetime.fromtimestamp(r['time']['real']['departure']).strftime('%H:%M'),
+        'progress': round((r['time']['other']['updated'] - r['time']['real']['departure']) / (r['time']['estimated']['arrival'] - r['time']['real']['departure']), 3)*100
+    }
     row['trail'] = {
-        'current': response.json()['trail'][0], 
-        'path': [[i['lng'],i['lat']] for i in response.json()['trail']]
+        'current': r['trail'][0], 
+        'path': [[i['lng'],i['lat']] for i in r['trail']]
     }
     flight_trail.append(row)
     

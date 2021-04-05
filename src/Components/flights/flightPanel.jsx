@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Drawer } from 'antd';
+import FlightDetail from './flightPanelTable';
 
 const popupBoxStyle = {
   padding: '10px',
@@ -33,14 +34,14 @@ function FlightPanel(props) {
         More detail
       </Button>
       <Drawer
-        width={500}
+        width={550}
         title={`Flight Information: ${popupInfo?.object?.callsign}`}
         placement="right"
         closable={false}
         onClose={handleDrawerClose}
         visible={visible}
       >
-        <p>{}</p>
+        <FlightDetail flightPanelInfo={flightPanelInfo} />
         <Button
           type="primary"
           block
