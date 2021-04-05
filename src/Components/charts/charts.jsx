@@ -39,7 +39,7 @@ export function Charts() {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Content style={{ position: 'relative', height: '2000px' }}>
+        <Content style={{ position: 'relative', height: '2500px' }}>
           <Route exact path="/charts" component={Networks} />
           <Route path="/charts/chart2">
             <h2>{'Chart 2'}</h2>
