@@ -1,4 +1,4 @@
-import { Row, Col, Radio, Card, Statistic } from 'antd';
+import { Row, Col, Radio, Card, Statistic, Divider } from 'antd';
 import { useState, useEffect } from 'react';
 import FlightFlow from './flightFlow';
 import FlightNetwork from './flightNetwork';
@@ -6,7 +6,7 @@ import { Degree, Cluster, Neighbor } from './networksStat';
 import axios from 'axios';
 
 const flightFlowStyle = {
-  height: '500px',
+  height: '85vh',
   position: 'relative',
 };
 
@@ -34,6 +34,8 @@ const Networks = () => {
           {networkData && <FlightFlow networkData={networkData} />}
         </Col>
       </Row>
+      <Divider orientation="left">Networks by provinces</Divider>
+
       <Row>
         <Col span={24}>
           {networkData && (
@@ -45,6 +47,8 @@ const Networks = () => {
           </Radio.Group>
         </Col>
       </Row>
+      <Divider orientation="left">Network Statistics</Divider>
+
       <Row gutter={16} style={{ marginTop: '40px' }}>
         <Col span={3}>
           <Statistic title="Nodes" value={229} />
@@ -63,7 +67,7 @@ const Networks = () => {
         </Col>
       </Row>
       <Row style={{ marginTop: '40px', textAlign: 'left' }}>
-        <Col offset={1} span={11}>
+        <Col offset={1} span={10}>
           <Card title="Cumulative degree distribution P(k)" bordered={false}>
             {/* Many nodes only have a handful of connections, while a few of them
             (called hubs) may be connected with the majority of their peers. Te
@@ -72,19 +76,19 @@ const Networks = () => {
             <Degree />
           </Card>
         </Col>
-        <Col offset={1} span={11}>
+        <Col offset={1} span={10}>
           <Card title="Clustering-degree correlation" bordered={false}>
             <Cluster />
           </Card>
         </Col>
       </Row>
       <Row style={{ marginTop: '40px', textAlign: 'left' }}>
-        <Col offset={1} span={11}>
+        <Col offset={1} span={10}>
           <Card title="Degree correlation k_nn" bordered={false}>
             <Neighbor />
           </Card>
         </Col>
-        <Col offset={1} span={11}>
+        <Col offset={1} span={10}>
           <Card title="Node strength" bordered={false}>
             {/* <Cluster /> */}
           </Card>

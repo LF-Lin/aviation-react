@@ -48,7 +48,7 @@ const FlightFlow = ({ networkData }) => {
     height: 400,
     latitude: 40.0838,
     longitude: 116.6095,
-    zoom: 2,
+    zoom: 3,
   });
   const [tooltip, setTooltip] = useState(undefined);
   const [graph, setGraph] = useState(networkData);
