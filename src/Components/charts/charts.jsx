@@ -9,7 +9,7 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 
-import Networks from './networks';
+import Networks from './networks/networks';
 import Graph from './graph';
 import Airspace from './airspace/airspace';
 
