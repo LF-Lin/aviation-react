@@ -12,9 +12,9 @@ const AirspaceMap = ({ airspaceData }) => {
   const [viewport, setViewport] = useState({
     width: 400,
     height: 400,
-    latitude: 40.0838,
-    longitude: 116.6095,
-    zoom: 5,
+    latitude: 38,
+    longitude: 103,
+    zoom: 3,
   });
 
   const handleAirspaceClick = (e, info) => {

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import AirspaceMap from './airspaceMap';
 import AirspaceStat from './airspaceStat';
+import AirspaceDenseMap from './airspaceDenseMap';
 
 const airspaceMapStyle = {
   height: '85vh',
@@ -38,13 +39,28 @@ const Airspace = () => {
 
   return (
     <div style={{ height: '100vh', marginTop: '20px' }}>
+      {/* <Divider orientation="left">Airspace</Divider>
       <Row>
         <Col offset={1} span={22} style={airspaceMapStyle}>
           {airspaceData && <AirspaceMap airspaceData={airspaceData} />}
         </Col>
-      </Row>
-      <Divider orientation="left">Airspace</Divider>
+      </Row> */}
 
+      <Divider orientation="left">Airspace Dense Map</Divider>
+      <Row style={{ marginTop: '40px', textAlign: 'left' }}>
+        <Col offset={1} span={22}>
+          <Card title="Airspace Dense Map" bordered={false}>
+            {airspaceStatData && airspaceData && (
+              <AirspaceDenseMap
+                airspaceData={airspaceData}
+                airspaceStatData={airspaceStatData}
+              />
+            )}
+          </Card>
+        </Col>
+      </Row>
+
+      <Divider orientation="left">Airspace Statistic</Divider>
       <Row style={{ marginTop: '40px', textAlign: 'left' }}>
         <Col offset={1} span={22}>
           <Card title="Airspace Statistic" bordered={false}>

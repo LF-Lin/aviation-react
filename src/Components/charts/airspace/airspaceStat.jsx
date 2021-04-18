@@ -45,8 +45,8 @@ const AirspaceStat = ({ airspaceStatData }) => {
         type: 'value',
         name: '航空器数量',
         min: 0,
-        max: 80,
-        position: 'left',
+        max: 100,
+        position: 'right',
         axisLine: {
           show: true,
           lineStyle: {
@@ -62,7 +62,7 @@ const AirspaceStat = ({ airspaceStatData }) => {
         name: '航空器平均速度',
         min: 0,
         max: 550,
-        position: 'right',
+        position: 'left',
         axisLine: {
           show: true,
           lineStyle: {
@@ -123,7 +123,7 @@ const AirspaceStat = ({ airspaceStatData }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '85vh', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '68vh', width: '100%' }} />
   );
 };
 

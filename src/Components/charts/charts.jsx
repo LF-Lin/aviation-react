@@ -41,7 +41,7 @@ export function Charts() {
           </Menu>
         </Sider>
 
-        <Content style={{ position: 'relative', height: '2500px' }}>
+        <Content style={{ position: 'relative', height: '3000px' }}>
           <Route exact path="/charts" component={Networks} />
           <Route path="/charts/chart2" component={Airspace} />
           <Route path="/charts/graph" component={Graph} />
