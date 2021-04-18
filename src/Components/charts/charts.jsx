@@ -11,6 +11,7 @@ import {
 
 import Networks from './networks';
 import Graph from './graph';
+import Airspace from './airspace/airspace';
 
 const { Sider, Content } = Layout;
 
@@ -30,7 +31,7 @@ export function Charts() {
               <Link to="/charts" />
             </Menu.Item>
             <Menu.Item key="chart2" icon={<VideoCameraOutlined />}>
-              chart 2
+              空域复杂度分析
               <Link to="/charts/chart2" />
             </Menu.Item>
             <Menu.Item key="graph" icon={<UploadOutlined />}>
@@ -39,11 +40,10 @@ export function Charts() {
             </Menu.Item>
           </Menu>
         </Sider>
+
         <Content style={{ position: 'relative', height: '2500px' }}>
           <Route exact path="/charts" component={Networks} />
-          <Route path="/charts/chart2">
-            <h2>{'Chart 2'}</h2>
-          </Route>
+          <Route path="/charts/chart2" component={Airspace} />
           <Route path="/charts/graph" component={Graph} />
         </Content>
       </Layout>

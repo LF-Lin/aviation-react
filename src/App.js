@@ -50,6 +50,7 @@ function App() {
                   <Link to="/airports" />
                 </Menu.Item>
               </SubMenu>
+
               <Menu.Item key="charts" icon={<BarChartOutlined />}>
                 <span>Data Analysis</span>
                 <Link to="/charts" />

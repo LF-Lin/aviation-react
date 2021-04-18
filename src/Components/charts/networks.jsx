@@ -66,6 +66,7 @@ const Networks = () => {
           <Statistic title="Diameter" value={4} />
         </Col>
       </Row>
+
       <Row style={{ marginTop: '40px', textAlign: 'left' }}>
         <Col offset={1} span={10}>
           <Card title="Cumulative degree distribution P(k)" bordered={false}>
@@ -82,6 +83,7 @@ const Networks = () => {
           </Card>
         </Col>
       </Row>
+
       <Row style={{ marginTop: '40px', textAlign: 'left' }}>
         <Col offset={1} span={10}>
           <Card title="Degree correlation k_nn" bordered={false}>

@@ -108,5 +108,17 @@ def networks_data():
     return jsonify(networks)
 
 
+@app.route('/api/chart/airspace_geo')
+def airspace_geo_data():
+    with open('./scripts/airspace.json', 'r', encoding='utf-8') as f:
+        airspace_geo = json.load(f)
+    return jsonify(airspace_geo)
+
+@app.route('/api/chart/airspace_stat')
+def airspace_stat_data():
+    with open('./scripts/flights_in_airspace.json', 'r', encoding='utf-8') as f:
+        airspace_stat = json.load(f)
+    return jsonify(airspace_stat)
+
 if __name__ == "__main__":
     app.run(debug=True, port=5555)
