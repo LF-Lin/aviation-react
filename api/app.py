@@ -37,9 +37,10 @@ def realtime_airport_departures(iata):
     return jsonify(airport_departures)
 
 
-@app.route('/api/flights/<string:bounds>', methods=['GET'])
-def realtime_flights(bounds):
-    url = f"https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds={bounds}&callsign=CSN"
+@app.route('/api/flights/<string:bounds>/<string:airlines>', methods=['GET'])
+def realtime_flights(bounds, airlines):
+    # url = f"https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds={bounds}&callsign=CSN"
+    url = f"https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds={bounds}&callsign={airlines}"
     headers = {
         "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
         "accept": "application/json",

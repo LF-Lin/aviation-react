@@ -71,23 +71,25 @@ def _point_in_polygon(point, coords):
 
 def _points_in_polygon(points, polygon):
     coords = [polygon['coordinates']] if polygon['type'] == 'Polygon' else polygon['coordinates']
-    cnt, speed = 0, []
+    cnt, inner_points = 0, []
     for point in points:
         if _point_in_polygon(point, coords): 
             cnt += 1
-            speed.append(point[2])
-    return cnt, sum(speed)/len(speed) if speed else 0
+            inner_points.append(point)
+    return cnt, inner_points if inner_points else []
 
 def flights_airspace_info(flights, airspace):
     flights_coordinate = [[row['longitude'], row['latitude'], row['speed']] for row in flights]
     airspace_geojson = [{'name': row['properties']['name'], 'geometry': row['geometry']} for row in airspace]
     airspace_flights_info = []
     for airspace in airspace_geojson:
-        count, avg_speed = _points_in_polygon(flights_coordinate, airspace['geometry'])
+        count, inner_points = _points_in_polygon(flights_coordinate, airspace['geometry'])
+        speed = [p[2] for p in inner_points] if inner_points else [0]
+        
         airspace_flights_info.append({
             "name": airspace['name'],
             "flights_count": count,
-            "flights_avg_speed": avg_speed,
+            "flights_avg_speed": sum(speed)/len(speed),
         })
     airspace_flights_info.sort(key=lambda x:x['flights_count'])
     return airspace_flights_info

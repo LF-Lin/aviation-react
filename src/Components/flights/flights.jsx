@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 
 import React, { useState, useEffect } from 'react';
 import { useDebounce } from 'react-use';
-import { Layout } from 'antd';
+import { Layout, Select } from 'antd';
 import {
   NavigationControl,
   FullscreenControl,
@@ -19,6 +19,7 @@ import FlightPopup from './flightPopup';
 import FlightPathPopup from './flightPathPopup';
 
 const { Content } = Layout;
+const { Option } = Select;
 
 const fullscreenStyle = {
   position: 'absolute',
@@ -32,7 +33,13 @@ const navStyle = {
   left: 0,
   padding: '10px',
 };
-
+const airlineSelectStyle = {
+  position: 'absolute',
+  top: 40,
+  right: 40,
+  width: '400px',
+  zIndex: 999,
+};
 const MAPBOX_TOKEN =
   'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
@@ -47,6 +54,7 @@ const Flights = () => {
 
   const [flights, setFlights] = useState([]);
   const [bounding, setBounding] = useState(null);
+  const [airlines, setAirlines] = useState('CCA,CSN');
   const [popupInfo, setPopupInfo] = useState(null);
   const [popupPathInfo, setPopupPathInfo] = useState(null);
   const [selectedFlight, setSelectedFlight] = useState();
@@ -56,8 +64,9 @@ const Flights = () => {
   // fetch all flights in current bounding box
   useEffect(() => {
     const fetchData = async () => {
+      console.log(airlines);
       const res = await axios.get(
-        `http://localhost:5555/api/flights/${bounding}`
+        `http://localhost:5555/api/flights/${bounding}/${airlines}`
       );
       setFlights(res.data);
       console.log('fetch bounding box finished: ', res.data);
@@ -113,6 +122,10 @@ const Flights = () => {
     }
   };
 
+  function handleSelectChange(value) {
+    setAirlines(value);
+  }
+
   const layers = [
     activeLayer === 'iconLayer'
       ? iconLayer({ flights, handleFlightClick })
@@ -122,6 +135,23 @@ const Flights = () => {
   return (
     <Layout>
       <Content style={{ position: 'relative' }}>
+        <Select
+          mode="multiple"
+          allowClear
+          style={airlineSelectStyle}
+          placeholder="Please select"
+          defaultValue={['CCA']}
+          onChange={handleSelectChange}
+        >
+          <Option key={'CCA'}>{'中国国际航空'}</Option>
+          <Option key={'CSN'}>{'中国南方航空'}</Option>
+          <Option key={'CES'}>{'中国东方航空'}</Option>
+          <Option key={'CHH'}>{'海南航空'}</Option>
+          <Option key={'CSZ'}>{'深圳航空'}</Option>
+          <Option key={'CXA'}>{'厦门航空'}</Option>
+          <Option key={'CSC'}>{'四川航空'}</Option>
+          <Option key={'CSH'}>{'上海航空'}</Option>
+        </Select>
         {true && (
           <DeckGL
             key="basicGL"
