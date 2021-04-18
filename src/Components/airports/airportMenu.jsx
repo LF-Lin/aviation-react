@@ -1,12 +1,12 @@
-import { Input, Button } from 'antd';
+import { Input } from 'antd';
 
 const { Search } = Input;
 
 const airportMenuStyle = {
   position: 'absolute',
-  top: 40,
-  right: 40,
-  width: '250px',
+  top: 6,
+  left: 30,
+  width: '200px',
   zIndex: 999,
 };
 
@@ -16,7 +16,7 @@ const AirportMenu = ({ handleAirportSearch }) => {
       <Search
         placeholder="Airport Name/IATA"
         enterButton="Search"
-        size="large"
+        size="middle"
         style={airportMenuStyle}
         onSearch={handleAirportSearch}
       />

@@ -39,7 +39,6 @@ def realtime_airport_departures(iata):
 
 @app.route('/api/flights/<string:bounds>/<string:airlines>', methods=['GET'])
 def realtime_flights(bounds, airlines):
-    # url = f"https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds={bounds}&callsign=CSN"
     url = f"https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds={bounds}&callsign={airlines}"
     headers = {
         "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
@@ -91,7 +90,7 @@ def realtime_flight_track(flight_id):
         'scheduled_dep': datetime.fromtimestamp(r['time']['scheduled']['departure']).strftime('%H:%M'),
         'estimated_arr': datetime.fromtimestamp(r['time']['estimated']['arrival']).strftime('%H:%M'),
         'real_dep': datetime.fromtimestamp(r['time']['real']['departure']).strftime('%H:%M'),
-        'progress': round((r['time']['other']['updated'] - r['time']['real']['departure']) / (r['time']['estimated']['arrival'] - r['time']['real']['departure']), 3)*100
+        'progress': round((r['trail'][0]['ts'] - r['time']['real']['departure']) / (r['time']['estimated']['arrival'] - r['time']['real']['departure']), 3)*100
     }
     row['trail'] = {
         'current': r['trail'][0], 

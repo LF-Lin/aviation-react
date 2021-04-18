@@ -24,20 +24,20 @@ const { Option } = Select;
 const fullscreenStyle = {
   position: 'absolute',
   top: 36,
-  left: 0,
+  left: 20,
   padding: '10px',
 };
 const navStyle = {
   position: 'absolute',
   top: 72,
-  left: 0,
+  left: 20,
   padding: '10px',
 };
 const airlineSelectStyle = {
   position: 'absolute',
-  top: 40,
-  right: 40,
-  width: '400px',
+  top: 6,
+  left: 30,
+  width: '300px',
   zIndex: 999,
 };
 const MAPBOX_TOKEN =
@@ -64,7 +64,6 @@ const Flights = () => {
   // fetch all flights in current bounding box
   useEffect(() => {
     const fetchData = async () => {
-      console.log(airlines);
       const res = await axios.get(
         `http://localhost:5555/api/flights/${bounding}/${airlines}`
       );
@@ -72,7 +71,7 @@ const Flights = () => {
       console.log('fetch bounding box finished: ', res.data);
     };
     fetchData();
-  }, [bounding]);
+  }, [bounding, airlines]);
 
   // fetch detail info of selected flight
   useEffect(() => {

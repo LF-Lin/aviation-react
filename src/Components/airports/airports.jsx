@@ -23,20 +23,20 @@ const { Content } = Layout;
 const fullscreenStyle = {
   position: 'absolute',
   top: 36,
-  left: 0,
+  left: 20,
   padding: '10px',
 };
 const navStyle = {
   position: 'absolute',
   top: 72,
-  left: 0,
+  left: 20,
   padding: '10px',
 };
 
 const airportMenuStyle = {
   position: 'absolute',
-  top: 40,
-  right: 40,
+  top: 6,
+  left: 30,
   width: '250px',
   zIndex: 999,
 };
