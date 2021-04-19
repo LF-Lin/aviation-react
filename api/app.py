@@ -103,9 +103,16 @@ def realtime_flight_track(flight_id):
 
 @app.route('/api/chart/networks')
 def networks_data():
-    with open('./scripts/networks_data_0405.json', 'r', encoding='utf-8') as f:
+    with open('./scripts/networks_data_0405_new.json', 'r', encoding='utf-8') as f:
         networks = json.load(f)
     return jsonify(networks)
+
+
+@app.route('/api/chart/networks/stat')
+def networks_stat_data():
+    with open('./scripts/networks_data_0405_stat.json', 'r', encoding='utf-8') as f:
+        networks_stat = json.load(f)
+    return jsonify(networks_stat)
 
 
 @app.route('/api/chart/airspace_geo')
@@ -114,11 +121,13 @@ def airspace_geo_data():
         airspace_geo = json.load(f)
     return jsonify(airspace_geo)
 
+
 @app.route('/api/chart/airspace_stat')
 def airspace_stat_data():
     with open('./scripts/flights_in_airspace.json', 'r', encoding='utf-8') as f:
         airspace_stat = json.load(f)
     return jsonify(airspace_stat)
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5555)

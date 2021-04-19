@@ -39,7 +39,6 @@ const tooltipStyle = {
   maxHeight: 300,
   overflow: 'hidden',
   textAlign: 'left',
-  // boxShadow: '2px 2px 4px #125',
 };
 
 const FlightFlow = ({ networkData }) => {
@@ -75,20 +74,28 @@ const FlightFlow = ({ networkData }) => {
       return null;
     }
     return (
-      <pre
+      <div
         style={{
           ...tooltipStyle,
           left: x,
           top: y,
         }}
       >
-        {JSON.stringify(object, null, 2)}
-        {totalIn &&
-          `
-    totalIn ${totalIn}
-    totalOut ${totalOut}
-        `}
-      </pre>
+        {object.iata ? (
+          <>
+            <p>{`机场名称：${object.name}`}</p>
+            <p>{`机场名称：${object.iata}`}</p>
+            {totalIn && (
+              <>
+                <p>{`到达流量：${totalIn}`}</p>
+                <p>{`出发流量：${totalOut}`}</p>
+              </>
+            )}
+          </>
+        ) : (
+          <>{JSON.stringify(object, null, 2)}</>
+        )}
+      </div>
     );
   };
 
