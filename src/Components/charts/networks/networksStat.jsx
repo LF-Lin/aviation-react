@@ -40,7 +40,7 @@ const Degree = ({ networkStatData }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '500px', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '450px', width: '100%' }} />
   );
 };
 
@@ -82,7 +82,7 @@ const NodeStrength = ({ networkStatData }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '500px', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '450px', width: '100%' }} />
   );
 };
 
@@ -124,7 +124,7 @@ const Betweenness = ({ networkStatData }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '500px', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '450px', width: '100%' }} />
   );
 };
 
@@ -170,7 +170,7 @@ const DegreeCluster = ({ networkStatData }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '500px', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '450px', width: '100%' }} />
   );
 };
 
@@ -215,7 +215,7 @@ const DegreeNeighbor = ({ networkStatData }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '500px', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '450px', width: '100%' }} />
   );
 };
 
@@ -260,7 +260,7 @@ const DegreeBet = ({ networkStatData }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '500px', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '450px', width: '100%' }} />
   );
 };
 

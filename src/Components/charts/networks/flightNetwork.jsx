@@ -67,7 +67,7 @@ const FlightNetwork = ({ networkData, layout }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '700px', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '60vh', width: '100%' }} />
   );
 };
 export default FlightNetwork;

@@ -71,7 +71,7 @@ const AirspaceDenseMap = ({ airspaceData, airspaceStatData }) => {
     <ReactECharts
       echarts={echarts}
       option={option}
-      style={{ height: '68vh', width: '100%' }}
+      style={{ height: '60vh', width: '100%' }}
     />
   );
 };

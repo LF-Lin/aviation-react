@@ -123,7 +123,7 @@ const AirspaceStat = ({ airspaceStatData }) => {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: '68vh', width: '100%' }} />
+    <ReactECharts option={option} style={{ height: '60vh', width: '100%' }} />
   );
 };
 

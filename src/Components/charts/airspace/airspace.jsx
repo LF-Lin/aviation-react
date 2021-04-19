@@ -1,3 +1,8 @@
+import SwiperCore, { Navigation, Keyboard } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+
 import { Row, Col, Divider, Card } from 'antd';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -5,6 +10,8 @@ import axios from 'axios';
 import AirspaceMap from './airspaceMap';
 import AirspaceStat from './airspaceStat';
 import AirspaceDenseMap from './airspaceDenseMap';
+
+SwiperCore.use([Navigation, Keyboard]);
 
 const airspaceMapStyle = {
   height: '85vh',
@@ -38,38 +45,49 @@ const Airspace = () => {
   }, []);
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ height: '91vh' }}>
+      <Swiper
+        spaceBetween={0}
+        slidesPerView={1}
+        navigation
+        keyboard={{ enabled: true }}
+        allowTouchMove={false}
+      >
+        <SwiperSlide>
+          <Divider orientation="left">Airspace Dense Map</Divider>
+          <Row style={{ textAlign: 'left' }}>
+            <Col offset={1} span={22}>
+              <Card title="Airspace Dense Map" bordered={false}>
+                {airspaceStatData && airspaceData && (
+                  <AirspaceDenseMap
+                    airspaceData={airspaceData}
+                    airspaceStatData={airspaceStatData}
+                  />
+                )}
+              </Card>
+            </Col>
+          </Row>
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <Divider orientation="left">Airspace Statistic</Divider>
+          <Row style={{ textAlign: 'left' }}>
+            <Col offset={1} span={22}>
+              <Card title="Airspace Statistic" bordered={false}>
+                {airspaceStatData && (
+                  <AirspaceStat airspaceStatData={airspaceStatData} />
+                )}
+              </Card>
+            </Col>
+          </Row>
+        </SwiperSlide>
+      </Swiper>
       {/* <Divider orientation="left">Airspace</Divider>
       <Row>
         <Col offset={1} span={22} style={airspaceMapStyle}>
           {airspaceData && <AirspaceMap airspaceData={airspaceData} />}
         </Col>
       </Row> */}
-
-      <Divider orientation="left">Airspace Dense Map</Divider>
-      <Row style={{ marginTop: '40px', textAlign: 'left' }}>
-        <Col offset={1} span={22}>
-          <Card title="Airspace Dense Map" bordered={false}>
-            {airspaceStatData && airspaceData && (
-              <AirspaceDenseMap
-                airspaceData={airspaceData}
-                airspaceStatData={airspaceStatData}
-              />
-            )}
-          </Card>
-        </Col>
-      </Row>
-
-      <Divider orientation="left">Airspace Statistic</Divider>
-      <Row style={{ marginTop: '40px', textAlign: 'left' }}>
-        <Col offset={1} span={22}>
-          <Card title="Airspace Statistic" bordered={false}>
-            {airspaceStatData && (
-              <AirspaceStat airspaceStatData={airspaceStatData} />
-            )}
-          </Card>
-        </Col>
-      </Row>
     </div>
   );
 };
