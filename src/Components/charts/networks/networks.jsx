@@ -48,7 +48,7 @@ const Networks = () => {
   }, []);
 
   return (
-    <div style={{ height: '100vh', marginTop: '20px' }}>
+    <div style={{ marginTop: '20px' }}>
       <Row>
         <Col offset={1} span={22} style={flightFlowStyle}>
           {networkData && <FlightFlow networkData={networkData} />}
@@ -56,7 +56,7 @@ const Networks = () => {
       </Row>
       <Divider orientation="left">Networks by provinces</Divider>
       <Row>
-        <Col span={24}>
+        <Col offset={1} span={22}>
           {networkData && (
             <FlightNetwork networkData={networkData} layout={layout} />
           )}
@@ -66,6 +66,7 @@ const Networks = () => {
           </Radio.Group>
         </Col>
       </Row>
+
       <Divider orientation="left">机场网络特征参数</Divider>
       <Row gutter={16} style={{ marginTop: '40px' }}>
         <Col span={3}>

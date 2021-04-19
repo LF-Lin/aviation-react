@@ -192,4 +192,4 @@ const Flights = () => {
   );
 };
 
-export { Flights };
+export default Flights;

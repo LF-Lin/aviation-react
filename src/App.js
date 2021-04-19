@@ -6,14 +6,19 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
   PushpinOutlined,
-  BarChartOutlined,
   ThunderboltOutlined,
   RiseOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
 } from '@ant-design/icons';
 
-import { Airports } from './Components/airports/airports';
-import { Flights } from './Components/flights/flights';
-import { Charts } from './Components/charts/charts';
+import Airports from './Components/airports/airports';
+import Flights from './Components/flights/flights';
+import Networks from './Components/charts/networks/networks';
+import Graph from './Components/charts/graph';
+import Airspace from './Components/charts/airspace/airspace';
+
 const { Header } = Layout;
 const { SubMenu } = Menu;
 
@@ -36,7 +41,7 @@ function App() {
               onClick={handleClick}
             >
               <SubMenu
-                key="SubMenu"
+                key="SubMenu_1"
                 icon={<ThunderboltOutlined />}
                 title="Real-Time Data"
                 style={{ width: '182px' }}
@@ -51,16 +56,33 @@ function App() {
                 </Menu.Item>
               </SubMenu>
 
-              <Menu.Item key="charts" icon={<BarChartOutlined />}>
-                <span>Data Analysis</span>
-                <Link to="/charts" />
-              </Menu.Item>
+              <SubMenu
+                key="SubMenu_2"
+                icon={<ThunderboltOutlined />}
+                title="Data Analysis"
+                style={{ width: '182px' }}
+              >
+                <Menu.Item key="chart1" icon={<UserOutlined />}>
+                  空中交通网络分析
+                  <Link to="/charts" />
+                </Menu.Item>
+                <Menu.Item key="chart2" icon={<VideoCameraOutlined />}>
+                  空域复杂度分析
+                  <Link to="/charts/chart2" />
+                </Menu.Item>
+                <Menu.Item key="graph" icon={<UploadOutlined />}>
+                  chart 3
+                  <Link to="/charts/graph" />
+                </Menu.Item>
+              </SubMenu>
             </Menu>
           </Header>
 
           <Route exact path="/" component={Flights} />
           <Route path="/airports" component={Airports} />
-          <Route exact path="/charts" component={Charts} />
+          <Route exact path="/charts" component={Networks} />
+          <Route path="/charts/chart2" component={Airspace} />
+          <Route path="/charts/graph" component={Graph} />
         </Layout>
       </Router>
     </div>

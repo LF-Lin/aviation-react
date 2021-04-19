@@ -44,7 +44,7 @@ const airportMenuStyle = {
 const MAPBOX_TOKEN =
   'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
-export function Airports() {
+const Airports = () => {
   const [viewport, setViewport] = useState({
     width: 400,
     height: 400,
@@ -168,4 +168,6 @@ export function Airports() {
       </Content>
     </Layout>
   );
-}
+};
+
+export default Airports;

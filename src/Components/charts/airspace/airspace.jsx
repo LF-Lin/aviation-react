@@ -38,7 +38,7 @@ const Airspace = () => {
   }, []);
 
   return (
-    <div style={{ height: '100vh', marginTop: '20px' }}>
+    <div style={{ marginTop: '20px' }}>
       {/* <Divider orientation="left">Airspace</Divider>
       <Row>
         <Col offset={1} span={22} style={airspaceMapStyle}>
