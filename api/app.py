@@ -124,5 +124,13 @@ def airspace_stat_data():
     return jsonify(airspace_stat)
 
 
+@app.route('/api/chart/airspace_heat')
+def airspace_heat_data():
+    with open('./scripts/flights_in_bounds_04181509.json', 'r', encoding='utf-8') as f:
+        airspace_heat = json.load(f)
+    airspace_heat = [{'latitude': row['latitude'], 'longitude':row['longitude'], 'count': 1} for row in airspace_heat]
+    return jsonify(airspace_heat)
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5555)
