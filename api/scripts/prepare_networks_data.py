@@ -44,13 +44,17 @@ def convert_to_networks_format(airports, flights):
     for row in flights:
         links.append({
             'source': id_ap_map[row['originAirportCode']],
-            'target': id_ap_map[row['arriveAirportCode']]
+            'target': id_ap_map[row['arriveAirportCode']],
+            'sourceAirport': row['oapname'],
+            'targetAirport': row['aapname'],
         })
     for link in links:
         count = links.count(link)
         flow = {
             'source': str(link['source']),
+            'sourceAirport': link['sourceAirport'],
             'target': str(link['target']),
+            'targetAirport': link['targetAirport'],
             'count': count,
         }
         if flow not in flows:

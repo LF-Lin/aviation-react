@@ -1,7 +1,7 @@
 import 'antd/dist/antd.css';
 
 import React, { useState } from 'react';
-import { Layout, Button } from 'antd';
+import { Layout, Button, Radio } from 'antd';
 import {
   NavigationControl,
   FullscreenControl,
@@ -41,6 +41,14 @@ const airportMenuStyle = {
   zIndex: 999,
 };
 
+const airportRadioStyle = {
+  position: 'absolute',
+  top: 6,
+  left: 12,
+  width: '300px',
+  zIndex: 999,
+};
+
 const MAPBOX_TOKEN =
   'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
 
@@ -54,7 +62,8 @@ const Airports = () => {
   });
   const [popupInfo, setPopupInfo] = useState(null);
   const [popupFlightInfo, setPopupFlightInfo] = useState(false);
-  const [airportArrival, setAirportArrival] = useState();
+  const [airportFlights, setAirportFlights] = useState();
+  const [direction, setDirection] = useState('in');
   const [activeLayer, setActiveLayer] = useState('iconLayer');
   const [airportLocation, setAirportLocation] = useState(AirportLoc);
   const [searchFilter, setSearchFilter] = useState(false);
@@ -77,6 +86,7 @@ const Airports = () => {
       setPopupFlightInfo(info);
     }
   };
+
   const handleAirportSearch = (e) => {
     var keyword = e.toUpperCase();
     const filteredAirportLoc = AirportLoc.map((ap) => {
@@ -96,10 +106,15 @@ const Airports = () => {
     setAirportLocation(AirportLoc);
     setSearchFilter(false);
   };
+
+  const handleDirectionSelect = (e) => {
+    setDirection(e.target.value);
+  };
+
   const layers = [
     activeLayer === 'iconLayer'
       ? iconLayer({ airportLocation, Airport, handleAirportClick })
-      : arcLayer({ airportArrival, handleArcClick }),
+      : arcLayer({ airportFlights, direction, handleArcClick }),
   ];
 
   return (
@@ -117,6 +132,17 @@ const Airports = () => {
           >
             Clear search results
           </Button>
+        )}
+        {airportFlights && activeLayer !== 'iconLayer' && (
+          <Radio.Group
+            onChange={handleDirectionSelect}
+            defaultValue="in"
+            style={airportRadioStyle}
+          >
+            <Radio.Button value="in">出发航班</Radio.Button>
+            <Radio.Button value="out">到达航班</Radio.Button>
+            <Radio.Button value="all">全部航班</Radio.Button>
+          </Radio.Group>
         )}
         <DeckGL
           key="basicGL"
@@ -139,7 +165,7 @@ const Airports = () => {
                 info={popupInfo}
                 setViewport={setViewport}
                 setPopupInfo={setPopupInfo}
-                setAirportArrival={setAirportArrival}
+                setAirportFlights={setAirportFlights}
                 setActiveLayer={setActiveLayer}
               />
             </Popup>
@@ -148,7 +174,7 @@ const Airports = () => {
           {popupFlightInfo && (
             <AirportFlightPopup
               info={popupFlightInfo}
-              airportGeo={airportArrival.airportGeo}
+              airportGeo={airportFlights.airportGeo}
               setPopupFlightInfo={setPopupFlightInfo}
               setActiveLayer={setActiveLayer}
               setPopupInfo={setPopupInfo}
@@ -157,8 +183,7 @@ const Airports = () => {
           )}
           <StaticMap
             key="staticMap"
-            mapStyle="mapbox://styles/mapbox/dark-v9"
-            // mapStyle="https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json"
+            mapStyle="mapbox://styles/mapbox/light-v10"
             mapboxApiAccessToken={MAPBOX_TOKEN}
             ContextProvider={MapContext.Provider}
           />

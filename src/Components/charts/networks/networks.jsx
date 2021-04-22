@@ -66,7 +66,7 @@ const Networks = () => {
         onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
-          <Divider orientation="left">Airport Networks</Divider>
+          <Divider orientation="left">Airport Networks @20210404</Divider>
           <Row>
             <Col offset={1} span={22} style={flightFlowStyle}>
               {networkData && <FlightFlow networkData={networkData} />}
@@ -103,6 +103,9 @@ const Networks = () => {
             </Col>
             <Col span={3}>
               <Statistic title="Average Clustering" value={0.6757} />
+            </Col>
+            <Col span={3}>
+              <Statistic title="Diameter" value={4} />
             </Col>
           </Row>
         </SwiperSlide>

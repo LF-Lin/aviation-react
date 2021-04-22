@@ -93,7 +93,11 @@ const FlightFlow = ({ networkData }) => {
             )}
           </>
         ) : (
-          <>{JSON.stringify(object, null, 2)}</>
+          <>
+            <p>{`出发机场名称：${object.sourceAirport}`}</p>
+            <p>{`到达机场名称：${object.targetAirport}`}</p>
+            <p>{`当天航班数量：${object.count}`}</p>
+          </>
         )}
       </div>
     );

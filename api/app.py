@@ -23,18 +23,13 @@ def realtime_airport_weather(iata):
     return jsonify(airport_weather)
 
 
-@app.route('/api/airport/arrivals/<string:iata>', methods=['GET'])
+@app.route('/api/airport/flights/<string:iata>', methods=['GET'])
 def realtime_airport_arrivals(iata):
     fd = FlightData()
     airport_arrivals = fd.get_airport_arrivals(iata, page=1, limit=10)
-    return jsonify(airport_arrivals)
-
-
-@app.route('/api/airport/departures/<string:iata>', methods=['GET'])
-def realtime_airport_departures(iata):
-    fd = FlightData()
     airport_departures = fd.get_airport_departures(iata, page=1, limit=10)
-    return jsonify(airport_departures)
+    airport_flights = airport_arrivals + airport_departures
+    return jsonify(airport_flights)
 
 
 @app.route('/api/flights/<string:bounds>/<string:airlines>', methods=['GET'])

@@ -71,7 +71,7 @@ function App() {
                   <Link to="/charts/chart2" />
                 </Menu.Item>
                 <Menu.Item key="graph" icon={<UploadOutlined />}>
-                  chart 3
+                  TODO
                   <Link to="/charts/graph" />
                 </Menu.Item>
               </SubMenu>

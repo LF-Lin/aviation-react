@@ -1,5 +1,6 @@
 import { Popup } from 'react-map-gl';
 import { Button } from 'antd';
+
 const AirportFlightPopup = (prop) => {
   const {
     info,

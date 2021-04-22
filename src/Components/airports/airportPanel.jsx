@@ -14,7 +14,7 @@ const popupStyle = {
 function AirportPanel(props) {
   const {
     info,
-    setAirportArrival,
+    setAirportFlights,
     setActiveLayer,
     setPopupInfo,
     setViewport,
@@ -30,11 +30,11 @@ function AirportPanel(props) {
     setVisible(false);
   };
 
-  const handleArrival = () => {
+  const handleFlights = () => {
     setViewport({
       latitude: info.object.latitude,
       longitude: info.object.longitude,
-      pitch: 55,
+      // pitch: 55,
       zoom: 4,
       transitionDuration: 500,
     });
@@ -46,14 +46,14 @@ function AirportPanel(props) {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `http://localhost:5555/api/airport/arrivals/${info.object.airport_iata}`
+        `http://localhost:5555/api/airport/flights/${info.object.airport_iata}`
       );
-      setAirportArrival({ arr: res.data, airportGeo: info.coordinate });
+      setAirportFlights({ flights: res.data, airportGeo: info.coordinate });
       setFlightAvailable(res.data.length);
       console.log(`${info.object.airport_iata} arrivals:`, res.data);
     };
     fetchData();
-  }, [info.coordinate, info.object.airport_iata, setAirportArrival]);
+  }, [info.coordinate, info.object.airport_iata, setAirportFlights]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,13 +95,11 @@ function AirportPanel(props) {
               type="primary"
               block
               style={{ margin: '10px 0' }}
-              onClick={handleArrival}
+              onClick={handleFlights}
               disabled={flightAvailable ? false : true}
             >
-              Show Arrival Flights / Count: {flightAvailable || 'No flight'}
-            </Button>
-            <Button type="primary" block style={{ margin: '10px 0' }}>
-              Show Departure Flights
+              Show Arrival & Departure Flights / Count:{' '}
+              {flightAvailable || 'No flight'}
             </Button>
           </Panel>
         </Collapse>

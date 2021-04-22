@@ -1,21 +1,41 @@
 import { ArcLayer } from '@deck.gl/layers';
 
-const arcLayer = ({ airportArrival, handleArcClick }) => {
-  // console.log(airportArrival.arr);
+const arcLayer = ({ airportFlights, direction, handleArcClick }) => {
+  const flightsFlow =
+    direction === 'in'
+      ? airportFlights.flights.filter((data) => {
+          return data.flight.airport.origin.name ? true : false;
+        })
+      : direction === 'out'
+      ? airportFlights.flights.filter((data) => {
+          return data.flight.airport.destination.name ? data : null;
+        })
+      : airportFlights.flights;
+
   return new ArcLayer({
     id: 'arc-layer',
-    data: airportArrival.arr,
+    data: flightsFlow,
     pickable: true,
-    getWidth: 4,
-    getSourcePosition: airportArrival.airportGeo,
-    getTargetPosition: (d) => [
-      d.flight.airport.origin.position.longitude,
-      d.flight.airport.origin.position.latitude,
-    ],
-    getSourceColor: [66, 135, 245],
-    getTargetColor: [230, 230, 255],
+    getWidth: 8,
+    getSourcePosition: (d) => {
+      return d.flight.airport.origin.name
+        ? [
+            d.flight.airport.origin.position.longitude,
+            d.flight.airport.origin.position.latitude,
+          ]
+        : airportFlights.airportGeo;
+    },
+    getTargetPosition: (d) => {
+      return d.flight.airport.origin.name
+        ? airportFlights.airportGeo
+        : [
+            d.flight.airport.destination.position.longitude,
+            d.flight.airport.destination.position.latitude,
+          ];
+    },
+    getSourceColor: [219, 54, 164],
+    getTargetColor: [247, 255, 0],
     autoHighlight: true,
-    highlightColor: [249, 226, 0],
     onClick: handleArcClick,
   });
 };
