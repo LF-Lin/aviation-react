@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Drawer, Collapse } from 'antd';
+import { Button, Drawer, Collapse, Table, Row, Col, Statistic } from 'antd';
 import axios from 'axios';
 
 const { Panel } = Collapse;
@@ -11,6 +11,35 @@ const popupStyle = {
   textAlign: 'left',
 };
 
+const columnConfig = [
+  {
+    title: '航班号',
+    dataIndex: 'callsign',
+    key: 'name',
+    fixed: 'left',
+  },
+  {
+    title: '出发机场',
+    dataIndex: 'oapname',
+    key: 'oapname',
+  },
+  {
+    title: '到达机场',
+    dataIndex: 'aapname',
+    key: 'aapname',
+  },
+  {
+    title: '计划出发时间',
+    dataIndex: 'oTime',
+    key: 'oTime',
+  },
+  {
+    title: '计划到达时间',
+    dataIndex: 'aTime',
+    key: 'aTime',
+  },
+];
+
 function AirportPanel(props) {
   const {
     info,
@@ -19,8 +48,10 @@ function AirportPanel(props) {
     setPopupInfo,
     setViewport,
   } = props;
+
+  const [flightsData, setFlightsData] = useState(null);
   const [visible, setVisible] = useState(false);
-  const [airportWeather, setAirportWeather] = useState({});
+  const [airportWeather, setAirportWeather] = useState(null);
   const [flightAvailable, setFlightAvailable] = useState(0);
 
   const showDrawer = () => {
@@ -34,13 +65,31 @@ function AirportPanel(props) {
     setViewport({
       latitude: info.object.latitude,
       longitude: info.object.longitude,
-      // pitch: 55,
       zoom: 4,
       transitionDuration: 500,
     });
     setActiveLayer('arcLayer');
     setVisible(false);
     setPopupInfo(null);
+  };
+
+  const handleFlightsTable = (data) => {
+    const flights = data.map((d, index) => {
+      const rows = {
+        callsign: d.flight.identification.number.default,
+        oapname: d.flight.airport.origin.code
+          ? d.flight.airport.origin.code.iata
+          : info.object.airport_iata,
+        aapname: d.flight.airport.destination.code
+          ? d.flight.airport.destination.code.iata
+          : info.object.airport_iata,
+        oTime: d.flight.time.scheduled.departure_time,
+        aTime: d.flight.time.scheduled.arrival_time,
+        key: index,
+      };
+      return rows;
+    });
+    setFlightsData(flights);
   };
 
   useEffect(() => {
@@ -50,7 +99,7 @@ function AirportPanel(props) {
       );
       setAirportFlights({ flights: res.data, airportGeo: info.coordinate });
       setFlightAvailable(res.data.length);
-      console.log(`${info.object.airport_iata} arrivals:`, res.data);
+      handleFlightsTable(res.data);
     };
     fetchData();
   }, [info.coordinate, info.object.airport_iata, setAirportFlights]);
@@ -61,8 +110,8 @@ function AirportPanel(props) {
       const res = await axios.get(
         `http://localhost:5555/api/airport/weather/${info.object.airport_iata}`
       );
-      setAirportWeather(res.data);
-      console.log(`${info.object.airport_iata} Weather: `, res.data);
+      setAirportWeather(res.data.time ? res.data : null);
+      // console.log(`${info.object.airport_iata} Weather: `, res.data);
     };
     fetchData();
   }, [info.object.airport_iata]);
@@ -84,13 +133,67 @@ function AirportPanel(props) {
         onClose={onClose}
         visible={visible}
       >
-        <Collapse defaultActiveKey={['1']} style={{ marginTop: '15px' }}>
+        <Collapse defaultActiveKey={['1']}>
           <Panel header="Weather Information" key="1">
-            <p>{airportWeather?.metar || 'No weather info'}</p>
-            <p>{airportWeather?.elevation?.ft}</p>
+            {
+              <>
+                <Row gutter={16} style={{ marginTop: '15px' }}>
+                  <Col span={6}>
+                    <Statistic
+                      title="机场地面温度"
+                      loading={airportWeather ? false : true}
+                      value={airportWeather ? airportWeather.temp.celsius : '-'}
+                      suffix=" °C"
+                      valueStyle={{ fontSize: '20px' }}
+                    />
+                  </Col>
+                  <Col span={6}>
+                    <Statistic
+                      title="机场地面气压"
+                      loading={airportWeather ? false : true}
+                      value={airportWeather ? airportWeather.pressure.hpa : '-'}
+                      suffix=" hpa"
+                      valueStyle={{ fontSize: '20px' }}
+                    />
+                  </Col>
+                  <Col span={6}>
+                    <Statistic
+                      title="机场可视距离"
+                      loading={airportWeather ? false : true}
+                      value={
+                        airportWeather ? airportWeather.sky.visibility.km : '-'
+                      }
+                      suffix=" km"
+                      precision={4}
+                      valueStyle={{ fontSize: '20px' }}
+                    />
+                  </Col>
+                  <Col span={6}>
+                    <Statistic
+                      title="机场风速"
+                      loading={airportWeather ? false : true}
+                      value={
+                        airportWeather ? airportWeather.wind.speed.kmh : '-'
+                      }
+                      suffix=" kmh"
+                      valueStyle={{ fontSize: '20px' }}
+                    />
+                  </Col>
+                </Row>
+              </>
+            }
           </Panel>
           <Panel header="Flight Schedule" key="2">
-            <p>{'机场航班时刻表，table'}</p>
+            <h3>{'机场航班时刻表'}</h3>
+
+            <Table
+              columns={columnConfig}
+              dataSource={flightsData}
+              scroll={{ x: 300, y: 200 }}
+              loading={flightAvailable}
+              size="small"
+            />
+
             <Button
               type="primary"
               block
@@ -98,7 +201,7 @@ function AirportPanel(props) {
               onClick={handleFlights}
               disabled={flightAvailable ? false : true}
             >
-              Show Arrival & Departure Flights / Count:{' '}
+              Show airport latest schedule on map / Count:{' '}
               {flightAvailable || 'No flight'}
             </Button>
           </Panel>
