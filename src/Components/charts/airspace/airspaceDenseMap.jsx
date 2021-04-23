@@ -1,7 +1,21 @@
+import axios from 'axios';
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
+import { Button } from 'antd';
 
-const AirspaceDenseMap = ({ airspaceData, airspaceStatData }) => {
+const refreshBtnStyle = {
+  position: 'absolute',
+  top: 12,
+  left: 200,
+  width: '100px',
+  zIndex: 999,
+};
+
+const AirspaceDenseMap = ({
+  airspaceData,
+  airspaceStatData,
+  handleRefreshBtn,
+}) => {
   echarts.registerMap('ChinaAirspace', airspaceData);
   const option = {
     title: {
@@ -67,12 +81,23 @@ const AirspaceDenseMap = ({ airspaceData, airspaceStatData }) => {
       },
     ],
   };
+
   return (
-    <ReactECharts
-      echarts={echarts}
-      option={option}
-      style={{ height: '60vh', width: '100%' }}
-    />
+    <>
+      <Button
+        type="primary"
+        loading={airspaceStatData ? false : true}
+        style={refreshBtnStyle}
+        onClick={handleRefreshBtn}
+      >
+        Refresh
+      </Button>
+      <ReactECharts
+        echarts={echarts}
+        option={option}
+        style={{ height: '60vh', width: '100%' }}
+      />
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ def get_flights_in_bounds(file_path):
 
 
 def get_airspace_geojson():
-    with open('./airspace.json', 'r', encoding='utf-8') as f:
+    with open('./scripts/airspace.json', 'r', encoding='utf-8') as f:
         airspace = json.load(f)['features']    
     return airspace
 
@@ -94,12 +94,14 @@ def flights_airspace_info(flights, airspace):
     airspace_flights_info.sort(key=lambda x:x['flights_count'])
     return airspace_flights_info
 
+def flights_in_airspace():
+    flights_info = get_flights_in_bounds('./scripts/flights_in_bounds.json')
+    airspace_geojson = get_airspace_geojson()
+    flights_in_airspace_json = flights_airspace_info(flights_info, airspace_geojson)
+
+    # with open('./flights_in_airspace.json', 'w', encoding='utf-8') as f:
+    #     json.dump(flights_in_airspace, f, ensure_ascii=False)
+    return flights_in_airspace_json
 
 if __name__ == "__main__":
-    flights_info = get_flights_in_bounds('./flights_in_bounds_04181509.json')
-    airspace_geojson = get_airspace_geojson()
-    flights_in_airspace = flights_airspace_info(flights_info, airspace_geojson)
-    print(flights_in_airspace)
-
-    with open('./flights_in_airspace.json', 'w', encoding='utf-8') as f:
-        json.dump(flights_in_airspace, f, ensure_ascii=False)
+    flights_in_airspace()

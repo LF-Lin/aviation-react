@@ -10,7 +10,7 @@ import axios from 'axios';
 import AirspaceMap from './airspaceMap';
 import AirspaceStat from './airspaceStat';
 import AirspaceDenseMap from './airspaceDenseMap';
-import AirspaceHeatMap from './heatmap';
+import AirspaceHeatMap from './airspaceHeatmap';
 
 SwiperCore.use([Navigation, Keyboard]);
 
@@ -22,7 +22,7 @@ const airspaceMapStyle = {
 const Airspace = () => {
   const [airspaceData, setAirspaceData] = useState(null);
   const [airspaceStatData, setAirspaceStatData] = useState(null);
-  const [airspaceHeatData, setAirspaceHeatData] = useState(null);
+  const [refreshFlag, setRefreshFlag] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,18 +44,12 @@ const Airspace = () => {
       setAirspaceStatData(res.data);
     };
     fetchData();
-  }, []);
+  }, [refreshFlag]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(
-        `http://localhost:5555/api/chart/airspace_heat`
-      );
-      console.log('airspace_heat', res.data);
-      setAirspaceHeatData(res.data);
-    };
-    fetchData();
-  }, []);
+  const handleRefreshBtn = () => {
+    setAirspaceStatData(null);
+    setRefreshFlag(!refreshFlag);
+  };
 
   return (
     <div style={{ height: '91vh' }}>
@@ -70,7 +64,7 @@ const Airspace = () => {
           <Divider orientation="left">Airspace Heat Map</Divider>
           <Row style={{ textAlign: 'left' }}>
             <Col offset={1} span={22}>
-              {airspaceHeatData && <AirspaceHeatMap data={airspaceHeatData} />}
+              <AirspaceHeatMap />
             </Col>
           </Row>
         </SwiperSlide>
@@ -84,6 +78,7 @@ const Airspace = () => {
                   <AirspaceDenseMap
                     airspaceData={airspaceData}
                     airspaceStatData={airspaceStatData}
+                    handleRefreshBtn={handleRefreshBtn}
                   />
                 )}
               </Card>

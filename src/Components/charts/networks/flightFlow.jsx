@@ -68,7 +68,6 @@ const FlightFlow = ({ networkData }) => {
     if (!tooltip) {
       return null;
     }
-    console.log(tooltip);
     const { totalIn, totalOut, object, x, y } = tooltip;
     if (!object) {
       return null;
