@@ -150,7 +150,7 @@ const Airports = () => {
           controller={true}
           layers={layers}
           ContextProvider={MapContext.Provider}
-          style={{ height: '92vh' }}
+          style={{ height: '91vh' }}
         >
           {popupInfo && (
             <Popup

@@ -81,16 +81,20 @@ def realtime_flight_track(flight_id):
     for k in r:
         if k in ['time', 'airport', 'identification', 'airline', 'aircraft']:
             row[k] = r[k]
+
+    estimated_arr_ts = r['time']['estimated']['arrival'] if r['time']['estimated']['arrival'] else \
+                    r['time']['scheduled']['arrival']
     row['time'] = {
         'scheduled_arr': datetime.fromtimestamp(r['time']['scheduled']['arrival']).strftime('%H:%M'),
         'scheduled_dep': datetime.fromtimestamp(r['time']['scheduled']['departure']).strftime('%H:%M'),
-        'estimated_arr': datetime.fromtimestamp(r['time']['estimated']['arrival']).strftime('%H:%M'),
+        'estimated_arr': datetime.fromtimestamp(estimated_arr_ts).strftime('%H:%M'),
         'real_dep': datetime.fromtimestamp(r['time']['real']['departure']).strftime('%H:%M'),
-        'progress': round((r['trail'][0]['ts'] - r['time']['real']['departure']) / (r['time']['estimated']['arrival'] - r['time']['real']['departure']), 3)*100
+        'progress': round((r['trail'][0]['ts'] - r['time']['real']['departure']) / (estimated_arr_ts - r['time']['real']['departure']), 3)*100
     }
     row['trail'] = {
         'current': r['trail'][0], 
-        'path': [[i['lng'],i['lat']] for i in r['trail']]
+        'path': [[i['lng'],i['lat'],i['alt'],i['spd']] for i in r['trail']],
+        'ts': [datetime.fromtimestamp(i['ts']).strftime('%H:%M') for i in r['trail']]
     }
     flight_trail.append(row)
     

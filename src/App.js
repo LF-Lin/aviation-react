@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <Router>
         <Layout className="layout">
-          <Header style={{ padding: '0' }}>
+          <Header style={{ padding: '0', height: '9vh' }}>
             <Menu
               theme="dark"
               mode="horizontal"

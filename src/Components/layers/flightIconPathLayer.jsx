@@ -17,7 +17,11 @@ const iconPathLayer = ({ flightPanelInfo, handleFlightPathClick }) => {
         },
       },
       sizeScale: 50,
-      getPosition: (d) => [d.trail.current.lng, d.trail.current.lat],
+      getPosition: (d) => [
+        d.trail.current.lng,
+        d.trail.current.lat,
+        d.trail.current.alt,
+      ],
       getAngle: (d) => 45 - d.trail.current.hd,
       getIcon: (d) => 'airplane',
       onClick: handleFlightPathClick,
