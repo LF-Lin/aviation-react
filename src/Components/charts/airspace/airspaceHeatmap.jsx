@@ -1,6 +1,7 @@
 import axios from 'axios';
 import DeckGL from '@deck.gl/react';
 import { useState, useEffect } from 'react';
+import { GeoJsonLayer } from '@deck.gl/layers';
 import { HeatmapLayer } from '@deck.gl/aggregation-layers';
 import { StaticMap } from 'react-map-gl';
 import { Button } from 'antd';
@@ -29,7 +30,9 @@ const AirspaceHeatMap = () => {
     latitude: 40.0838,
     longitude: 116.6095,
     zoom: 3,
+    minZoom: 3,
   });
+  const [airspaceData, setAirspaceData] = useState(null);
   const [airspaceHeatData, setAirspaceHeatData] = useState(null);
   const [refreshFlag, setRefreshFlag] = useState(false);
 
@@ -44,12 +47,34 @@ const AirspaceHeatMap = () => {
     fetchData();
   }, [refreshFlag]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(
+        `http://localhost:5555/api/chart/airspace_geo`
+      );
+      console.log('airspace_geo', res.data);
+      setAirspaceData(res.data);
+    };
+    fetchData();
+  }, []);
+
   const handleRefreshBtn = () => {
     setAirspaceHeatData(null);
     setRefreshFlag(!refreshFlag);
   };
 
   const layers = [
+    new GeoJsonLayer({
+      id: 'geojson',
+      data: airspaceData,
+      pickable: true,
+      opacity: 0.04,
+      stroked: true,
+      filled: true,
+      lineWidthMinPixels: 2,
+      getFillColor: [179, 177, 177],
+      getLineColor: [255, 255, 255],
+    }),
     new HeatmapLayer({
       id: 'heatmp-layer',
       data: airspaceHeatData,
@@ -57,7 +82,7 @@ const AirspaceHeatMap = () => {
       getPosition: (d) => [d['longitude'], d['latitude']],
       getWeight: (d) => d['count'],
       aggregation: 'SUM',
-      radiusPixels: 25,
+      radiusPixels: 20,
       intensity: 3,
       threshold: 0.01,
     }),

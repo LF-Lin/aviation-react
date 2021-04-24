@@ -64,6 +64,7 @@ const Networks = () => {
         allowTouchMove={false}
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
+        style={{ height: '91vh' }}
       >
         <SwiperSlide>
           <Divider orientation="left">Airport Networks @20210404</Divider>

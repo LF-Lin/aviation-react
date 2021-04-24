@@ -7,17 +7,11 @@ import { Row, Col, Divider, Card } from 'antd';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import AirspaceMap from './airspaceMap';
 import AirspaceStat from './airspaceStat';
 import AirspaceDenseMap from './airspaceDenseMap';
 import AirspaceHeatMap from './airspaceHeatmap';
 
 SwiperCore.use([Navigation, Keyboard]);
-
-const airspaceMapStyle = {
-  height: '85vh',
-  position: 'relative',
-};
 
 const Airspace = () => {
   const [airspaceData, setAirspaceData] = useState(null);
