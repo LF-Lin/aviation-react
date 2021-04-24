@@ -4,7 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { useDebounce } from 'react-use';
 import { Layout, Select, Input, Button, Tooltip, AutoComplete } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { NavigationControl, StaticMap, MapContext } from 'react-map-gl';
+import {
+  NavigationControl,
+  StaticMap,
+  _MapContext as MapContext,
+} from 'react-map-gl';
 import DeckGL from 'deck.gl';
 import { WebMercatorViewport } from '@deck.gl/core';
 import axios from 'axios';
@@ -174,73 +178,78 @@ const Flights = () => {
   return (
     <Layout>
       <Content style={{ position: 'relative' }}>
-        <Select
-          mode="multiple"
-          allowClear
-          style={airlineSelectStyle}
-          placeholder="Please select"
-          defaultValue={['CCA']}
-          onChange={(value) => setAirlines(value)}
-        >
-          <Option key={'CCA'}>{'中国国际航空'}</Option>
-          <Option key={'CSN'}>{'中国南方航空'}</Option>
-          <Option key={'CES'}>{'中国东方航空'}</Option>
-          <Option key={'CHH'}>{'海南航空'}</Option>
-          <Option key={'CSZ'}>{'深圳航空'}</Option>
-          <Option key={'CXA'}>{'厦门航空'}</Option>
-          <Option key={'CSC'}>{'四川航空'}</Option>
-          <Option key={'CSH'}>{'上海航空'}</Option>
-        </Select>
-
-        <div className="site-input-group-wrapper">
-          <Input.Group compact style={airlineSearchStyle}>
-            <AutoComplete
-              style={{ width: 100 }}
-              options={sourceOptions}
-              filterOption={(inputValue, option) =>
-                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
-                -1
-              }
-              onChange={(e) => setSourceAirport(e)}
-              placeholder="Source"
-            />
-            <Input
-              className="site-input-split"
-              style={{
-                width: 40,
-                borderLeft: 0,
-                borderRight: 0,
-                pointerEvents: 'none',
-                backgroundColor: '#fff',
-              }}
-              placeholder="to"
-              disabled
-            />
-            <AutoComplete
-              style={{ width: 100 }}
-              options={targetOptions}
-              filterOption={(inputValue, option) =>
-                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
-                -1
-              }
-              onChange={(e) => setTargetAirport(e)}
-              placeholder="Target"
-            />
-            <Tooltip title="search">
-              <Button
-                shape="circle"
-                icon={<SearchOutlined />}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 271,
-                  zIndex: 999,
-                }}
-                onClick={handleFlightsSearchClick}
-              />
-            </Tooltip>
-          </Input.Group>
-        </div>
+        {activeLayer === 'iconLayer' && (
+          <>
+            <Select
+              mode="multiple"
+              allowClear
+              style={airlineSelectStyle}
+              placeholder="Please select"
+              defaultValue={['CCA']}
+              onChange={(value) => setAirlines(value)}
+            >
+              <Option key={'CCA'}>{'中国国际航空'}</Option>
+              <Option key={'CSN'}>{'中国南方航空'}</Option>
+              <Option key={'CES'}>{'中国东方航空'}</Option>
+              <Option key={'CHH'}>{'海南航空'}</Option>
+              <Option key={'CSZ'}>{'深圳航空'}</Option>
+              <Option key={'CXA'}>{'厦门航空'}</Option>
+              <Option key={'CSC'}>{'四川航空'}</Option>
+              <Option key={'CSH'}>{'上海航空'}</Option>
+            </Select>
+            <div className="site-input-group-wrapper">
+              <Input.Group compact style={airlineSearchStyle}>
+                <AutoComplete
+                  style={{ width: 100 }}
+                  options={sourceOptions}
+                  filterOption={(inputValue, option) =>
+                    option.value
+                      .toUpperCase()
+                      .indexOf(inputValue.toUpperCase()) !== -1
+                  }
+                  onChange={(e) => setSourceAirport(e)}
+                  placeholder="Source"
+                />
+                <Input
+                  className="site-input-split"
+                  style={{
+                    width: 40,
+                    borderLeft: 0,
+                    borderRight: 0,
+                    pointerEvents: 'none',
+                    backgroundColor: '#fff',
+                  }}
+                  placeholder="to"
+                  disabled
+                />
+                <AutoComplete
+                  style={{ width: 100 }}
+                  options={targetOptions}
+                  filterOption={(inputValue, option) =>
+                    option.value
+                      .toUpperCase()
+                      .indexOf(inputValue.toUpperCase()) !== -1
+                  }
+                  onChange={(e) => setTargetAirport(e)}
+                  placeholder="Target"
+                />
+                <Tooltip title="search">
+                  <Button
+                    shape="circle"
+                    icon={<SearchOutlined />}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 271,
+                      zIndex: 999,
+                    }}
+                    onClick={handleFlightsSearchClick}
+                  />
+                </Tooltip>
+              </Input.Group>
+            </div>
+          </>
+        )}
         {true && (
           <DeckGL
             key="basicGL"
@@ -271,7 +280,6 @@ const Flights = () => {
               key="staticMap"
               mapStyle="mapbox://styles/mapbox/dark-v9"
               mapboxApiAccessToken={MAPBOX_TOKEN}
-              ContextProvider={MapContext.Provider}
             />
             <NavigationControl style={navStyle} />
           </DeckGL>
