@@ -2,13 +2,9 @@ import 'antd/dist/antd.css';
 
 import React, { useState, useEffect } from 'react';
 import { useDebounce } from 'react-use';
-import { Layout, Select } from 'antd';
-import {
-  NavigationControl,
-  FullscreenControl,
-  StaticMap,
-  MapContext,
-} from 'react-map-gl';
+import { Layout, Select, Input, Button, Tooltip, AutoComplete } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { NavigationControl, StaticMap, MapContext } from 'react-map-gl';
 import DeckGL from 'deck.gl';
 import { WebMercatorViewport } from '@deck.gl/core';
 import axios from 'axios';
@@ -21,12 +17,6 @@ import FlightPathPopup from './flightPathPopup';
 const { Content } = Layout;
 const { Option } = Select;
 
-const fullscreenStyle = {
-  position: 'absolute',
-  top: 36,
-  left: 20,
-  padding: '10px',
-};
 const navStyle = {
   position: 'absolute',
   top: 72,
@@ -40,8 +30,27 @@ const airlineSelectStyle = {
   width: '300px',
   zIndex: 999,
 };
+const airlineSearchStyle = {
+  position: 'absolute',
+  top: 44,
+  left: -1,
+  width: '300px',
+  zIndex: 999,
+};
+
 const MAPBOX_TOKEN =
   'pk.eyJ1IjoibG9uZ2ZlaTEiLCJhIjoiY2ttNXRmY2lhMGdrcjJwcXQ4OHcxc29yeiJ9.q1GlW7GMCWIII9bkzerOfw';
+
+const unique = (arr) => {
+  let unique = {};
+  arr.forEach(function (item) {
+    unique[JSON.stringify(item)] = item; //键名不会重复
+  });
+  arr = Object.keys(unique).map(function (u) {
+    return JSON.parse(u);
+  });
+  return arr;
+};
 
 const Flights = () => {
   const [viewport, setViewport] = useState({
@@ -61,7 +70,21 @@ const Flights = () => {
   const [flightPanelInfo, setFlightPanelInfo] = useState(undefined);
   const [activeLayer, setActiveLayer] = useState('iconLayer');
 
-  // fetch all flights in current bounding box
+  const [sourceAirport, setSourceAirport] = useState(null);
+  const [targetAirport, setTargetAirport] = useState(null);
+  const [updateFlag, setUpdateFlag] = useState(false);
+
+  const sourceOptions = unique(
+    flights.map((data) => {
+      return { value: data['airport_dep'] };
+    })
+  );
+  const targetOptions = unique(
+    flights.map((data) => {
+      return { value: data['airport_arr'] };
+    })
+  );
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
@@ -71,9 +94,8 @@ const Flights = () => {
       console.log('fetch bounding box finished: ', res.data);
     };
     fetchData();
-  }, [bounding, airlines]);
+  }, [bounding, airlines, updateFlag]);
 
-  // fetch detail info of selected flight
   useEffect(() => {
     if (selectedFlight) {
       const fetchData = async () => {
@@ -99,10 +121,6 @@ const Flights = () => {
     [viewport]
   );
 
-  const handleViewStateChange = (e) => {
-    setViewport(e.viewState);
-  };
-
   const handleFlightClick = (info) => {
     if (info.picked) {
       setViewport({
@@ -121,15 +139,37 @@ const Flights = () => {
     }
   };
 
-  function handleSelectChange(value) {
-    setAirlines(value);
-  }
-
   const layers = [
     activeLayer === 'iconLayer'
       ? iconLayer({ flights, handleFlightClick })
       : iconPathLayer({ flightPanelInfo, handleFlightPathClick }),
   ];
+
+  const handleFlightsSearchClick = () => {
+    const filteredFlights =
+      sourceAirport && targetAirport
+        ? flights.filter((data) => {
+            return (
+              data['airport_dep'] === sourceAirport &&
+              data['airport_arr'] === targetAirport
+            );
+          })
+        : sourceAirport
+        ? flights.filter((data) => {
+            return data['airport_dep'] === sourceAirport;
+          })
+        : targetAirport
+        ? flights.filter((data) => {
+            return data['airport_arr'] === targetAirport;
+          })
+        : flights;
+
+    if (flights.length === filteredFlights.length) {
+      setUpdateFlag(!updateFlag);
+    }
+    setFlights(filteredFlights);
+    console.log('filteredFlights', filteredFlights);
+  };
 
   return (
     <Layout>
@@ -140,7 +180,7 @@ const Flights = () => {
           style={airlineSelectStyle}
           placeholder="Please select"
           defaultValue={['CCA']}
-          onChange={handleSelectChange}
+          onChange={(value) => setAirlines(value)}
         >
           <Option key={'CCA'}>{'中国国际航空'}</Option>
           <Option key={'CSN'}>{'中国南方航空'}</Option>
@@ -151,6 +191,56 @@ const Flights = () => {
           <Option key={'CSC'}>{'四川航空'}</Option>
           <Option key={'CSH'}>{'上海航空'}</Option>
         </Select>
+
+        <div className="site-input-group-wrapper">
+          <Input.Group compact style={airlineSearchStyle}>
+            <AutoComplete
+              style={{ width: 100 }}
+              options={sourceOptions}
+              filterOption={(inputValue, option) =>
+                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
+                -1
+              }
+              onChange={(e) => setSourceAirport(e)}
+              placeholder="Source"
+            />
+            <Input
+              className="site-input-split"
+              style={{
+                width: 40,
+                borderLeft: 0,
+                borderRight: 0,
+                pointerEvents: 'none',
+                backgroundColor: '#fff',
+              }}
+              placeholder="to"
+              disabled
+            />
+            <AutoComplete
+              style={{ width: 100 }}
+              options={targetOptions}
+              filterOption={(inputValue, option) =>
+                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
+                -1
+              }
+              onChange={(e) => setTargetAirport(e)}
+              placeholder="Target"
+            />
+            <Tooltip title="search">
+              <Button
+                shape="circle"
+                icon={<SearchOutlined />}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 271,
+                  zIndex: 999,
+                }}
+                onClick={handleFlightsSearchClick}
+              />
+            </Tooltip>
+          </Input.Group>
+        </div>
         {true && (
           <DeckGL
             key="basicGL"
@@ -159,7 +249,7 @@ const Flights = () => {
             layers={layers}
             ContextProvider={MapContext.Provider}
             style={{ height: '91vh' }}
-            onViewStateChange={handleViewStateChange}
+            onViewStateChange={(e) => setViewport(e.viewState)}
           >
             {popupInfo && (
               <FlightPopup
@@ -183,7 +273,6 @@ const Flights = () => {
               mapboxApiAccessToken={MAPBOX_TOKEN}
               ContextProvider={MapContext.Provider}
             />
-            <FullscreenControl style={fullscreenStyle} />
             <NavigationControl style={navStyle} />
           </DeckGL>
         )}
