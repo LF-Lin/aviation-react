@@ -89,7 +89,7 @@ def realtime_flight_track(flight_id):
         'scheduled_dep': datetime.fromtimestamp(r['time']['scheduled']['departure']).strftime('%H:%M'),
         'estimated_arr': datetime.fromtimestamp(estimated_arr_ts).strftime('%H:%M'),
         'real_dep': datetime.fromtimestamp(r['time']['real']['departure']).strftime('%H:%M'),
-        'progress': round((r['trail'][0]['ts'] - r['time']['real']['departure']) / (estimated_arr_ts - r['time']['real']['departure']), 3)*100
+        'progress': round((r['trail'][0]['ts'] - r['time']['real']['departure']) / (estimated_arr_ts - r['time']['real']['departure']) * 100, 1)
     }
     row['trail'] = {
         'current': r['trail'][0], 
