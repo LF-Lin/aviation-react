@@ -1,4 +1,4 @@
-import { Row, Col, Statistic, Progress } from 'antd';
+import { Row, Col, Statistic, Progress, Divider } from 'antd';
 
 const FlightDetail = ({ flightPanelInfo }) => {
   return (
@@ -12,6 +12,7 @@ const FlightDetail = ({ flightPanelInfo }) => {
           />
         </Col>
       </Row>
+      <Divider dashed />
       <Row gutter={16} style={{ marginTop: '15px' }}>
         <Col span={12}>
           <Statistic
@@ -36,6 +37,7 @@ const FlightDetail = ({ flightPanelInfo }) => {
           />
         </Col>
       </Row>
+      <Divider dashed />
       <Row gutter={16} style={{ marginTop: '15px' }}>
         <Col span={12}>
           <Statistic
@@ -44,7 +46,6 @@ const FlightDetail = ({ flightPanelInfo }) => {
             value={
               flightPanelInfo ? flightPanelInfo[0].time.scheduled_dep : null
             }
-            valueStyle={{ fontSize: '8px' }}
           />
         </Col>
         <Col span={12}>
@@ -54,7 +55,6 @@ const FlightDetail = ({ flightPanelInfo }) => {
             value={
               flightPanelInfo ? flightPanelInfo[0].time.scheduled_arr : null
             }
-            valueStyle={{ fontSize: '8px' }}
           />
         </Col>
         <Col span={12}>
@@ -62,7 +62,6 @@ const FlightDetail = ({ flightPanelInfo }) => {
             title="实际出发时间"
             loading={flightPanelInfo ? false : true}
             value={flightPanelInfo ? flightPanelInfo[0].time.real_dep : null}
-            valueStyle={{ fontSize: '8px' }}
           />
         </Col>
         <Col span={12}>
@@ -72,7 +71,6 @@ const FlightDetail = ({ flightPanelInfo }) => {
             value={
               flightPanelInfo ? flightPanelInfo[0].time.estimated_arr : null
             }
-            valueStyle={{ fontSize: '8px' }}
           />
         </Col>
       </Row>
@@ -86,6 +84,7 @@ const FlightDetail = ({ flightPanelInfo }) => {
           />
         </Col>
       </Row>
+      <Divider dashed />
       <Row gutter={16} style={{ marginTop: '15px' }}>
         <Col span={6}>
           <Statistic

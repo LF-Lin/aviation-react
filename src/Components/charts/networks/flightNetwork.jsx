@@ -48,16 +48,16 @@ const FlightNetwork = ({ networkData, layout }) => {
           max: 2,
         },
         lineStyle: {
-          color: 'rgb(128, 128, 128)',
+          color: 'rgb(181, 181, 181)',
           opacity: 0.5,
         },
         emphasis: {
           scale: true,
+          focus: 'adjacency',
           lineStyle: {
             color: 'rgb(252, 3, 28)',
             opacity: 1,
           },
-          focus: 'adjacency',
           label: {
             position: 'right',
             show: true,
@@ -66,8 +66,26 @@ const FlightNetwork = ({ networkData, layout }) => {
       },
     ],
   };
+
+  const onChartLegendselectchanged = (param, echarts) => {
+    console.log(echarts);
+  };
+
+  const onChartClick = (param, echarts) => {
+    console.log(echarts);
+  };
+
+  const onEvents = {
+    click: onChartClick.bind(this),
+    legendselectchanged: onChartLegendselectchanged.bind(this),
+  };
+
   return (
-    <ReactECharts option={option} style={{ height: '60vh', width: '100%' }} />
+    <ReactECharts
+      option={option}
+      style={{ height: '60vh', width: '100%' }}
+      onEvents={onEvents}
+    />
   );
 };
 export default FlightNetwork;

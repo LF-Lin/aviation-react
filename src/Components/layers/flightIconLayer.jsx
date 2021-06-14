@@ -21,6 +21,7 @@ const iconLayer = ({ flights, handleFlightClick }) => {
     getAngle: (d) => 45 - d.angle,
     getIcon: (d) => 'airplane',
     onClick: handleFlightClick,
+    autoHighlight: true,
   });
 };
 
