@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { GeoJsonLayer } from '@deck.gl/layers';
 import { HeatmapLayer } from '@deck.gl/aggregation-layers';
 import { StaticMap } from 'react-map-gl';
-import { Button } from 'antd';
+import { Button, Switch } from 'antd';
 
 const MAP_STYLE = 'mapbox://styles/mapbox/dark-v9';
 const MAPBOX_TOKEN =
@@ -17,9 +17,17 @@ const heatMapStyle = {
 
 const refreshBtnStyle = {
   position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100px',
+  top: '10px',
+  left: '10px',
+  width: '120px',
+  zIndex: 999,
+};
+
+const switchStyle = {
+  position: 'absolute',
+  top: '50px',
+  left: '10px',
+  width: '120px',
   zIndex: 999,
 };
 
@@ -35,6 +43,7 @@ const AirspaceHeatMap = () => {
   const [airspaceData, setAirspaceData] = useState(null);
   const [airspaceHeatData, setAirspaceHeatData] = useState(null);
   const [refreshFlag, setRefreshFlag] = useState(false);
+  const [showHeatMap, setShowHeatMap] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +72,14 @@ const AirspaceHeatMap = () => {
     setRefreshFlag(!refreshFlag);
   };
 
+  const handleAirspaceClick = (e, info) => {
+    console.log(e.object);
+  };
+
+  const handleSwitchChange = (e) => {
+    setShowHeatMap(e);
+  };
+
   const layers = [
     new GeoJsonLayer({
       id: 'geojson',
@@ -74,30 +91,39 @@ const AirspaceHeatMap = () => {
       lineWidthMinPixels: 2,
       getFillColor: [179, 177, 177],
       getLineColor: [255, 255, 255],
+      onClick: handleAirspaceClick,
     }),
-    new HeatmapLayer({
-      id: 'heatmp-layer',
-      data: airspaceHeatData,
-      pickable: false,
-      getPosition: (d) => [d['longitude'], d['latitude']],
-      getWeight: (d) => d['count'],
-      aggregation: 'SUM',
-      radiusPixels: 20,
-      intensity: 3,
-      threshold: 0.01,
-    }),
+    showHeatMap &&
+      new HeatmapLayer({
+        id: 'heatmp-layer',
+        data: airspaceHeatData,
+        pickable: false,
+        getPosition: (d) => [d['longitude'], d['latitude']],
+        getWeight: (d) => d['count'],
+        aggregation: 'SUM',
+        radiusPixels: 20,
+        intensity: 3,
+        threshold: 0.01,
+      }),
   ];
 
   return (
     <>
       <Button
         type="primary"
+        shape="round"
         loading={airspaceHeatData ? false : true}
         style={refreshBtnStyle}
         onClick={handleRefreshBtn}
       >
-        Refresh
+        刷新数据
       </Button>
+      <Switch
+        checkedChildren="显示热力图"
+        unCheckedChildren="关闭热力图"
+        style={switchStyle}
+        onChange={handleSwitchChange}
+      />
       <DeckGL
         initialViewState={viewport}
         controller={true}
