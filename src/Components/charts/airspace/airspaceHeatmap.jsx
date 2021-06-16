@@ -5,6 +5,7 @@ import { GeoJsonLayer } from '@deck.gl/layers';
 import { HeatmapLayer } from '@deck.gl/aggregation-layers';
 import { StaticMap } from 'react-map-gl';
 import { Button, Switch } from 'antd';
+import IconLayer from '../../layers/flightIconLayer';
 
 const MAP_STYLE = 'mapbox://styles/mapbox/dark-v9';
 const MAPBOX_TOKEN =
@@ -52,6 +53,8 @@ const AirspaceHeatMap = () => {
   const [showHeatMap, setShowHeatMap] = useState(false);
   const [singleAirspaceData, setSingleAirspaceData] = useState(null);
   const [showSingleAirspace, setShowSingleAirspace] = useState(false);
+  const [flights, setFlights] = useState(null);
+  const [selectedAirspaceIndex, setSelectedAirspaceIndex] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,6 +78,19 @@ const AirspaceHeatMap = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (selectedAirspaceIndex) {
+      const fetchData = async () => {
+        const res = await axios.get(
+          `http://localhost:5555/api/chart/airspace/${selectedAirspaceIndex}/flights`
+        );
+        console.log('flights_in_airspace', res.data);
+        setFlights(res.data);
+      };
+      fetchData();
+    }
+  }, [selectedAirspaceIndex]);
+
   const handleRefreshBtn = () => {
     setAirspaceHeatData(null);
     setRefreshFlag(!refreshFlag);
@@ -84,6 +100,7 @@ const AirspaceHeatMap = () => {
     setSingleAirspaceData(e.object);
     setShowSingleAirspace(true);
     setShowHeatMap(false);
+    setSelectedAirspaceIndex(e.index);
     setViewport({
       latitude: e.coordinate[1],
       longitude: e.coordinate[0],
@@ -96,8 +113,9 @@ const AirspaceHeatMap = () => {
     setShowHeatMap(e);
   };
 
-  const handleSingleAirspaceBtn = () => {
+  const handleShowAllBtn = () => {
     setShowSingleAirspace(false);
+    setFlights(null);
     setViewport({
       latitude: 37.0838,
       longitude: 116.6095,
@@ -122,6 +140,7 @@ const AirspaceHeatMap = () => {
       autoHighlight: true,
       highlightColor: [255, 255, 255, 128],
     }),
+
     showHeatMap &&
       new HeatmapLayer({
         id: 'heatmap-layer',
@@ -134,6 +153,8 @@ const AirspaceHeatMap = () => {
         intensity: 3,
         threshold: 0.01,
       }),
+
+    flights && IconLayer({ flights, handleFlightClick: null }),
   ];
 
   return (
@@ -143,7 +164,7 @@ const AirspaceHeatMap = () => {
           type="primary"
           shape="round"
           style={singleAirspaceBtnStyle}
-          onClick={handleSingleAirspaceBtn}
+          onClick={handleShowAllBtn}
         >
           Show all
         </Button>

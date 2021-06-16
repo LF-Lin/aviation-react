@@ -2,7 +2,7 @@ import { IconLayer } from '@deck.gl/layers';
 import Airplane from '../../asset/airplane-icon.jpg';
 
 const iconLayer = ({ flights, handleFlightClick }) => {
-  // console.log(flights);
+  // console.log('iconLayer data:', flights);
   return new IconLayer({
     id: 'flights',
     data: flights,
@@ -22,6 +22,7 @@ const iconLayer = ({ flights, handleFlightClick }) => {
     getIcon: (d) => 'airplane',
     onClick: handleFlightClick,
     autoHighlight: true,
+    highlightColor: [255, 255, 255, 100],
   });
 };
 
