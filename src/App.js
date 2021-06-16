@@ -16,7 +16,6 @@ import {
 import Airports from './Components/airports/airports';
 import Flights from './Components/flights/flights';
 import Networks from './Components/charts/networks/networks';
-import Graph from './Components/charts/graph';
 import Airspace from './Components/charts/airspace/airspace';
 
 const { Header } = Layout;
@@ -70,10 +69,6 @@ function App() {
                   空域复杂度分析
                   <Link to="/charts/chart2" />
                 </Menu.Item>
-                <Menu.Item key="graph" icon={<UploadOutlined />}>
-                  TODO
-                  <Link to="/charts/graph" />
-                </Menu.Item>
               </SubMenu>
             </Menu>
           </Header>
@@ -82,7 +77,6 @@ function App() {
           <Route path="/airports" component={Airports} />
           <Route exact path="/charts" component={Networks} />
           <Route path="/charts/chart2" component={Airspace} />
-          <Route path="/charts/graph" component={Graph} />
         </Layout>
       </Router>
     </div>
