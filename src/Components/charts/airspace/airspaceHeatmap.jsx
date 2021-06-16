@@ -23,6 +23,14 @@ const refreshBtnStyle = {
   zIndex: 999,
 };
 
+const singleAirspaceBtnStyle = {
+  position: 'absolute',
+  top: '10px',
+  left: '10px',
+  width: '120px',
+  zIndex: 999,
+};
+
 const switchStyle = {
   position: 'absolute',
   top: '50px',
@@ -33,9 +41,7 @@ const switchStyle = {
 
 const AirspaceHeatMap = () => {
   const [viewport, setViewport] = useState({
-    width: 400,
-    height: 400,
-    latitude: 40.0838,
+    latitude: 37.0838,
     longitude: 116.6095,
     zoom: 3,
     minZoom: 3,
@@ -44,6 +50,8 @@ const AirspaceHeatMap = () => {
   const [airspaceHeatData, setAirspaceHeatData] = useState(null);
   const [refreshFlag, setRefreshFlag] = useState(false);
   const [showHeatMap, setShowHeatMap] = useState(false);
+  const [singleAirspaceData, setSingleAirspaceData] = useState(null);
+  const [showSingleAirspace, setShowSingleAirspace] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,18 +81,37 @@ const AirspaceHeatMap = () => {
   };
 
   const handleAirspaceClick = (e, info) => {
-    console.log(e.object);
+    setSingleAirspaceData(e.object);
+    setShowSingleAirspace(true);
+    setShowHeatMap(false);
+    setViewport({
+      latitude: e.coordinate[1],
+      longitude: e.coordinate[0],
+      zoom: 5,
+      transitionDuration: 500,
+    });
   };
 
   const handleSwitchChange = (e) => {
     setShowHeatMap(e);
   };
 
+  const handleSingleAirspaceBtn = () => {
+    setShowSingleAirspace(false);
+    setViewport({
+      latitude: 37.0838,
+      longitude: 116.6095,
+      zoom: 3,
+      minZoom: 3,
+      transitionDuration: 500,
+    });
+  };
+
   const layers = [
     new GeoJsonLayer({
       id: 'geojson',
-      data: airspaceData,
-      pickable: true,
+      data: showSingleAirspace ? singleAirspaceData : airspaceData,
+      pickable: showSingleAirspace ? false : true,
       opacity: 0.04,
       stroked: true,
       filled: true,
@@ -92,10 +119,12 @@ const AirspaceHeatMap = () => {
       getFillColor: [179, 177, 177],
       getLineColor: [255, 255, 255],
       onClick: handleAirspaceClick,
+      autoHighlight: true,
+      highlightColor: [255, 255, 255, 128],
     }),
     showHeatMap &&
       new HeatmapLayer({
-        id: 'heatmp-layer',
+        id: 'heatmap-layer',
         data: airspaceHeatData,
         pickable: false,
         getPosition: (d) => [d['longitude'], d['latitude']],
@@ -109,21 +138,35 @@ const AirspaceHeatMap = () => {
 
   return (
     <>
-      <Button
-        type="primary"
-        shape="round"
-        loading={airspaceHeatData ? false : true}
-        style={refreshBtnStyle}
-        onClick={handleRefreshBtn}
-      >
-        刷新数据
-      </Button>
+      {showSingleAirspace ? (
+        <Button
+          type="primary"
+          shape="round"
+          style={singleAirspaceBtnStyle}
+          onClick={handleSingleAirspaceBtn}
+        >
+          Show all
+        </Button>
+      ) : (
+        <Button
+          type="primary"
+          shape="round"
+          loading={airspaceHeatData ? false : true}
+          style={refreshBtnStyle}
+          onClick={handleRefreshBtn}
+        >
+          Refresh
+        </Button>
+      )}
+
       <Switch
-        checkedChildren="显示热力图"
-        unCheckedChildren="关闭热力图"
+        checkedChildren="Open heatmap"
+        unCheckedChildren="Close heatmap"
         style={switchStyle}
+        checked={showHeatMap}
         onChange={handleSwitchChange}
       />
+
       <DeckGL
         initialViewState={viewport}
         controller={true}
