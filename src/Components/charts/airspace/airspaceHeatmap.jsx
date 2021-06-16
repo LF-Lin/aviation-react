@@ -6,6 +6,7 @@ import { HeatmapLayer } from '@deck.gl/aggregation-layers';
 import { StaticMap } from 'react-map-gl';
 import { Button, Switch } from 'antd';
 import IconLayer from '../../layers/flightIconLayer';
+import AirspacePanel from './airspaceHeatmapPanel';
 
 const MAP_STYLE = 'mapbox://styles/mapbox/dark-v9';
 const MAPBOX_TOKEN =
@@ -40,6 +41,16 @@ const switchStyle = {
   zIndex: 999,
 };
 
+const tooltipStyle = {
+  position: 'absolute',
+  background: '#fff',
+  padding: 5,
+  fontSize: 8,
+  borderRadius: 10,
+  border: '0.5px solid #bfbfbf',
+  textAlign: 'left',
+};
+
 const AirspaceHeatMap = () => {
   const [viewport, setViewport] = useState({
     latitude: 37.0838,
@@ -55,13 +66,15 @@ const AirspaceHeatMap = () => {
   const [showSingleAirspace, setShowSingleAirspace] = useState(false);
   const [flights, setFlights] = useState(null);
   const [selectedAirspaceIndex, setSelectedAirspaceIndex] = useState(null);
+  const [airspacePanelVisible, setAirspacePanelVisible] = useState(false);
+  const [tooltip, setTooltip] = useState(undefined);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
         `http://localhost:5555/api/chart/airspace/heat`
       );
-      console.log('airspace_heat fetch', res.data);
+      // console.log('airspace_heat fetch', res.data);
       setAirspaceHeatData(res.data);
     };
     fetchData();
@@ -72,7 +85,7 @@ const AirspaceHeatMap = () => {
       const res = await axios.get(
         `http://localhost:5555/api/chart/airspace/geo`
       );
-      console.log('airspace_geo', res.data);
+      // console.log('airspace_geo', res.data);
       setAirspaceData(res.data);
     };
     fetchData();
@@ -80,14 +93,14 @@ const AirspaceHeatMap = () => {
 
   useEffect(() => {
     if (selectedAirspaceIndex) {
-      const fetchData = async () => {
+      const fetchFlightsData = async () => {
         const res = await axios.get(
           `http://localhost:5555/api/chart/airspace/${selectedAirspaceIndex}/flights`
         );
-        console.log('flights_in_airspace', res.data);
+        // console.log('flights_in_airspace', res.data);
         setFlights(res.data);
       };
-      fetchData();
+      fetchFlightsData();
     }
   }, [selectedAirspaceIndex]);
 
@@ -101,6 +114,7 @@ const AirspaceHeatMap = () => {
     setShowSingleAirspace(true);
     setShowHeatMap(false);
     setSelectedAirspaceIndex(e.index);
+    setAirspacePanelVisible(true);
     setViewport({
       latitude: e.coordinate[1],
       longitude: e.coordinate[0],
@@ -116,6 +130,7 @@ const AirspaceHeatMap = () => {
   const handleShowAllBtn = () => {
     setShowSingleAirspace(false);
     setFlights(null);
+    setAirspacePanelVisible(false);
     setViewport({
       latitude: 37.0838,
       longitude: 116.6095,
@@ -123,6 +138,35 @@ const AirspaceHeatMap = () => {
       minZoom: 3,
       transitionDuration: 500,
     });
+  };
+
+  const handleFlightHover = (e) => {
+    setTooltip(e || null);
+  };
+
+  const renderTooltip = () => {
+    if (!tooltip) {
+      return null;
+    }
+    const { object, x, y } = tooltip;
+    if (!object) {
+      return null;
+    }
+    return (
+      <div
+        style={{
+          ...tooltipStyle,
+          left: x,
+          top: y,
+        }}
+      >
+        <div>{`航班号：${object.flight}`}</div>
+        <div>{`出发机场：${object.departure}`}</div>
+        <div>{`到达机场：${object.arrival}`}</div>
+        <div>{`当前经度：${object.longitude}`}</div>
+        <div>{`当前纬度：${object.latitude}`}</div>
+      </div>
+    );
   };
 
   const layers = [
@@ -154,7 +198,8 @@ const AirspaceHeatMap = () => {
         threshold: 0.01,
       }),
 
-    flights && IconLayer({ flights, handleFlightClick: null }),
+    flights &&
+      IconLayer({ flights, handleFlightClick: null, handleFlightHover }),
   ];
 
   return (
@@ -187,7 +232,6 @@ const AirspaceHeatMap = () => {
         checked={showHeatMap}
         onChange={handleSwitchChange}
       />
-
       <DeckGL
         initialViewState={viewport}
         controller={true}
@@ -200,6 +244,13 @@ const AirspaceHeatMap = () => {
           mapboxApiAccessToken={MAPBOX_TOKEN}
           preventStyleDiffing={true}
         />
+        {airspacePanelVisible && flights && (
+          <AirspacePanel
+            singleAirspaceStat={flights}
+            airspaceProperties={singleAirspaceData}
+          />
+        )}
+        {renderTooltip()}
       </DeckGL>
     </>
   );

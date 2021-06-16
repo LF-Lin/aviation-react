@@ -61,22 +61,22 @@ function App() {
                 title="Data Analysis"
                 style={{ width: '182px' }}
               >
-                <Menu.Item key="chart1" icon={<UserOutlined />}>
+                <Menu.Item key="networks" icon={<UserOutlined />}>
                   空中交通网络分析
-                  <Link to="/charts" />
+                  <Link to="/networks" />
                 </Menu.Item>
-                <Menu.Item key="chart2" icon={<VideoCameraOutlined />}>
+                <Menu.Item key="airspace" icon={<VideoCameraOutlined />}>
                   空域复杂度分析
-                  <Link to="/charts/chart2" />
+                  <Link to="/airspace" />
                 </Menu.Item>
               </SubMenu>
             </Menu>
           </Header>
 
           <Route exact path="/" component={Flights} />
-          <Route path="/airports" component={Airports} />
-          <Route exact path="/charts" component={Networks} />
-          <Route path="/charts/chart2" component={Airspace} />
+          <Route exact path="/airports" component={Airports} />
+          <Route exact path="/networks" component={Networks} />
+          <Route exact path="/airspace" component={Airspace} />
         </Layout>
       </Router>
     </div>

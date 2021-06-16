@@ -10,7 +10,7 @@ const popupStyle = {
   textAlign: 'left',
 };
 
-function FlightPanel(props) {
+const FlightPanel = (props) => {
   const { popupInfo, flightPanelInfo, setPopupInfo, setActiveLayer } = props;
   const [visible, setVisible] = useState(false);
 
@@ -37,9 +37,9 @@ function FlightPanel(props) {
         width={550}
         title={`Flight Information: ${popupInfo?.object?.callsign}`}
         placement="right"
-        closable={false}
         onClose={handleDrawerClose}
         visible={visible}
+        mask={false}
       >
         <FlightDetail flightPanelInfo={flightPanelInfo} />
         <Button
@@ -54,6 +54,6 @@ function FlightPanel(props) {
       </Drawer>
     </div>
   );
-}
+};
 
 export default FlightPanel;

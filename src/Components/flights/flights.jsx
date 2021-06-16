@@ -145,7 +145,7 @@ const Flights = () => {
 
   const layers = [
     activeLayer === 'iconLayer'
-      ? iconLayer({ flights, handleFlightClick })
+      ? iconLayer({ flights, handleFlightClick, handleFlightHover: null })
       : iconPathLayer({ flightPanelInfo, handleFlightPathClick }),
   ];
 
