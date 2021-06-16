@@ -56,7 +56,7 @@ const AirspaceHeatMap = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `http://localhost:5555/api/chart/airspace_heat`
+        `http://localhost:5555/api/chart/airspace/heat`
       );
       console.log('airspace_heat fetch', res.data);
       setAirspaceHeatData(res.data);
@@ -67,7 +67,7 @@ const AirspaceHeatMap = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `http://localhost:5555/api/chart/airspace_geo`
+        `http://localhost:5555/api/chart/airspace/geo`
       );
       console.log('airspace_geo', res.data);
       setAirspaceData(res.data);

@@ -21,7 +21,7 @@ const Airspace = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `http://localhost:5555/api/chart/airspace_geo`
+        `http://localhost:5555/api/chart/airspace/geo`
       );
       console.log('airspace_geo', res.data);
       setAirspaceData(res.data);
@@ -32,7 +32,7 @@ const Airspace = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `http://localhost:5555/api/chart/airspace_stat`
+        `http://localhost:5555/api/chart/airspace/stat`
       );
       console.log('airspace_stat', res.data);
       setAirspaceStatData(res.data);

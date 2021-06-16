@@ -23,8 +23,8 @@ def _bbox_around_polycoords(coords):
 
 
 def _point_in_bbox(point, bounds):
-    return not(point[1] < bounds[0] or point[1] > bounds[2]
-        or point[0] < bounds[1] or point[0] > bounds[3])
+    return not(point['latitude'] < bounds[0] or point['latitude'] > bounds[2]
+        or point['longitude'] < bounds[1] or point['longitude'] > bounds[3])
 
 
 def _pnpoly(x, y, coords):
@@ -64,7 +64,7 @@ def _point_in_polygon(point, coords):
     for coord in coords:
         if inside_poly:
             break
-        if _pnpoly(point[1], point[0], coord):
+        if _pnpoly(point['latitude'], point['longitude'], coord):
             inside_poly = True
     return inside_poly
 
@@ -76,32 +76,42 @@ def _points_in_polygon(points, polygon):
         if _point_in_polygon(point, coords): 
             cnt += 1
             inner_points.append(point)
-    return cnt, inner_points if inner_points else []
+    return cnt, inner_points
 
-def flights_airspace_info(flights, airspace):
-    flights_coordinate = [[row['longitude'], row['latitude'], row['speed']] for row in flights]
+def get_airspace_stat(flights, airspace):
     airspace_geojson = [{'name': row['properties']['name'], 'geometry': row['geometry']} for row in airspace]
-    airspace_flights_info = []
+    flights_in_airspace_stat = []
     for airspace in airspace_geojson:
-        count, inner_points = _points_in_polygon(flights_coordinate, airspace['geometry'])
-        speed = [p[2] for p in inner_points] if inner_points else [0]
-        
-        airspace_flights_info.append({
+        count, inner_points = _points_in_polygon(flights, airspace['geometry'])
+        speed = [p['speed'] for p in inner_points] if inner_points else [0]
+        flights_in_airspace_stat.append({
             "name": airspace['name'],
             "flights_count": count,
             "flights_avg_speed": sum(speed)/len(speed),
         })
-    airspace_flights_info.sort(key=lambda x:x['flights_count'])
-    return airspace_flights_info
+    return flights_in_airspace_stat
 
-def flights_in_airspace():
+
+def get_flights_in_airspace(flights, airspace):
+    polygon = airspace['geometry']
+    coords = [polygon['coordinates']] if polygon['type'] == 'Polygon' else polygon['coordinates']
+    flights_in_airspace_list = []
+    for point in flights:
+        if _point_in_polygon(point, coords): 
+            flights_in_airspace_list.append(point)
+    return flights_in_airspace_list
+
+
+def flights_in_airspace(airspace_index=None):
     flights_info = get_flights_in_bounds('./scripts/flights_in_bounds.json')
     airspace_geojson = get_airspace_geojson()
-    flights_in_airspace_json = flights_airspace_info(flights_info, airspace_geojson)
-
-    # with open('./flights_in_airspace.json', 'w', encoding='utf-8') as f:
-    #     json.dump(flights_in_airspace, f, ensure_ascii=False)
+    if not airspace_index:
+        flights_in_airspace_json = get_airspace_stat(flights_info, airspace_geojson)
+        flights_in_airspace_json.sort(key=lambda x: x['flights_count'])
+    else:
+        flights_in_airspace_json = get_flights_in_airspace(flights_info, airspace_geojson[int(airspace_index)])
     return flights_in_airspace_json
 
+
 if __name__ == "__main__":
-    flights_in_airspace()
+    v = flights_in_airspace()

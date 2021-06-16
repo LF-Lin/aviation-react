@@ -115,20 +115,14 @@ def networks_stat_data():
     return jsonify(networks_stat)
 
 
-@app.route('/api/chart/airspace_geo')
+@app.route('/api/chart/airspace/geo')
 def airspace_geo_data():
     with open('./scripts/airspace.json', 'r', encoding='utf-8') as f:
         airspace_geo = json.load(f)
     return jsonify(airspace_geo)
 
 
-@app.route('/api/chart/airspace_stat')
-def airspace_stat_data():
-    airspace_stat = flights_in_airspace()
-    return jsonify(airspace_stat)
-
-
-@app.route('/api/chart/airspace_heat')
+@app.route('/api/chart/airspace/heat')
 def airspace_heat_data():
     bounds = ['53.97%2C17.71%2C72.75%2C88.75','53.97%2C17.71%2C88.75%2C104.75','53.97%2C17.71%2C104.75%2C120.75','53.97%2C17.71%2C120.75%2C135.14']
     flights_info = {}
@@ -152,6 +146,9 @@ def airspace_heat_data():
                 'angle': v[3],
                 'altitude': v[4],
                 'speed': v[5],
+                'departure': v[-8],
+                'arrival': v[-7],
+                'flight': v[-6],
                 'count': 1
             }
             flights_info[k] = row
@@ -164,6 +161,18 @@ def airspace_heat_data():
         json.dump(flights_in_bounds, f, ensure_ascii=False)
     
     return jsonify(flights_in_bounds)
+
+
+@app.route('/api/chart/airspace/stat')
+def airspace_stat_data():
+    airspace_stat = flights_in_airspace()
+    return jsonify(airspace_stat)
+
+
+@app.route('/api/chart/airspace/<string:airspace_index>/flights')
+def airspace_single_flights_data(airspace_index):
+    airspace_single_flights = flights_in_airspace(airspace_index)
+    return jsonify(airspace_single_flights)
 
 
 if __name__ == "__main__":
