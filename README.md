@@ -18,3 +18,6 @@ docker-compose up
 
 **Airspace flights visualization:**
 ![](src/asset/eg4.png)
+
+### LICENSE
+MIT License see [`LICENSE`](./LICENSE).
