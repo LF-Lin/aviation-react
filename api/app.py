@@ -33,6 +33,42 @@ def realtime_airport_arrivals(iata):
     return jsonify(airport_flights)
 
 
+@app.route('/api/airport/stat/<string:iata>', methods=['GET'])
+def realtime_airport_stat(iata):
+    url_arrival = f"http://adsbapi.variflight.com/adsb/airport/api/arrival/pie?iata={iata}"
+    url_departure = f"http://adsbapi.variflight.com/adsb/airport/api/departure/pie?iata={iata}"
+    headers = {
+        "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+        "accept": "application/json",
+        "accept-language": "en-EN",
+        "cache-control": "max-age=0",
+        "origin": "https://www.flightradar24.com",
+        "referer": "https://www.flightradar24.com/"
+    }
+    r_arr = requests.request("GET", url_arrival, headers=headers).json()
+    r_dep = requests.request("GET", url_departure, headers=headers).json()
+    stat = {
+        "departure": [
+            {"value":r_dep['flying'], "name": "起飞"},
+            {"value":r_dep['cancel'], "name": "取消"},
+            {"value":r_dep['total']-r_dep['flying']-r_dep['cancel']-r_dep['delay'], "name": "计划/待定"},
+            {"value":r_dep['delay'], "name": "延误"},
+        ],
+        "arrival": [
+            {"value":r_arr['flying'], "name": "起飞"},
+            {"value":r_arr['cancel'], "name": "取消"},
+            {"value":r_arr['delay'], "name": "延误"},
+            {"value":r_arr['arrival'], "name": "到达"},
+            {"value":r_arr['total']-r_arr['flying']-r_arr['cancel']-r_arr['delay']-r_arr['arrival'], "name": "计划/待定"},
+        ],
+        "count":{
+            "arr": r_arr['total'],
+            "dep": r_dep['total']
+        }
+    }
+    return stat
+
+
 @app.route('/api/flights/<string:bounds>/<string:airlines>', methods=['GET'])
 def realtime_flights(bounds, airlines):
     url = f"https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds={bounds}&callsign={airlines}"

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Drawer, Collapse, Table, Row, Col, Statistic } from 'antd';
 import axios from 'axios';
+import AirportPanelStat from './airportPanelStat';
 
 const { Panel } = Collapse;
+
 const popupBoxStyle = {
   padding: '10px',
 };
@@ -41,24 +43,28 @@ const columnConfig = [
 ];
 
 function AirportPanel(props) {
-  const {
-    info,
-    setAirportFlights,
-    setActiveLayer,
-    setPopupInfo,
-    setViewport,
-  } = props;
+  const { info, setAirportFlights, setActiveLayer, setPopupInfo, setViewport } =
+    props;
 
   const [flightsData, setFlightsData] = useState(null);
   const [visible, setVisible] = useState(false);
+  const [childrenVisible, setChildrenVisible] = useState(false);
   const [airportWeather, setAirportWeather] = useState(null);
   const [flightAvailable, setFlightAvailable] = useState(0);
+  const [airportStatData, setAirportStatData] = useState(null);
 
   const showDrawer = () => {
     setVisible(true);
   };
   const onClose = () => {
     setVisible(false);
+  };
+
+  const showChildrenDrawer = () => {
+    setChildrenVisible(true);
+  };
+  const onChildrenClose = () => {
+    setChildrenVisible(false);
   };
 
   const handleFlights = () => {
@@ -116,6 +122,18 @@ function AirportPanel(props) {
     fetchData();
   }, [info.object.airport_iata]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(info.object.airport_iata);
+      const res = await axios.get(
+        `http://localhost:5555/api/airport/stat/${info.object.airport_iata}`
+      );
+      setAirportStatData(res.data);
+      // console.log('setAirportStatData', res.data);
+    };
+    fetchData();
+  }, [info.object.airport_iata]);
+
   return (
     <div>
       <div style={popupBoxStyle}>
@@ -128,11 +146,23 @@ function AirportPanel(props) {
       <Drawer
         width={600}
         title={`Airport Information: ${info.object.airport_name}`}
-        placement="right"
-        closable={false}
         onClose={onClose}
         visible={visible}
+        push={{ distance: 0 }}
+        mask={false}
       >
+        <Drawer
+          title="进出港航班统计"
+          width={400}
+          placement="left"
+          onClose={onChildrenClose}
+          visible={childrenVisible}
+          mask={false}
+        >
+          {airportStatData && (
+            <AirportPanelStat airportStatData={airportStatData} />
+          )}
+        </Drawer>
         <Collapse defaultActiveKey={['1']}>
           <Panel header="Weather Information" key="1">
             {
@@ -184,7 +214,16 @@ function AirportPanel(props) {
             }
           </Panel>
           <Panel header="Flight Schedule" key="2">
-            <h3>{'机场航班时刻表'}</h3>
+            <Row gutter={24}>
+              <Col span={12}>
+                <h3>{'机场航班时刻表'}</h3>
+              </Col>
+              <Col span={6} offset={4}>
+                <Button type="primary" onClick={showChildrenDrawer}>
+                  进出港航班统计
+                </Button>
+              </Col>
+            </Row>
 
             <Table
               columns={columnConfig}
@@ -192,6 +231,7 @@ function AirportPanel(props) {
               scroll={{ x: 300, y: 200 }}
               loading={flightAvailable}
               size="small"
+              style={{ marginTop: 10 }}
             />
 
             <Button
